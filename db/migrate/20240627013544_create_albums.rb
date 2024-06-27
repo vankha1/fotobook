@@ -3,7 +3,7 @@ class CreateAlbums < ActiveRecord::Migration[7.1]
     create_table :albums do |t|
       t.string :title
       t.string :description
-      t.string :sharing_mode
+      t.boolean :is_private
       t.integer :number_like
 
       t.timestamps

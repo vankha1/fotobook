@@ -4,7 +4,7 @@ class CreatePhotos < ActiveRecord::Migration[7.1]
       t.string :image_url
       t.string :title
       t.string :description
-      t.string :sharing_mode
+      t.boolean :is_private
       t.integer :number_like
       t.belongs_to :user
       t.belongs_to :album

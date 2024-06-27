@@ -14,7 +14,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_27_015629) do
   create_table "albums", charset: "utf8mb3", force: :cascade do |t|
     t.string "title"
     t.string "description"
-    t.string "sharing_mode"
+    t.boolean "is_private"
     t.integer "number_like"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -34,7 +34,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_27_015629) do
     t.string "image_url"
     t.string "title"
     t.string "description"
-    t.string "sharing_mode"
+    t.boolean "is_private"
     t.integer "number_like"
     t.bigint "user_id"
     t.bigint "album_id"
@@ -50,7 +50,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_27_015629) do
     t.string "last_name"
     t.string "email"
     t.string "password"
-    t.string "user_type"
+    t.boolean "is_admin"
     t.string "avatar"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
