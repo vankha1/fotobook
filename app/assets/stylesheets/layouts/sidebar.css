@@ -1,0 +1,25 @@
+@import url("global_style.css");
+
+/* Sidebar */
+.sidebar {
+  height: 100%;
+  background-color: #f8f8f8;
+  padding: 1rem;
+}
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+.sidebar ul li {
+  padding: 10px 0;
+  text-align: center;
+}
+.sidebar ul li a {
+  color: #828282;
+  text-decoration: none;
+  font-weight: bold;
+}
+.sidebar ul li a:hover,
+.sidebar ul li a:active {
+  color: var(--main_color);
+}
