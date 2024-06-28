@@ -57,4 +57,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_27_015629) do
   end
 
   add_foreign_key "albums", "users"
+  add_foreign_key "photos", "albums"
+  add_foreign_key "photos", "users"
 end
