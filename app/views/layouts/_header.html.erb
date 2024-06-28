@@ -1,1 +1,66 @@
+<%= stylesheet_link_tag "header" %>
+<header id="header" class="px-0 px-md-5">
+    <div class="header_logo col-10 col-md-6">
+    <i
+        class="toggle fa-solid fa-bars d-block d-md-none mx-3 mt-1"
+        role="button"
+    ></i>
+    <h3>Fotobook</h3>
+    <div class="search_input col-6 col-md-10">
+        <input
+        type="text"
+        placeholder="Search Photo / Album"
+        class="form-control"
+        />
+    </div>
+    </div>
 
+    <div
+    class="auth col-2 col-md-4 d-flex align-items-center justify-content-evenly"
+    >
+    <div class="post_user_info">
+        <!-- <div class="default_avatar">
+        <span class="username_short">HN</span>
+        </div> -->
+
+        <div class="dropdown">
+        <div class="default_avatar">
+            <span class="username_short">HN</span>
+        </div>
+
+        <ul
+            class="dropdown-menu dropdown-menu-none dropdown-menu-lg-start d-md-none bg-light"
+            aria-labelledby="dropdownMenuButton1"
+        >
+            <li class="px-2">
+            <a
+                class="d-block mx-0"
+                href="#"
+                style="color: var(--main_color)"
+                >Profile</a
+            >
+            </li>
+            <li class="px-2">
+            <a
+                class="d-block mx-0"
+                href="#"
+                style="color: var(--main_color)"
+                >Logout</a
+            >
+            </li>
+        </ul>
+        </div>
+
+        <span class="user_name d-none d-md-block">Hieu Nguyen</span>
+        <span
+        class="user_name d-block d-md-none dropdown-toggle"
+        id="dropdownMenuButton1"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+        role="button"
+        >
+        </span>
+    </div>
+    <a href="login.php" class="d-none d-md-block">Login</a>
+    </div>
+</header>
