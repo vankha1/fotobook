@@ -1,0 +1,106 @@
+<main id="main">
+  <!-- Main content -->
+  <div class="">
+    <h1
+      class="text-center login-title"
+      style="
+        color: var(--main_color);
+        font-weight: bold;
+        font-size: 3rem;
+        margin-bottom: 2rem;
+      "
+    >
+      Fotobook Signup
+    </h1>
+
+    <div
+      class="d-flex align-items-center justify-content-center"
+      style="
+        width: 60%;
+        border: 2px solid #bdbdbd;
+        margin: auto;
+        gap: 2rem;
+        padding: 0.5rem 0;
+        border-radius: 0.5rem;
+      "
+    >
+      <img
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjzC2JyZDZ_RaWf0qp11K0lcvB6b6kYNMoqtZAQ9hiPZ4cTIOB"
+        alt=""
+        style="width: 3rem; height: 3rem"
+      />
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg"
+        alt=""
+        style="width: 2.5rem; height: 2.5rem"
+      />
+    </div>
+
+    <div class="account-wall">
+      <form class="form-signin">
+        <div style="width: 80%; margin-bottom: 0.5rem">
+          <label for="first_name" style="font-weight: bold"
+            >First name</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="first_name"
+            placeholder="First name"
+            required
+            autofocus
+          />
+        </div>
+        <div style="width: 80%; margin-bottom: 0.5rem">
+          <label for="last_name" style="font-weight: bold">Last name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="last_name"
+            placeholder="Last name"
+            required
+            autofocus
+          />
+        </div>
+        <div style="width: 80%; margin-bottom: 0.5rem">
+          <label for="password" style="font-weight: bold"
+            >New password</label
+          >
+          <input
+            type="password"
+            name="password"
+            class="form-control"
+            placeholder="Password"
+            required
+          />
+        </div>
+
+        <div style="width: 80%; margin-bottom: 0.5rem">
+          <label for="confirm_password" style="font-weight: bold"
+            >Password Confirmation</label
+          >
+          <input
+            type="password"
+            name="confirm_password"
+            class="form-control"
+            placeholder="Confirm password"
+            required
+          />
+        </div>
+
+        <button
+          class="btn btn-lg btn-primary btn-block"
+          type="submit"
+          style="
+            background-color: var(--main_color);
+            padding: 0.7rem 2rem;
+            font-weight: 500;
+            margin-top: 1rem;
+          "
+        >
+          Sign up
+        </button>
+      </form>
+    </div>
+  </div>
+</main>
