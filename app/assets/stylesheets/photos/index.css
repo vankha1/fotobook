@@ -1,3 +1,13 @@
+#main {
+  width: 100%;
+  height: calc(100vh - var(--header-height));
+  display: flex;
+  align-items: start;
+  /* justify-content: center; */
+  margin-top: 5rem;
+  background-color: #f8f8f8;
+}
+
 #main .container_ {
   height: 100%;
   background-color: #ffffff;
@@ -8,6 +18,11 @@
   gap: 0.8rem;
 
   padding: 1rem 2rem;
+}
+
+#main .container_ .feeds_container {
+  height: 80%;
+  align-items: start;
 }
 
 /* Post */
@@ -24,6 +39,9 @@
 @media screen and (max-width: 992px) {
   #main .container_ .card {
     max-width: 100%;
+  }
+  #main .container_ .feeds_container {
+    height: auto;
   }
 }
 

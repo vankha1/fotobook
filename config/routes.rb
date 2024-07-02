@@ -3,7 +3,5 @@ Rails.application.routes.draw do
   get '/login', to: "auths#login"
   get '/signup', to: "auths#signup"
 
-  namespace :feeds do
-    resources :photos, :albums
-  end
+  resources :photos
 end

@@ -1,9 +1,9 @@
 class Photo < ApplicationRecord
     belongs_to :user
-    belongs_to :album
+    belongs_to :album, optional: true
 
     validates :user_id, presence: true
-    validates :album_id, presence: true
+    validates :album_id, presence: true, allow_nil: true
     validates :title, presence: true, length: { maximum: 140 }
     validates :description, presence: true, length: { maximum: 300 }
     # validates :image_url, content_type: { in: %w[image/jpeg image/gif image/png], message: "must be a valid image format" },

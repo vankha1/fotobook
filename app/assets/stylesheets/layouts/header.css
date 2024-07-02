@@ -16,8 +16,13 @@
   /* justify-content: center; */
 }
 .header_logo h3 {
-  padding-top: 10px;
+  margin-bottom: 0;
+  font-size: 2rem;
+}
+.header_logo h3 a {
   margin-right: 20px;
+  text-decoration: none;
+  color: #fff;
 }
 .search_input input {
   /* width: 30rem; */
