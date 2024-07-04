@@ -1,6 +1,6 @@
-class PhotosController < ApplicationController
+class AlbumsController < ApplicationController
     def index
-        @photos = User.find(2).photos
+        
     end
 
     def new 

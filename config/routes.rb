@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   get '/signup', to: "auths#signup"
 
   resources :photos
+  resources :albums
 end

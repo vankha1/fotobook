@@ -1,4 +1,4 @@
-<%= stylesheet_link_tag 'photos'%>
+<%= stylesheet_link_tag 'albums/index'%>
 <% provide(:title, "Feeds") %>
 <main id="main" class="row m-0">
     <%= render "layouts/sidebar" %>
@@ -6,150 +6,143 @@
     <!-- Main content -->
     <div class="container_ col-12 col-md-8 m-md-0 justify-content-none">
         <div class="btn-group mb-3" role="group" aria-label="Basic example">
-            <button type="button" class="btn active_">PHOTO</button>
-            <button type="button" class="btn">ALBUM</button>
+          <button type="button" class="btn active_">PHOTO</button>
+          <button type="button" class="btn">ALBUM</button>
         </div>
 
         <div
-            class="d-flex flex-wrap flex-column flex-md-row align-self-stretch"
-            style="gap: 20px;"
+          class="d-flex flex-wrap flex-column flex-md-row align-self-stretch"
+          style="gap: 20px;"
         >
-            <div class="card col-lg-5">
+          <div class="card col-lg-5">
             <div class="row g-0">
-                <div class="col-lg-6">
+              <div class="col-lg-6">
                 <div class="photo_container">
-                    <img
-                    src="https://s3-alpha-sig.figma.com/img/5ab1/4214/5fd468f24c4621db4ce5a2043a07c7dc?Expires=1719792000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Hih3-vUWxePo-yG4r9-2Ppeg5mHKaYpfmHf1LwF-2tYJcnJRbnlp9TT-MaBNMBpAgsDpI1d~iYgxQpww3vmKse-dUWdsMusYNW6tKUauub4KhNu9wyJiWfNoBpXgVXmkp6VF1JkYwRZGtISjxcL~0kSafLqlaV5Jitre0yetuYTOnTqY3QYOpuTk0tn48xND9VJWaETcZ7DjkZVPKU4C3o95Bvi6kVj3mwF5CXkbhHcwFjxOaAkv4NOpInG-pWW8XRL1ce~lyRKWTkbXj~vKOOyqwAEo2a0yhSouv3ghUl6C5nHj6GfVkNvp9xu67-eEAlxbLSMKPVbLTWBSGaQymw__"
+                  <img
+                    src="https://media.istockphoto.com/id/1388420740/vi/anh/net-zero-v%C3%A0-carbon-neutral-concepts-net-zero-emissions-goals-m%E1%BB%99t-chi%E1%BA%BFn-l%C6%B0%E1%BB%A3c-d%C3%A0i-h%E1%BA%A1n-trung-l%E1%BA%ADp.jpg?s=1024x1024&w=is&k=20&c=kvm744AqJqKq0hf1csdKSOCkjwyspBcV1h6gcBzBNns="
                     class="img-fluid h-100"
                     alt="photo"
-                    />
+                  />
+                  <img
+                    src="https://media.istockphoto.com/id/1388420740/vi/anh/net-zero-v%C3%A0-carbon-neutral-concepts-net-zero-emissions-goals-m%E1%BB%99t-chi%E1%BA%BFn-l%C6%B0%E1%BB%A3c-d%C3%A0i-h%E1%BA%A1n-trung-l%E1%BA%ADp.jpg?s=1024x1024&w=is&k=20&c=kvm744AqJqKq0hf1csdKSOCkjwyspBcV1h6gcBzBNns="
+                    class="img-fluid h-100"
+                    alt="photo"
+                  />
+                  <img
+                    src="https://media.istockphoto.com/id/1388420740/vi/anh/net-zero-v%C3%A0-carbon-neutral-concepts-net-zero-emissions-goals-m%E1%BB%99t-chi%E1%BA%BFn-l%C6%B0%E1%BB%A3c-d%C3%A0i-h%E1%BA%A1n-trung-l%E1%BA%ADp.jpg?s=1024x1024&w=is&k=20&c=kvm744AqJqKq0hf1csdKSOCkjwyspBcV1h6gcBzBNns="
+                    class="img-fluid h-100"
+                    alt="photo"
+                  />
                 </div>
-                </div>
-                <div class="col-lg-6">
+              </div>
+              <div class="col-lg-6">
                 <div class="post_user_info">
-                    <div class="default_avatar">
+                  <div class="default_avatar">
                     <span class="username_short">HN</span>
-                    </div>
-                    <span class="user_name">Hieu Nguyen</span>
+                  </div>
+                  <span class="user_name">Hieu Nguyen</span>
                 </div>
 
                 <div class="card-body" style="padding: 0.8rem">
-                    <h5 class="card-title">Nam tempor posuere faucibus</h5>
-                    <p class="card-text">
+                  <h5 class="card-title">Nam tempor posuere faucibus</h5>
+                  <p class="card-text">
                     Aliquam dictum nec massa ac consequat. Etiam dignissim
                     tincidunt tellus sed vestibulum. Sed vitae vestibulum purus.
                     Curabitur malesuada libero in nibh pretium, sed malesuada
                     nisi feugiat.
-                    </p>
-                    <div class="post_createdAt">
+                  </p>
+                  <div class="post_createdAt">
                     <i class="fa fa-heart" style="color: var(--main_color)"
-                        >&nbsp;<span>123</span></i
+                      >&nbsp;<span>123</span></i
                     >
                     <small class="text-body-secondary"
-                        >4:56 pm 01/04/2018</small
+                      >4:56 pm 01/04/2018</small
                     >
-                    </div>
+                  </div>
                 </div>
-                </div>
+              </div>
             </div>
-            </div>
-            <div class="card col-lg-5">
+          </div>
+          <div class="card col-lg-5">
             <div class="row g-0">
-                <div class="col-lg-6">
+              <div class="col-lg-6">
                 <div class="photo_container">
-                    <img
-                    src="https://s3-alpha-sig.figma.com/img/5ab1/4214/5fd468f24c4621db4ce5a2043a07c7dc?Expires=1719792000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Hih3-vUWxePo-yG4r9-2Ppeg5mHKaYpfmHf1LwF-2tYJcnJRbnlp9TT-MaBNMBpAgsDpI1d~iYgxQpww3vmKse-dUWdsMusYNW6tKUauub4KhNu9wyJiWfNoBpXgVXmkp6VF1JkYwRZGtISjxcL~0kSafLqlaV5Jitre0yetuYTOnTqY3QYOpuTk0tn48xND9VJWaETcZ7DjkZVPKU4C3o95Bvi6kVj3mwF5CXkbhHcwFjxOaAkv4NOpInG-pWW8XRL1ce~lyRKWTkbXj~vKOOyqwAEo2a0yhSouv3ghUl6C5nHj6GfVkNvp9xu67-eEAlxbLSMKPVbLTWBSGaQymw__"
+                  <img
+                    src="https://media.istockphoto.com/id/1388420740/vi/anh/net-zero-v%C3%A0-carbon-neutral-concepts-net-zero-emissions-goals-m%E1%BB%99t-chi%E1%BA%BFn-l%C6%B0%E1%BB%A3c-d%C3%A0i-h%E1%BA%A1n-trung-l%E1%BA%ADp.jpg?s=1024x1024&w=is&k=20&c=kvm744AqJqKq0hf1csdKSOCkjwyspBcV1h6gcBzBNns="
                     class="img-fluid h-100"
                     alt="photo"
-                    />
+                  />
                 </div>
-                </div>
-                <div class="col-lg-6">
+              </div>
+              <div class="col-lg-6">
                 <div class="post_user_info">
-                    <div class="default_avatar">
+                  <div class="default_avatar">
                     <span class="username_short">HN</span>
-                    </div>
-                    <span class="user_name">Hieu Nguyen</span>
+                  </div>
+                  <span class="user_name">Hieu Nguyen</span>
                 </div>
 
                 <div class="card-body" style="padding: 0.8rem">
-                    <h5 class="card-title">Nam tempor posuere faucibus</h5>
-                    <p class="card-text">
+                  <h5 class="card-title">Nam tempor posuere faucibus</h5>
+                  <p class="card-text">
                     Aliquam dictum nec massa ac consequat. Etiam dignissim
                     tincidunt tellus sed vestibulum. Sed vitae vestibulum purus.
                     Curabitur malesuada libero in nibh pretium, sed malesuada
                     nisi feugiat.
-                    </p>
-                    <div class="post_createdAt">
+                  </p>
+                  <div class="post_createdAt">
                     <i class="fa fa-heart" style="color: var(--main_color)"
-                        >&nbsp;<span>123</span></i
+                      >&nbsp;<span>123</span></i
                     >
                     <small class="text-body-secondary"
-                        >4:56 pm 01/04/2018</small
+                      >4:56 pm 01/04/2018</small
                     >
-                    </div>
+                  </div>
                 </div>
-                </div>
+              </div>
             </div>
-            </div>
-            <div class="card col-lg-5">
+          </div>
+          <div class="card col-lg-5">
             <div class="row g-0">
-                <div class="col-md-6">
+              <div class="col-md-6">
                 <div class="photo_container">
-                    <img
-                    src="https://s3-alpha-sig.figma.com/img/5ab1/4214/5fd468f24c4621db4ce5a2043a07c7dc?Expires=1719792000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Hih3-vUWxePo-yG4r9-2Ppeg5mHKaYpfmHf1LwF-2tYJcnJRbnlp9TT-MaBNMBpAgsDpI1d~iYgxQpww3vmKse-dUWdsMusYNW6tKUauub4KhNu9wyJiWfNoBpXgVXmkp6VF1JkYwRZGtISjxcL~0kSafLqlaV5Jitre0yetuYTOnTqY3QYOpuTk0tn48xND9VJWaETcZ7DjkZVPKU4C3o95Bvi6kVj3mwF5CXkbhHcwFjxOaAkv4NOpInG-pWW8XRL1ce~lyRKWTkbXj~vKOOyqwAEo2a0yhSouv3ghUl6C5nHj6GfVkNvp9xu67-eEAlxbLSMKPVbLTWBSGaQymw__"
+                  <img
+                    src="https://media.istockphoto.com/id/1388420740/vi/anh/net-zero-v%C3%A0-carbon-neutral-concepts-net-zero-emissions-goals-m%E1%BB%99t-chi%E1%BA%BFn-l%C6%B0%E1%BB%A3c-d%C3%A0i-h%E1%BA%A1n-trung-l%E1%BA%ADp.jpg?s=1024x1024&w=is&k=20&c=kvm744AqJqKq0hf1csdKSOCkjwyspBcV1h6gcBzBNns="
                     class="img-fluid h-100"
                     alt="photo"
-                    />
+                  />
                 </div>
-                </div>
-                <div class="col-md-6">
+              </div>
+              <div class="col-md-6">
                 <div class="post_user_info">
-                    <div class="default_avatar">
+                  <div class="default_avatar">
                     <span class="username_short">HN</span>
-                    </div>
-                    <span class="user_name">Hieu Nguyen</span>
+                  </div>
+                  <span class="user_name">Hieu Nguyen</span>
                 </div>
 
                 <div class="card-body" style="padding: 0.8rem">
-                    <h5 class="card-title">Nam tempor posuere faucibus</h5>
-                    <p class="card-text">
+                  <h5 class="card-title">Nam tempor posuere faucibus</h5>
+                  <p class="card-text">
                     Aliquam dictum nec massa ac consequat. Etiam dignissim
                     tincidunt tellus sed vestibulum. Sed vitae vestibulum purus.
                     Curabitur malesuada libero in nibh pretium, sed malesuada
                     nisi feugiat.
-                    </p>
-                    <div class="post_createdAt">
+                  </p>
+                  <div class="post_createdAt">
                     <i class="fa fa-heart" style="color: var(--main_color)"
-                        >&nbsp;<span>123</span></i
+                      >&nbsp;<span>123</span></i
                     >
                     <small class="text-body-secondary"
-                        >4:56 pm 01/04/2018</small
+                      >4:56 pm 01/04/2018</small
                     >
-                    </div>
+                  </div>
                 </div>
-                </div>
+              </div>
             </div>
-            </div>
+          </div>
         </div>
-
-        <!-- Pagination -->
-        <nav aria-label="">
-            <ul class="pagination justify-content-center">
-            <li class="page-item disabled">
-                <a class="page-link">Previous</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item active">
-                <a class="page-link" href="#">2</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#">Next</a>
-            </li>
-            </ul>
-        </nav>
     </div>
-
+    
     <div class="col-2"></div>
 </main>
