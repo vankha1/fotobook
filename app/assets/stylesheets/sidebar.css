@@ -23,3 +23,7 @@
 .sidebar ul li a:active {
   color: var(--main_color);
 }
+
+.sidebar .is_active {
+  color: var(--main_color);
+}

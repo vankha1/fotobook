@@ -5,9 +5,8 @@ Rails.application.routes.draw do
     passwords: 'users/passwords',
     confirmations: 'users/confirmations',
   }
-  root "photos#index"
-  get '/login', to: "auths#login"
-  get '/signup', to: "auths#signup"
+  root "photos#index", is_active: true
+  get "/my-photo", to: "photos#new", is_active: true
 
   resources :photos
   resources :albums

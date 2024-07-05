@@ -5,8 +5,8 @@
     <!-- Main content -->
     <div class="container_ col-12 col-md-8 m-md-0 justify-content-none">
         <div class="btn-group mb-3" role="group" aria-label="Basic example">
-            <button type="button" class="btn active_">PHOTO</button>
-            <button type="button" class="btn">ALBUM</button>
+            <%= link_to "PHOTO", root_path, class:"btn #{ request.path == root_path ? 'active_' : ''} " %>
+            <%= link_to "ALBUM", albums_path, class:"btn #{ request.path == albums_path ? 'active_' : ''}" %>
         </div>
 
         <div

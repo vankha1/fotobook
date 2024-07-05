@@ -4,7 +4,20 @@
     class="sidebar d-none d-md-flex flex-column align-items-center col-2"
 >
     <ul class="d-flex flex-column align-items-start w-auto">
-        <li><a href="">Feeds</a></li>
-        <li><a href="">My Photos</a></li>
+        <li>
+            <a href="<%= root_path %>"
+                class="<%= 'is_active' if current_page?(root_path) %>"
+            >
+                Feeds
+            </a>
+        </li>
+        
+        <li>
+            <a href="/my-photo"
+                class="<%= 'is_active' if current_page?(my_photo_path) %>"
+            >
+                Discovers
+            </a>
+        </li>
     </ul>
 </div>
