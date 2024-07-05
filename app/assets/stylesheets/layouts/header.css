@@ -31,7 +31,7 @@
   border: none;
   outline: none;
 }
-.auth a {
+.auth .auth_btn {
   color: #fff;
   text-decoration: none;
   padding: 5px 10px;
