@@ -9,6 +9,16 @@
   background-color: #fff;
 }
 
+.signup_form_container {
+  width: 30%;
+}
+
+@media screen and (max-width: 992px) {
+  .signup_form_container {
+    width: 75%;
+  }
+}
+
 .form-signin {
   max-width: 90%;
   padding: 15px 5px;

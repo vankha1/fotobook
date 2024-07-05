@@ -1,6 +1,7 @@
+<% provide(:title, "Sign up") %>
 <main id="main">
   <!-- Main content -->
-  <div class="" style="width: 30%">
+  <div class="signup_form_container" style="">
     <h1
       class="text-center login-title"
       style="
@@ -37,11 +38,6 @@
     </div>
 
     <div class="account-wall">
-      <img
-        class="profile-img"
-        src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
-        alt=""
-      />
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => { :style => 'max-width: 90%;
                                           padding: 15px 5px;
                                           margin: 0 auto;
@@ -52,26 +48,26 @@
 
         <div style="width: 80%; margin-bottom: 0.5rem">
           <%= f.label :first_name, style: "font-weight: bold" %><br />
-          <%= f.text_field :first_name, autofocus: true, autocomplete: "email", class: "form-control", id: :first_name %>
+          <%= f.text_field :first_name, autofocus: true, autocomplete: "email", class: "form-control", id: :first_name, placeholder: "First name" %>
         </div>
         <div style="width: 80%; margin-bottom: 0.5rem">
           <%= f.label :last_name, style: "font-weight: bold" %><br />
-          <%= f.text_field :last_name, autofocus: true, autocomplete: "email", class: "form-control", id: :last_name %>
+          <%= f.text_field :last_name, autofocus: true, autocomplete: "email", class: "form-control", id: :last_name, placeholder: "Last name" %>
         </div>
 
         <div style="width: 80%; margin-bottom: 0.5rem">
           <%= f.label :email, style: "font-weight: bold" %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", id: :email %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", id: :email, placeholder: "Email" %>
         </div>
 
         <div style="width: 80%; margin-bottom: 0.5rem">
           <%= f.label :password, style: "font-weight: bold" %><br />
-          <%= f.password_field :password, autocomplete: "new-password", class: "form-control", id: :password %>
+          <%= f.password_field :password, autocomplete: "new-password", class: "form-control", id: :password, placeholder: "Password" %>
         </div>
 
         <div style="width: 80%; margin-bottom: 0.5rem">
           <%= f.label :password_confirmation, style: "font-weight: bold" %><br />
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", id: :password_confirmation %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", id: :password_confirmation, placeholder: "Confirm password" %>
         </div>
 
         <%= f.submit "Sign up", class: "btn btn-lg btn-primary btn-block", style: "
@@ -83,7 +79,7 @@
         <% end %>
     </div>
     <a
-      href="/signup"
+      href="/users/sign_in"
       class="text-center new-account"
       style="color: var(--main_color); text-decoration: none"
       >Create an account
