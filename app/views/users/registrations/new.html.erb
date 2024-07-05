@@ -42,7 +42,7 @@
         src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
         alt=""
       />
-      <%= form_with(model: resource, url: registration_path(resource_name), method: :put, local: true, :html => { :style => 'max-width: 90%;
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => { :style => 'max-width: 90%;
                                           padding: 15px 5px;
                                           margin: 0 auto;
                                           display: flex;
