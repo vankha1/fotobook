@@ -23,8 +23,8 @@
   padding: 0;
   background-color: #f8f8f8;
   line-height: 1rem;
-  flex-grow: 1;
-  max-width: 48%;
+  /* flex-grow: 1; */
+  /* max-width: 48%; */
 }
 
 @media screen and (max-width: 992px) {
@@ -50,7 +50,7 @@
 }
 
 /* For album */
-.photo_container {
+/* .photo_container {
   position: relative;
   width: 250px;
 }
@@ -75,7 +75,7 @@
 .photo_container img:nth-child(3) {
   transform: rotate(0deg);
   z-index: 3;
-}
+} */
 
 #main .container_ .post_user_info {
   display: flex;

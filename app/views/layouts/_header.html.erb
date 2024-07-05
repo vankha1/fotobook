@@ -22,7 +22,7 @@
             <div class="post_user_info">
                     <div class="dropdown">
                         <div class="default_avatar">
-                            <span class="username_short">HN</span>
+                            <span class="username_short"><%= current_user.first_name[0] + current_user.last_name[0] %></span>
                         </div>
 
                         <ul
@@ -48,7 +48,7 @@
                         </ul>
                     </div>
 
-                    <span class="user_name d-none d-md-block">Hieu Nguyen</span>
+                    <span class="user_name d-none d-md-block"><%= current_user.first_name + current_user.last_name %></span>
                     <span
                         class="user_name d-block d-md-none dropdown-toggle"
                         id="dropdownMenuButton1"

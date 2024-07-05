@@ -32,8 +32,6 @@
   padding: 0;
   background-color: #f8f8f8;
   line-height: 1rem;
-  flex-grow: 1;
-  max-width: 48%;
 }
 
 @media screen and (max-width: 992px) {
@@ -132,6 +130,8 @@
   justify-content: space-between;
   font-size: 0.8rem;
   margin-top: 2rem;
+  padding: 0 0.8rem;
+  align-self: self-end;
 }
 #main .container_ .post_createdAt i {
   color: #e0e0e0;
