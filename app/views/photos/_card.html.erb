@@ -1,0 +1,34 @@
+<div class="card photo">
+    <div class="row g-0">
+        <div class="col-lg-6">
+            <div class="photo_container">
+                <img
+                    src="<%= photo.image_url %>"
+                    class="img-fluid h-100"
+                    alt="photo"
+                />
+            </div>
+        </div>
+        <div class="col-lg-6 p-2">
+            <div class="post_user_info">
+                <div class="default_avatar">
+                    <span class="username_short"><%= photo.user.first_name[0] + photo.user.last_name[0] %></span>
+                </div>
+                <span class="user_name"><%= photo.user.first_name + photo.user.last_name %></span>  
+            </div>
+
+            <div class="card-body">
+                <h5 class="card-title"><%= photo.title %></h5>
+                <p class="card-text"><%= photo.description %></p>
+            </div>
+            <div class="post_createdAt">
+                <i class="fa fa-heart" style="color: var(--main_color)">
+                    &nbsp;<span><%= photo.number_like %></span>
+                </i>
+                <small class="text-body-secondary">
+                    <%= photo.created_at %>
+                </small>
+            </div>
+        </div>
+    </div>
+</div>

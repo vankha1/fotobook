@@ -1,13 +1,11 @@
 <%= stylesheet_link_tag 'photos/index'%>
 <% provide(:title, "Feeds") %>
-<main id="main" class="row m-0">
+
+<main id="main" class="photo_file row m-0">
     <%= render "layouts/sidebar" %>
     <!-- Main content -->
     <div class="container_ col-12 col-md-8 m-md-0 justify-content-none">
-        <div class="btn-group mb-3" role="group" aria-label="Basic example">
-            <%= link_to "PHOTO", root_path, class:"btn #{ request.path == root_path ? 'active_' : ''} " %>
-            <%= link_to "ALBUM", albums_path, class:"btn #{ request.path == albums_path ? 'active_' : ''}" %>
-        </div>
+        <%= render "shared/feed_nav" %>
 
         <div
             class="feeds_container d-flex flex-wrap flex-column flex-md-row"
@@ -17,61 +15,12 @@
                 <h2>No photo </h2>
             <% else %>
                 <% @photos.each do |photo| %> 
-                    <div class="card col-lg-5">
-                        <div class="row g-0">
-                            <div class="col-lg-6">
-                            <div class="photo_container">
-                                <img
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjzC2JyZDZ_RaWf0qp11K0lcvB6b6kYNMoqtZAQ9hiPZ4cTIOB"
-                                class="img-fluid h-100"
-                                alt="photo"
-                                />
-                            </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="post_user_info">
-                                    <div class="default_avatar">
-                                        <span class="username_short"><%= current_user.first_name[0] + current_user.last_name[0] %></span>
-                                    </div>
-                                    <span class="user_name"><%= current_user.first_name + current_user.last_name %></span>
-                                </div>
-
-                                <div class="card-body" style="padding: 0.8rem">
-                                    <h5 class="card-title"><%= photo.title %></h5>
-                                    <p class="card-text"><%= photo.description %></p>
-                                </div>
-                                <div class="post_createdAt">
-                                    <i class="fa fa-heart" style="color: var(--main_color)">
-                                        &nbsp;<span><%= photo.number_like %></span>
-                                    </i>
-                                    <small class="text-body-secondary">
-                                        <%= photo.created_at %>
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <%= render 'card', photo: photo %>
                 <% end %>
             <% end %>
         </div>
         <!-- Pagination -->
-        <% if !(@photo || @photos.length == 0) %>
-            <nav aria-label="">
-                <ul class="pagination justify-content-center">
-                <li class="page-item disabled">
-                    <a class="page-link">Previous</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active">
-                    <a class="page-link" href="#">2</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
-                </li>
-                </ul>
-            </nav>
-        <% end %>
+        <%= will_paginate @photos, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, previous_label: 'Previous',next_label: 'Next'  %>
     </div>
 
     <div class="col-2"></div>

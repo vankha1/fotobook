@@ -1,0 +1,4 @@
+<div class="btn-group mb-3" role="group" aria-label="Basic example">
+    <%= link_to "PHOTO", root_path, class:"btn #{ request.path == root_path ? 'active_' : ''} " %>
+    <%= link_to "ALBUM", albums_path, class:"btn #{ request.path == albums_path ? 'active_' : ''}" %>
+</div>
