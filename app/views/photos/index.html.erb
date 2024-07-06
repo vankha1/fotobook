@@ -16,6 +16,7 @@
             <% else %>
                 <% @photos.each do |photo| %> 
                     <%= render 'card', photo: photo %>
+                    <%= render 'shared/modal_photo', photo: photo %>
                 <% end %>
             <% end %>
         </div>
