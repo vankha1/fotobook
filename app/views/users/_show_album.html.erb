@@ -1,0 +1,60 @@
+
+<% if @albums.present? %>
+        <% @albums.each do |album| %>
+            <div class="photo_container col-md-3 col-10 m-5 m-md-0">
+                <img
+                    src="<%= album.photos.first.image_url %>"
+                    class="img-fluid"
+                    style="width: 100%; object-fit: cover"
+                    alt="photo"
+                />
+                <img
+                    src="<%= album.photos.first.image_url %>"
+                    class="img-fluid"
+                    style="width: 100%; object-fit: fill"
+                    alt="photo"
+                />
+                <img
+                    src="<%= album.photos.first.image_url %>"
+                    class="img-fluid"
+                    style="width: 100%; object-fit: fill"
+                    alt="photo"
+                />
+                <p style="position: absolute; top: 13rem; left: 1rem">
+                    <%= album.title %>
+                </p>
+
+                <div class="number-of">
+                    <span
+                        style="
+                            font-size: 2rem;
+                            font-weight: bold;
+                            margin-bottom: -0.5rem;
+                        "
+                    ><%= album.number_photos %></span
+                    >PHOTOS
+                </div>
+
+                <% if album.is_private? %>    
+                    <div
+                        class="card-img-overlay d-flex align-items-center justify-content-center rounded-circle bg-white p-3"
+                        style="
+                            width: 0.5rem;
+                            height: 0.5rem;
+                            position: absolute;
+                            top: 4%;
+                            left: 84%;
+                            z-index: 10;
+                        "
+                    >
+                        <i class="fa fa-lock" style="color: black; font-size: 1.5rem"></i>
+                    </div>
+                <% end %>
+
+                <button class="edit-button">EDIT</button>
+            </div> 
+        <% end %>
+    </div>        
+<% else %>
+
+<% end %>

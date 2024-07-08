@@ -1,4 +1,5 @@
 <div class="btn-group mb-3" role="group" aria-label="Basic example">
-    <%= link_to "PHOTO", root_path, class:"btn #{ request.path == root_path ? 'active_' : ''} " %>
-    <%= link_to "ALBUM", albums_path, class:"btn #{ request.path == albums_path ? 'active_' : ''}" %>
+    <%= link_to "PHOTO", request.path.include?('discover') ? '/discover/photos' : root_path, class:"btn #{ request.path == root_path || request.path.include?('discover/photos') ? 'active_' : ''} " %>
+
+    <%= link_to "ALBUM", request.path.include?('discover') ? '/discover/albums' :  albums_path, class:"btn #{ request.path == albums_path || request.path.include?('discover/albums') ? 'active_' : ''}" %>
 </div>

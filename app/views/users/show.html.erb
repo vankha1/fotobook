@@ -1,0 +1,143 @@
+<main id="public_profile_main" class="row m-0">
+    <%= render "layouts/sidebar" %>
+    <!-- Main content -->
+    <div class="container_ col-12 col-md-8 m-md-0 justify-content-none">
+        <div class="user_info">
+            <div class="avatar_container">
+                <img
+                    src="https://shorturl.at/oJdb3"
+                    style="
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    border-radius: 50%;
+                    "
+                    alt="Stony Beach"
+                />
+            </div>
+
+            <div>
+                <button class="custom_btn">Following</button>
+                <!-- <button
+                    style="
+                    width: 130px;
+                    border-radius: 1.5rem;
+                    height: 35px;
+                    font-size: 1.2rem;
+                    font-weight: 700;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border: 4px solid var(--main_color);
+                    background-color: #fff;
+                    color: var(--main_color);
+                    "
+                >
+                    Edit profile
+                </button> -->
+                <h1
+                    class="my-0"
+                    style="font-weight: bold; margin: 0.8rem 0; font-size: 2rem"
+                >
+                    Hansford Nguyen
+                </h1>
+                
+                <%= render "shared/profile_nav" %>
+
+            </div>
+        </div>
+
+        <% if !request.path.include?('follow')  %>
+            <%
+=begin%>
+ <%= link_to "Add <%= "Photo" if request.path.include?('photos') %>", , class: "btn btn-success align-self-end fw-bold" %> 
+<%
+=end%>
+            <%= link_to(request.path.include?('photos') ? new_photo_path : new_album_path, class: "btn btn-success align-self-end fw-bold mb-4") do %>
+                Add <%= request.path.include?('photos') ? "Photo" : "Album" %>
+            <% end %>
+
+            <%
+=begin%>
+ <button
+                class="btn btn-success align-self-end fw-bold"
+                style="border-radius: 1rem; padding: 0.2rem 1rem"
+            >
+                
+            </button> 
+<%
+=end%>
+        <% else %>
+            <div class="mb-4"></div>
+        <% end %>
+        <div class="row list_items">
+            <!-- Photo -->
+            <% if request.path.include?('photos') %>
+                <%= render 'show_photo' %>
+            <% elsif request.path.include?('albums') %>
+                <%= render 'show_album' %>
+            <% elsif request.path.include?('follow') %>
+                <%= render 'show_follow' %>
+            <% end %>
+            <%
+=begin%>
+ <div class="col-md-3 p-3">
+                <img
+                    src="https://shorturl.at/oJdb3"
+                    class="img-fluid card-img"
+                    alt="..."
+                />
+                <p class="card_img_des">Photo title goes here</p>
+            </div>
+
+            <div class="col-md-3 p-3">
+                <img
+                    src="https://shorturl.at/quAp3"
+                    class="img-fluid card-img"
+                    alt="..."
+                />
+                <p class="card_img_des">Photo title goes here</p>
+            </div>
+
+            <div class="col-md-3 p-3">
+                <img
+                    src="https://shorturl.at/cQQnA"
+                    class="img-fluid card-img"
+                    alt="..."
+                />
+                <p class="card_img_des">Photo title goes here</p>
+            </div>
+
+            <div class="col-md-3 p-3">
+                <img
+                    src="https://shorturl.at/c6kKx"
+                    class="img-fluid card-img"
+                    alt="..."
+                />
+                <p class="card_img_des">Photo title goes here</p>
+            </div>
+
+            <div class="col-md-3 p-3">
+                <img
+                    src="https://shorturl.at/Eergl"
+                    class="img-fluid card-img"
+                    alt="..."
+                />
+                <p class="card_img_des">Photo title goes here</p>
+            </div>
+
+            <div class="col-md-3 p-3">
+                <img
+                    src="https://t.ly/k9pr6"
+                    class="img-fluid card-img"
+                    alt="..."
+                />
+                <p class="card_img_des">Photo title goes here</p>
+            </div> 
+<%
+=end%>
+        </div>
+    </div>
+
+    <div class="col-2"></div>
+</main>

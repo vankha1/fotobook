@@ -11,4 +11,7 @@ class AlbumsController < ApplicationController
          
     end
     
+    def discover
+         
+    end
 end

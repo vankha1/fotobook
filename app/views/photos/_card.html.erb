@@ -16,6 +16,9 @@
                     <span class="username_short"><%= photo.user.first_name[0] + photo.user.last_name[0] %></span>
                 </div>
                 <span class="user_name"><%= photo.user.first_name + photo.user.last_name %></span>  
+                <% if request.path.include?('discover') %>
+                    <button class="custom_btn custom_btn_followed">Following</button>
+                <% end %>
             </div>
 
             <div class="card-body">
