@@ -21,8 +21,17 @@ class PhotosController < ApplicationController
         end
     end
 
-    def new 
-        
+    def new
+        @photo = Photo.new
+    end
+
+    def create
+        @photo = current_user.photos.new(photo_params)
+        if @photo.save!
+            redirect_to @photo, notice: 'Photo was successfully created.'
+        else
+            render :new
+        end
     end
 
     def show
@@ -34,6 +43,12 @@ class PhotosController < ApplicationController
 
     def discover
         @photos = Photo.all
+    end
+
+    private
+
+    def photo_params
+        params.require(:photo).permit(:title, :description, :image_url, :is_private)
     end
     
 end

@@ -71,3 +71,4 @@ group :test do
 end
 
 gem "devise", "~> 4.9"
+gem 'carrierwave', '~> 3.0', '>= 3.0.7'

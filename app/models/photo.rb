@@ -1,6 +1,8 @@
 class Photo < ApplicationRecord
     belongs_to :user
     belongs_to :album, optional: true
+    mount_uploader :image_url, ImageUrlUploader
+    # serialize :image_urls
 
     validates :user_id, presence: true
     validates :album_id, presence: true, allow_nil: true
