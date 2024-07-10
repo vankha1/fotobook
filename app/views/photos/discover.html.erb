@@ -1,0 +1,26 @@
+<%= stylesheet_link_tag 'photos/index'%>
+<% provide(:title, "Discovers") %>
+
+<main id="main" class="photo_file row m-0">
+    <%= render "layouts/sidebar" %>
+    <!-- Main content -->
+    <div class="container_ col-12 col-md-8 m-md-0 justify-content-none">
+        <%= render "shared/feed_nav" %>
+
+        <div
+            class="feeds_container d-flex flex-wrap flex-column flex-md-row"
+            style="gap: 20px; flex-grow: 0"
+        >
+            <% if !@photos || @photos.length == 0 %>
+                <h2>No photo </h2>
+            <% else %>
+                <% @photos.each do |photo| %> 
+                    <%= render 'card', photo: photo %>
+                    <%= render 'shared/modal_photo', photo: photo %>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+
+    <div class="col-2"></div>
+</main>

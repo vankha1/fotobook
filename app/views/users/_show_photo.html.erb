@@ -1,0 +1,16 @@
+<% if @photos.present? %>
+    <div class="row">
+        <% @photos.each do |photo| %>
+            <div class="col-md-3 p-3">
+                <img
+                    src="<%= photo.image_url %>"
+                    class="img-fluid card-img"
+                    alt="..."
+                />
+                <p class="card_img_des"><%= photo.title %></p>
+            </div>
+        <% end %>
+    </div>
+<% else %>
+    <h2>No photo </h2>
+<% end %>

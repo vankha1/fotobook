@@ -1,0 +1,175 @@
+#main_album {
+  width: 100%;
+  height: calc(100vh - var(--header-height));
+  display: flex;
+  align-items: start;
+  /* justify-content: center; */
+  margin-top: 5rem;
+  background-color: #f8f8f8;
+  padding: 0.8rem 0 0 0;
+}
+
+#main_album .container_ {
+  height: 100%;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.8rem;
+
+  padding: 1rem 2rem;
+}
+
+#main_album .container_ .feeds_container {
+  width: 100%;
+  flex-grow: 1;
+  /* height: 80%; */
+  align-items: start;
+  justify-content: start;
+}
+
+/* Post */
+#main_album .container_ .card {
+  margin: 0 1rem;
+  border: none;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 0;
+  background-color: #f8f8f8;
+  line-height: 1rem;
+  width: 45%;
+}
+
+@media screen and (max-width: 992px) {
+  #main_album .container_ .card {
+    width: 100%;
+  }
+  #main_album .container_ .feeds_container {
+    height: auto;
+  }
+  #main_album .container_ .img-fluid {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  #main_album .container_ .card-body {
+    height: 57%;
+  }
+}
+
+#main_album .container_ .photo_container {
+  height: 100%;
+  padding: 1rem;
+}
+
+/* For album */
+#main_album .photo_container {
+  position: relative;
+}
+
+#main_album .container_ .img-fluid {
+  width: 85%;
+  height: 85%;
+  object-fit: cover;
+  position: absolute;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+#main_album .photo_container img:nth-child(1) {
+  transform: rotate(10deg);
+  z-index: 1;
+}
+
+#main_album .photo_container img:nth-child(2) {
+  transform: rotate(5deg);
+  z-index: 2;
+}
+
+#main_album .photo_container img:nth-child(3) {
+  transform: rotate(0deg);
+  z-index: 3;
+}
+
+#main_album .container_ .post_user_info {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+#main_album .container_ .default_avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: var(--main_color);
+  text-align: center;
+  color: #fff;
+}
+#main_album .container_ .username_short {
+  font-size: 1rem;
+  line-height: 2.5rem;
+}
+#main_album .container_ .user_name {
+  color: var(--main_color);
+  font-weight: bold;
+}
+#main_album .container_ .card-title {
+  font-size: 0.9rem;
+  font-weight: bold;
+  background-color: #f8f8f8;
+}
+#main_album .container_ .card-text {
+  font-size: 0.9rem;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  background: #fff;
+  background-color: #f8f8f8;
+}
+
+#main_album .container_ .card-body {
+  padding: 0.2rem;
+}
+
+#main_album .container_ .post_createdAt {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  margin-top: 2rem;
+  padding: 0 0.3rem;
+}
+#main_album .container_ .post_createdAt i {
+  color: #e0e0e0;
+}
+#main_album .container_ .post_createdAt i span {
+  color: var(--main_color);
+}
+
+/* Button group */
+.btn {
+  background-color: #fff;
+  border: 1px solid var(--main_color);
+  color: var(--main_color);
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-weight: bold;
+}
+.active_ {
+  background-color: var(--main_color);
+  border: 1px solid var(--main_color);
+  color: #fff;
+}
+.btn:hover {
+  background-color: var(--main_color);
+  border: 1px solid var(--main_color);
+  color: #fff;
+}

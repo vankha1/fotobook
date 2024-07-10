@@ -1,5 +1,6 @@
 class Album < ApplicationRecord
     has_many :photos, dependent: :destroy 
+    accepts_nested_attributes_for :photos, allow_destroy: true
     belongs_to :user
     
     validates :user_id, presence: true

@@ -1,0 +1,19 @@
+@import url("global_style.css");
+
+/* Main */
+#main {
+  background-color: #f8f8f8;
+  width: 100%;
+  height: calc(100vh - var(--header-height));
+  padding: 0.8rem 0;
+}
+#main .container_ {
+  height: 100%;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+
+  padding: 1rem 2rem;
+}

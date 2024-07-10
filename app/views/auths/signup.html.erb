@@ -1,0 +1,45 @@
+<%= stylesheet_link_tag "auths/signup" %>
+<% provide(:title, "Sign up") %>
+<main id="main">
+  <!-- Main content -->
+  <div class="">
+    <h1
+      class="text-center login-title"
+      style="
+        color: var(--main_color);
+        font-weight: bold;
+        font-size: 3rem;
+        margin-bottom: 2rem;
+      "
+    >
+      Fotobook Signup
+    </h1>
+
+    <div
+      class="d-flex align-items-center justify-content-center"
+      style="
+        width: 60%;
+        border: 2px solid #bdbdbd;
+        margin: auto;
+        gap: 2rem;
+        padding: 0.5rem 0;
+        border-radius: 0.5rem;
+      "
+    >
+      <img
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjzC2JyZDZ_RaWf0qp11K0lcvB6b6kYNMoqtZAQ9hiPZ4cTIOB"
+        alt=""
+        style="width: 3rem; height: 3rem"
+      />
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg"
+        alt=""
+        style="width: 2.5rem; height: 2.5rem"
+      />
+    </div>
+
+    <div class="account-wall">
+      <%= render "form" %>
+    </div>
+  </div>
+</main>

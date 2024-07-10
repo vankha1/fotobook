@@ -1,0 +1,12 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --main_color: #3c5999;
+  --header-height: 56px;
+  --sidebar-width: 250px;
+  --post_card_height: 250px;
+  --post_card_width: 500px;
+}

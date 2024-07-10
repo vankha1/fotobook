@@ -1,0 +1,126 @@
+<main id="main" class="row m-0">
+    <!-- Sidebar -->
+    <div
+    class="sidebar d-none d-md-flex flex-column align-items-center col-2"
+    >
+        <ul class="d-flex flex-column align-items-start w-auto">
+            <li><a href="">Feeds</a></li>
+            <li><a href="">My Photos</a></li>
+        </ul>
+    </div>
+
+    <!-- Main content -->
+    <div class="container_ col-12 col-md-8 m-md-0 justify-content-none">
+        <div class="" style="width: 100%">
+            <h5 class="float-start fw-bold">New photo</h5>
+            <hr style="width: 100%; border: 2px solid #555" />
+        </div>
+
+        <form class="row" style="width: 100%">
+            <div class="col-6">
+                <label for="photo_title">Title</label><br />
+                <input
+                    type="text"
+                    name="photo_title"
+                    placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+                    style="width: 90%; margin-bottom: 1.5rem"
+                /><br />
+
+                <label for="sharing_mode">Sharing mode</label><br />
+                <select name="sharing_mode" id="">
+                    <option value="">Public</option>
+                    <option value="">Private</option>
+                </select>
+            </div>
+
+            <div class="col-6">
+                <label for="description">Description</label><br />
+                <textarea
+                    name="description"
+                    id=""
+                    cols="50%"
+                    rows="5"
+                    placeholder="Aliquam dictum nec massa ac consequat. Etiam dignissim tincidunt tellus sed vestibulum. Sed vitae vestibulum purus. Curabitur malesuada libero in nibh pretium, sed malesuada nisi feugiat"
+                ></textarea>
+            </div>
+
+            <div class="d-flex flex-wrap" style="gap: 1.5rem">
+                <div
+                    class="card bg-dark text-white border-0 p-0 mt-4 mb-5"
+                    style="max-width: 200px; height: 200px"
+                >
+                    <img
+                    src="https://s3-alpha-sig.figma.com/img/5ab1/4214/5fd468f24c4621db4ce5a2043a07c7dc?Expires=1719792000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Hih3-vUWxePo-yG4r9-2Ppeg5mHKaYpfmHf1LwF-2tYJcnJRbnlp9TT-MaBNMBpAgsDpI1d~iYgxQpww3vmKse-dUWdsMusYNW6tKUauub4KhNu9wyJiWfNoBpXgVXmkp6VF1JkYwRZGtISjxcL~0kSafLqlaV5Jitre0yetuYTOnTqY3QYOpuTk0tn48xND9VJWaETcZ7DjkZVPKU4C3o95Bvi6kVj3mwF5CXkbhHcwFjxOaAkv4NOpInG-pWW8XRL1ce~lyRKWTkbXj~vKOOyqwAEo2a0yhSouv3ghUl6C5nHj6GfVkNvp9xu67-eEAlxbLSMKPVbLTWBSGaQymw__"
+                    class="card-img"
+                    style="width: 100%; height: 100%; object-fit: cover"
+                    alt="Stony Beach"
+                    />
+                    <div class="card-img-overlay float-start">
+                    <i
+                        class="fa-solid fa-xmark"
+                        style="
+                        float: right;
+                        font-size: 1.5rem;
+                        color: #4f4f4f;
+                        cursor: pointer;
+                        -webkit-text-stroke: 3px #4f4f4f;
+                        "
+                    ></i>
+                    </div>
+                </div>
+                <div
+                    class="card bg-dark text-white border-0 p-0 mt-4 mb-5"
+                    style="max-width: 200px; height: 200px"
+                >
+                    <img
+                    src="https://s3-alpha-sig.figma.com/img/5ab1/4214/5fd468f24c4621db4ce5a2043a07c7dc?Expires=1719792000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Hih3-vUWxePo-yG4r9-2Ppeg5mHKaYpfmHf1LwF-2tYJcnJRbnlp9TT-MaBNMBpAgsDpI1d~iYgxQpww3vmKse-dUWdsMusYNW6tKUauub4KhNu9wyJiWfNoBpXgVXmkp6VF1JkYwRZGtISjxcL~0kSafLqlaV5Jitre0yetuYTOnTqY3QYOpuTk0tn48xND9VJWaETcZ7DjkZVPKU4C3o95Bvi6kVj3mwF5CXkbhHcwFjxOaAkv4NOpInG-pWW8XRL1ce~lyRKWTkbXj~vKOOyqwAEo2a0yhSouv3ghUl6C5nHj6GfVkNvp9xu67-eEAlxbLSMKPVbLTWBSGaQymw__"
+                    class="card-img"
+                    style="width: 100%; height: 100%; object-fit: cover"
+                    alt="Stony Beach"
+                    />
+                    <div class="card-img-overlay float-start">
+                        <i
+                            class="fa-solid fa-xmark"
+                            style="
+                            float: right;
+                            font-size: 1.5rem;
+                            color: #4f4f4f;
+                            cursor: pointer;
+                            -webkit-text-stroke: 3px #4f4f4f;
+                            "
+                        ></i>
+                    </div>
+                </div>
+
+                <label
+                    class="card text-white border-1 p-0 mt-4 mb-5 d-flex justify-content-center align-items-center"
+                    style="
+                    width: 200px;
+                    height: 200px;
+                    background-color: #f2f2f2;
+                    border-style: dashed;
+                    cursor: pointer;
+                    "
+                    for="files"
+                    ><i
+                    class="fa-solid fa-plus"
+                    style="
+                        font-size: 4rem;
+                        -webkit-text-stroke: 5px #bdbdbd;
+                        color: #bdbdbd;
+                    "
+                    ></i>
+                </label>
+                <input type="file" id="files" hidden />
+            </div>
+
+            <div>
+                <button class="btn btn-success" style="margin-right: 3rem">
+                    Save
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-2"></div>
+</main>

@@ -1,0 +1,23 @@
+<%= stylesheet_link_tag "sidebar" %>
+<!-- Sidebar -->
+<div
+    class="sidebar d-none d-md-flex flex-column align-items-center col-2"
+>
+    <ul class="d-flex flex-column align-items-start w-auto">
+        <li>
+            <a href="<%= root_path %>"
+                class="<%= 'is_active' if current_page?(root_path) || request.path == '/albums' %>"
+            >
+                Feeds
+            </a>
+        </li>
+        
+        <li>
+            <a href="/discover/photos"
+                class="<%= 'is_active' if current_page?("/discover/photos") %>"
+            >
+                Discovers
+            </a>
+        </li>
+    </ul>
+</div>
