@@ -63,6 +63,7 @@
 .user_name {
   color: #fff;
   font-weight: bold;
+  text-decoration: none;
 }
 
 .dropdown-menu li a:hover {
