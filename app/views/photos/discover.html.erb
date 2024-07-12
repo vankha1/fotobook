@@ -14,7 +14,7 @@
             <% if !@photos || @photos.length == 0 %>
                 <h2>No photo </h2>
             <% else %>
-                <% @photos.each do |photo| %> 
+                <% @photos.last(10).each do |photo| %> 
                     <%= render 'card', photo: photo %>
                     <%= render 'shared/modal_photo', photo: photo %>
                 <% end %>
@@ -24,3 +24,20 @@
 
     <div class="col-2"></div>
 </main>
+
+
+<script>
+    function toggleModal(modal_id) {
+        const modal = new bootstrap.Modal(document.getElementById(modal_id), {
+            keyboard: false
+        });
+        modal.show();
+    }
+
+    // Prevent propagation for follow button
+    document.querySelectorAll('#follow_btn').forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+    });
+</script>

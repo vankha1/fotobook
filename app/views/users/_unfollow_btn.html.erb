@@ -1,0 +1,8 @@
+<%
+=begin%>
+  Current_user follows this guy
+<%
+=end%>
+<%= form_with(url: follow_path(user.id), html: { method: :delete }, data: { remote: true }) do |f| %>
+    <%= f.submit "Following", class: "custom_btn custom_btn_followed", id: "follow_btn" %>
+<% end %>

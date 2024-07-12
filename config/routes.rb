@@ -25,12 +25,13 @@ Rails.application.routes.draw do
   #   resources :photos
   # end
 
-  resources :users do
-    member do
-      get :following, :followers
-    end
-  end
+  # resources :users do
+  #   member do
+  #     get :following, :followers
+  #   end
+  # end
   
   resources :photos
   resources :albums
+  resources :follows, only: [:create, :destroy]
 end

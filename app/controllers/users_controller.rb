@@ -20,13 +20,17 @@ class UsersController < ApplicationController
     end
 
     def show_follow
-        @user = User.find(params[:user_id])
+        @user = User.find(params[:id])
         if request.path.include? "followings"
             @users = @user.following.paginate(page: params[:page], per_page: 3)
         elsif request.path.include? "followers"
             @users = @user.followers.paginate(page: params[:page], per_page: 3)
         end
         render 'show'
+    end
+
+    def following?(other_user)
+        following_users.include?(other_user)
     end
 
     def edit

@@ -7,8 +7,14 @@ class Album < ApplicationRecord
     validates :title, presence: true, length: { maximum: 140 }
     validates :description, presence: true, length: { maximum: 300 }
     validates :number_photos, numericality: { only_integer: true, less_than_or_equal_to: 25 }
+    
+    before_validation :add_default_number_photos
 
     def handle_before_add(photo)
         photo.user_id = self.user_id
+    end
+
+    def add_default_number_photos
+        self.number_photos = 0
     end
 end
