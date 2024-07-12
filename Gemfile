@@ -72,3 +72,5 @@ end
 
 gem "devise", "~> 4.9"
 gem 'carrierwave', '~> 3.0', '>= 3.0.7'
+gem 'cocoon', '~> 1.2', '>= 1.2.15'
+gem 'jquery-rails'

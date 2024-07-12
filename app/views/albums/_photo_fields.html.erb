@@ -1,0 +1,21 @@
+<div class='nested-fields'>
+    <img
+        class="card text-white border-1 p-0 mt-4 mb-5 d-flex justify-content-center align-items-center"
+        style="
+            width: 200px;
+            height: 200px;
+            background-color: #f2f2f2;
+            border-style: dashed;
+            object-fit: cover;
+            cursor: pointer;
+        "
+        id="card-img"
+    >
+    <%= f.file_field(:image_url, class: "d-none", id: "files_inputs") %>
+  
+    <div class="links" style="margin-bottom: 10px;">
+      <%= link_to_remove_association "remove photo", f %>
+    </div>
+</div>
+
+
