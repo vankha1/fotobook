@@ -38,6 +38,8 @@
   background-color: #f8f8f8;
   line-height: 1rem;
   width: 45%;
+  height: 255px;
+  flex-direction: row;
 }
 
 @media screen and (max-width: 992px) {

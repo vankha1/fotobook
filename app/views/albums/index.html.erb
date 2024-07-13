@@ -11,12 +11,29 @@
           class="feeds_container d-flex flex-wrap flex-column flex-md-row"
           style="gap: 20px;"
         >
-          <%= render "card" %>
-          <%= render "card" %>
-          <%= render "card" %>
-          <%= render "shared/modal_album" %>
+          <% if !@albums || @albums.length == 0 %>
+              <h2>No photo </h2>
+          <% else %>
+              <% @albums.each do |album| %> 
+                  <%= render "card", album: album %>
+                  <%= render "shared/modal_album", album: album %>
+              <% end %>
+          <% end %>
+          
         </div>
+
+        <!-- Pagination -->
+        <%= will_paginate @photos, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, previous_label: 'Previous',next_label: 'Next'  %>
     </div>
     
     <div class="col-2"></div>
 </main>
+
+<script>
+    function toggleAlbumModal(id) {
+        var modal = new bootstrap.Modal(document.getElementById(id), {
+            keyboard: false
+        });
+        modal.show();
+    }
+</script>

@@ -1,6 +1,18 @@
 class AlbumsController < ApplicationController
     def index
-        
+        if user_signed_in?
+            # Show all photos of following users
+            @list_following = current_user.followers
+            @albums = []
+            @list_following.each do |user|
+                @albums += user.albums.where(is_private: false).order('created_at DESC')
+            end
+
+            @albums = @albums.paginate(page: params[:page], per_page: 3)
+        else
+            # Show photos of all users
+            @albums = Album.paginate(page: params[:page], per_page: 3)
+        end
     end
 
     def new 

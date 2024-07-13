@@ -14,7 +14,13 @@ class PhotosController < ApplicationController
         # For root path
         if user_signed_in?
             # Show all photos of following users
-            @photos = current_user.photos.paginate(page: params[:page], per_page: 3)
+            @list_following = current_user.followers
+            @photos = []
+            @list_following.each do |user|
+                @photos += user.photos.where(is_private: false).order('created_at DESC')
+            end
+
+            @photos = @photos.paginate(page: params[:page], per_page: 3)
         else
             # Show photos of all users
             @photos = Photo.paginate(page: params[:page], per_page: 3)
