@@ -11,10 +11,10 @@
           class="feeds_container d-flex flex-wrap flex-column flex-md-row"
           style="gap: 20px; flex-grow: 0"
         >
-          <%= render "card" %>
-          <%= render "card" %>
-          <%= render "card" %>
-          <%= render "shared/modal_album" %>
+          <% @albums.last(10).each do |album| %> 
+              <%= render 'card', album: album %>
+              <%= render 'shared/modal_album', album: album %>
+          <% end %>
         </div>
     </div>
     

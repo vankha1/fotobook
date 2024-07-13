@@ -43,7 +43,7 @@ class AlbumsController < ApplicationController
     end
     
     def discover
-         
+        @albums = Album.all
     end
 
     private

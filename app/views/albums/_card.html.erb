@@ -26,7 +26,7 @@
                 </div>
                 <span class="user_name"><%= album.user.first_name + album.user.last_name %></span>
                 <% if request.path.include?('discover') %>
-                    <% if current_user && current_user.followers.pluck(:id).include?(photo.user.id) %>
+                    <% if current_user && current_user.followers.pluck(:id).include?(album.user.id) %>
                         <%= render 'users/unfollow_btn', user: album.user %>
                     <% else %>
                         <%= render 'users/follow_btn', user: album.user %>
