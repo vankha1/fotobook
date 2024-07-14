@@ -154,24 +154,23 @@
   --r: 1.5rem; /* radius */
   --b: 3px; /* border width */
 
-  background: linear-gradient(to bottom left, rgb(254, 12, 12), rgb(252, 157, 23));
+  background: linear-gradient(to bottom left, rgb(254, 12, 12), rgb(252, 157, 23)) ;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
 
   border-radius: var(--r);
-  height: 20px;
+  height: 30px;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   font-weight: 700;
   z-index: 0;
   width: 70px;
   border: none;
-  right: 0;
 }
 /* check lined question for the detail of the below code */
 .custom_btn::before {
@@ -184,9 +183,11 @@
   background: inherit;
   background-origin: border-box;
   background-clip: border-box;
-  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
-  mask-composite: exclude;
+          mask-composite: exclude;
 }
 /**/
 .custom_btn:hover {
@@ -197,6 +198,7 @@
 }
 
 .custom_btn_followed {
+  width: 80px;
   color: #fff;
   -webkit-text-fill-color: #fff;
   -webkit-background-clip: border-box;
