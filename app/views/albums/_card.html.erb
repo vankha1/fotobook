@@ -1,4 +1,4 @@
-<div class="card" onclick="toggleAlbumModal('<%= 'album' + album.id.to_s %>')" data-bs-target="<%= "album" + album.id.to_s %>">
+<div class="card" data-user="<%= album.user.id %>" onclick="toggleAlbumModal('<%= 'album' + album.id.to_s %>')" data-bs-target="<%= "album" + album.id.to_s %>">
     <div class="row g-0 w-100">
         <div class="col-lg-6">
             <div class="photo_container">
@@ -26,11 +26,9 @@
                 </div>
                 <span class="user_name"><%= album.user.first_name + album.user.last_name %></span>
                 <% if request.path.include?('discover') %>
-                    <% if current_user && current_user.followers.pluck(:id).include?(album.user.id) %>
-                        <%= render 'users/unfollow_btn', user: album.user %>
-                    <% else %>
-                        <%= render 'users/follow_btn', user: album.user %>
-                    <% end %>
+                    <button class="custom_btn <%= current_user && current_user.followers.pluck(:id).include?(album.user.id) ? "custom_btn_followed" : "" %>" id="follow_btn">
+                        <%= current_user && current_user.followers.pluck(:id).include?(album.user.id) ? "Following" : "Follow" %>
+                    </button>
                 <% end %>
             </div>
 
