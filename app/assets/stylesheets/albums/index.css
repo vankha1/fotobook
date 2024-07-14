@@ -83,12 +83,12 @@
 }
 
 #main_album .photo_container img:nth-child(1) {
-  transform: rotate(10deg);
+  transform: rotate(6deg);
   z-index: 1;
 }
 
 #main_album .photo_container img:nth-child(2) {
-  transform: rotate(5deg);
+  transform: rotate(3deg);
   z-index: 2;
 }
 
@@ -100,8 +100,17 @@
 #main_album .container_ .post_user_info {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  padding: 0.5rem;
+  justify-content: space-between
 }
+
+#main_album .container_ .post_user_info .user_info_part {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+}
+
 #main_album .container_ .default_avatar {
   width: 2.5rem;
   height: 2.5rem;

@@ -75,8 +75,16 @@
 #main .container_ .post_user_info {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  justify-content: space-between;
 }
+
+#main .container_ .post_user_info .user_info_part {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+}
+
 #main .container_ .default_avatar {
   width: 2.5rem;
   height: 2.5rem;

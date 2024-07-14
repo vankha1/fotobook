@@ -11,10 +11,16 @@
         </div>
         <div class="col-lg-6 p-2">
             <div class="post_user_info">
-                <div class="default_avatar">
-                    <span class="username_short"><%= photo.user.first_name[0] + photo.user.last_name[0] %></span>
+                <div class="user_info_part">
+                    <% if photo.user.avatar %>
+                        <img src="<%= photo.user.avatar %>" class="default_avatar" alt="avatar" />
+                    <% else %>
+                        <div class="default_avatar">
+                            <span class="username_short"><%= photo.user.first_name[0] + photo.user.last_name[0] %></span>
+                        </div>
+                    <% end %>
+                    <span class="user_name"><%= photo.user.first_name + photo.user.last_name %></span>  
                 </div>
-                <span class="user_name"><%= photo.user.first_name + photo.user.last_name %></span>  
                 <% if request.path.include?('discover') %>
                     <button class="custom_btn <%= current_user && current_user.followers.pluck(:id).include?(photo.user.id) ? "custom_btn_followed" : "" %>" id="follow_btn">
                         <%= current_user && current_user.followers.pluck(:id).include?(photo.user.id) ? "Following" : "Follow" %>
