@@ -12,7 +12,7 @@
         <div class="col-lg-6 p-2">
             <div class="post_user_info">
                 <div class="user_info_part">
-                    <% if photo.user.avatar %>
+                    <% if photo.user.avatar.present? %>
                         <img src="<%= photo.user.avatar %>" class="default_avatar" alt="avatar" />
                     <% else %>
                         <div class="default_avatar">

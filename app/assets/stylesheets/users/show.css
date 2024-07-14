@@ -116,6 +116,8 @@
 #public_profile_main .container_ .list_items .card_img_des {
     text-align: center;
     margin: 0.3rem 0;
+    font-size: 1.1rem;
+    font-weight: 700;
 }
 
 /* Tablet + Mobile */
@@ -127,6 +129,14 @@
 
   #public_profile_main .user_info {
     align-items: center;
+  }
+
+  #public_profile_main .container_ .list_items {
+    width: 90%;
+  }
+
+  #public_profile_main .container_ .list_items .list_photos_user {
+    gap: 2rem;
   }
 
   #public_profile_main .user_info .avatar_container {
