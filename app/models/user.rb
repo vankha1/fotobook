@@ -6,7 +6,9 @@ class User < ApplicationRecord
   
   mount_uploader :avatar, AvatarUploader
   has_many :photos, dependent: :destroy
+  has_many :photos_reactions, dependent: :destroy
   has_many :albums, dependent: :destroy
+  has_many :albums_reactions, dependent: :destroy
   has_many :active_follows, class_name: "Follow", foreign_key: "user_id", dependent: :destroy
   has_many :passive_follows, class_name: "Follow", foreign_key: "follower_id", dependent: :destroy
 

@@ -1,0 +1,2 @@
+$(".post_createdAt").html("<%= escape_javascript(render('photos/react', photo: @photo)) %>");
+$("#number_of_like").html('<%= @photo.number_like %>');

@@ -34,4 +34,8 @@ Rails.application.routes.draw do
   resources :photos
   resources :albums
   resources :follows, only: [:create, :destroy]
+  # post "/reactions/:photo_id", to: "photos_reactions#create"
+  # delete "/reactions/:photo_id", to: "photos_reactions#destroy"
+  resources :photos_reactions, only: [:create, :destroy]
+  resources :albums_reactions, only: [:create, :destroy]
 end

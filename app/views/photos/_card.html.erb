@@ -1,4 +1,4 @@
-<a class="card photo" data-bs-target="#<%= photo.id %>" onclick="toggleModal('<%= photo.id%>')">
+<a class="card photo" data-id="<%= photo.id %>" data-bs-target="#<%= photo.id %>" onclick="toggleModal('<%= photo.id%>')">
     <div class="row g-0 w-100">
         <div class="col-lg-6">
             <div class="photo_container">
@@ -29,9 +29,11 @@
                 <p class="card-text"><%= photo.description %></p>
             </div>
             <div class="post_createdAt">
-                <i class="fa fa-heart" style="color: var(--main_color)">
-                    &nbsp;<span><%= photo.number_like %></span>
-                </i>
+                <% if current_user && current_user.photos_reactions.pluck(:photo_id).include?(photo.id)  %>
+                    <%= render "unreact",  photo: photo  %>
+                <% else %>
+                    <%= render "react", photo: photo  %>
+                <% end %>
                 <small class="text-body-secondary">
                     <%= photo.created_at %>
                 </small>
