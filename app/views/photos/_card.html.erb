@@ -29,13 +29,9 @@
                 <p class="card-text"><%= photo.description %></p>
             </div>
             <div class="post_createdAt">
-                <div class="photo_react">
-                    <% if current_user && current_user.photos_reactions.pluck(:photo_id).include?(photo.id)  %>
-                        <%= render "unreact",  photo: photo  %>
-                    <% else %>
-                        <%= render "react", photo: photo  %>
-                    <% end %>
-                </div>
+                <i class="fa fa-heart p-2 <%= current_user.photos_reactions.pluck(:photo_id).include?(photo.id) ? "" : "text-secondary" %>" style="color: var(--main_color);" role="button">
+                    <span id="number_of_like"><%= photo.number_like %></span>
+                </i>
                 <small class="text-body-secondary">
                     <%= photo.created_at %>
                 </small>

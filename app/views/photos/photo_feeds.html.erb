@@ -50,7 +50,7 @@
             url: url,
             type: method,
             dataType: 'script',
-            contentType: "text/javascript",
+            data: data,
             success: callback(data),
             error: function (error) {
                 console.log(error);
@@ -59,14 +59,14 @@
     }
 
     // Using debounce for heart button
-    /* document.querySelectorAll('.fa-heart').forEach((icon) => {
+    document.querySelectorAll('.fa-heart').forEach((icon) => {
         icon.addEventListener('click', setDebounce((e) => {
             const heartIcon = e.target;
             const photoId = heartIcon.closest('.card').dataset.id;
             const heartCount = heartIcon.querySelector('span');
             console.log(heartIcon, photoId, heartCount)
             if (heartIcon.classList.contains('text-secondary')){
-                sendRequest(`/photos_reactions/${photoId}`, 'POST', { photo_id: photoId }, (data) => {
+                sendRequest(`/photos_reactions`, 'POST', { photo_id: photoId }, (data) => {
                     heartIcon.classList.remove('text-secondary');
                     heartCount.textContent = parseInt(heartCount.textContent) + 1;
                 });
@@ -76,8 +76,8 @@
                     heartCount.textContent = parseInt(heartCount.textContent) - 1;
                 });
             }
-        }, 1000));
-    });*/
+        }, 2000));
+    });
     // Prevent the modal from showing when clicking the heart icon
     document.querySelectorAll('.fa-heart').forEach((icon) => {
         icon.addEventListener('click', (e) => {
