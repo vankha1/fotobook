@@ -38,13 +38,12 @@
   background-color: #f8f8f8;
   line-height: 1rem;
   width: 45%;
-  height: 255px;
   flex-direction: row;
 }
 
 @media screen and (max-width: 992px) {
   #main_album .container_ .card {
-    width: 100%;
+    width: 85%;
   }
   #main_album .container_ .feeds_container {
     height: auto;
@@ -61,8 +60,7 @@
 }
 
 #main_album .container_ .photo_container {
-  height: 100%;
-  padding: 1rem;
+  height: 255px;
 }
 
 /* For album */

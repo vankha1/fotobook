@@ -40,9 +40,13 @@
                     <%= album.description %>
                 </p>
                 <div class="post_createdAt">
-                    <i class="fa fa-heart" style="color: var(--main_color); cursor: pointer"
-                        >&nbsp;<span><%= album.number_like %></span></i
-                    >
+                    <div class="album_react">
+                        <% if current_user && current_user.albums_reactions.pluck(:album_id).include?(album.id)  %>
+                            <%= render "unreact",  album: album  %>
+                        <% else %>
+                            <%= render "react", album: album  %>
+                        <% end %>
+                    </div>
                     <small class="text-body-secondary"
                         ><%= album.created_at %></small
                     >

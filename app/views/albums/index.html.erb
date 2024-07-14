@@ -36,4 +36,11 @@
         });
         modal.show();
     }
+
+    // Prevent progate event to parent element
+    document.querySelectorAll('.fa-heart').forEach((icon) => {
+        icon.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+    });
 </script>
