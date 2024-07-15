@@ -153,7 +153,7 @@
   align-items: center;
   justify-content: space-between;
   font-size: 0.8rem;
-  margin-top: 2rem;
+  /* margin-top: 2rem; */
   padding: 0 0.3rem;
 }
 #main_album .container_ .post_createdAt i {
@@ -181,4 +181,63 @@
   background-color: var(--main_color);
   border: 1px solid var(--main_color);
   color: #fff;
+}
+
+#main_album .custom_btn {
+  --r: 1.5rem; /* radius */
+  --b: 3px; /* border width */
+
+  background: linear-gradient(to bottom left, rgb(254, 12, 12), rgb(252, 157, 23)) ;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+
+  border-radius: var(--r);
+  height: 30px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  z-index: 0;
+  width: 70px;
+  border: none;
+}
+
+#main_album .custom_btn::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border: var(--b) solid transparent;
+  border-radius: var(--r);
+  background: inherit;
+  background-origin: border-box;
+  background-clip: border-box;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+}
+/**/
+#main_album .custom_btn:hover {
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+}
+
+#main_album .custom_btn_followed {
+  width: 80px;
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+}
+
+#main_album .custom_btn:hover::before {
+  -webkit-mask: none;
 }

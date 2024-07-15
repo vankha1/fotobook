@@ -1,4 +1,4 @@
-<div class="card" data-user="<%= album.user.id %>" onclick="toggleAlbumModal('<%= 'album' + album.id.to_s %>')" data-bs-target="<%= "album" + album.id.to_s %>">
+<div class="card" data-id="<%= album.id %>" data-user="<%= album.user.id %>" onclick="toggleAlbumModal('<%= 'album' + album.id.to_s %>')" data-bs-target="<%= "album" + album.id.to_s %>">
     <div class="row g-0 w-100">
         <div class="col-lg-6">
             <div class="photo_container">
@@ -45,11 +45,9 @@
                 </p>
                 <div class="post_createdAt">
                     <div class="album_react">
-                        <% if current_user && current_user.albums_reactions.pluck(:album_id).include?(album.id)  %>
-                            <%= render "unreact",  album: album  %>
-                        <% else %>
-                            <%= render "react", album: album  %>
-                        <% end %>
+                        <i class="fa fa-heart p-2 <%= current_user.albums_reactions.pluck(:album_id).include?(album.id) ? "" : "text-secondary" %>" style="color: var(--main_color);" role="button">
+                            <span id="number_of_like"><%= album.number_like %></span>
+                        </i>
                     </div>
                     <small class="text-body-secondary"
                         ><%= album.created_at %></small
