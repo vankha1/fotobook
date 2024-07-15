@@ -27,7 +27,7 @@
             </div>
 
             <div>
-                <% if current_user && params[:id] == current_user.id %>
+                <% if current_user && params[:id] == current_user.id.to_s %>
                     <%= link_to "Edit profile", edit_user_registration_path, class: "edit_profile_btn" %>
                 <% else %>
                     <button class="custom_btn <%= current_user && current_user.followers.pluck(:id).include?(@user.id) ? "custom_btn_followed" : "" %>" id="follow_btn">
@@ -52,7 +52,7 @@
  <%= link_to "Add <%= "Photo" if request.path.include?('photos') %>", , class: "btn btn-success align-self-end fw-bold" %> 
 <%
 =end%>
-            <% if current_user && params[:id] == current_user.id %>
+            <% if current_user && params[:id] == current_user.id.to_s %>
                 <%= link_to(request.path.include?('photos') ? new_photo_path : new_album_path, class: "btn btn-success align-self-end fw-bold mb-4") do %>
                     Add <%= request.path.include?('photos') ? "Photo" : "Album" %>
                 <% end %>

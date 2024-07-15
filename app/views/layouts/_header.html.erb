@@ -57,7 +57,7 @@
                     </div>
 
                     <span ></span>
-                    <%= link_to("users/#{current_user.id}/photos", class: "user_name d-none d-md-block") do %>
+                    <%= link_to("/users/#{current_user.id}/photos", class: "user_name d-none d-md-block") do %>
                         <%= current_user.first_name + current_user.last_name %>
                     <% end %>
                     <span

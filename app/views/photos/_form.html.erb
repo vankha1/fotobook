@@ -1,4 +1,4 @@
-<%= form_with(model: @album, class: "row", style: "width: 100%", local: true) do |f| %>
+<%= form_with(model: @album, class: "row", style: "width: 100%") do |f| %>
     <div class="col-6">
         <%= f.label :title %><br/>
         <%= f.text_field :title, placeholder: "Photo Title", style: "width: 90%; margin-bottom: 1.5rem" %>
@@ -16,7 +16,7 @@
         <%= f.fields_for :photos do |photo| %>
             <%= render "albums/photo_fields", f: photo %>
         <% end %>
-        <div class='links'>
+        <div class='links card text-white border-0 p-0 d-flex justify-content-center align-items-center text-decoration-none' style="width: 200px; height: 200px; background-color: transparent; cursor: pointer; margin-top:1.5rem">
             <%= link_to_add_association raw('<i
             class="fa-solid fa-plus"
             style="
@@ -24,11 +24,7 @@
                 -webkit-text-stroke: 5px #bdbdbd;
                 color: #bdbdbd;
             "
-        ></i>'), f, :photos, class: "card text-white border-1 p-0 mt-4 mb-5 d-flex justify-content-center align-items-center text-decoration-none", style:   "width: 200px;
-                                height: 200px;
-                                background-color: #f2f2f2;
-                                border-style: dashed;
-                                cursor: pointer;" %>
+        ></i>'), f, :photos, id: "add_photo_upload" %>
         </div>
     </div>
 
@@ -36,37 +32,3 @@
         <%= f.submit "Save", class: "btn btn-success", style: "margin-right: 3rem" %>
     </div>
 <% end %>
-
-<script>
-    $(document).on('ready', () => {
-        $('div.nested-fields:first').hide()
-        $('.links').on('cocoon:before-insert', () => {
-            $('div.nested-fields:first input[type=hidden]').prop('disabled', true)
-            $('#files_inputs').click();
-        })
-        // Find the last nested field and add the image preview to it
-        handle_preview($("#files_inputs"), $("div.nested-fields:last #card-img"));
-    })
-
-    function readURL(input, image) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                $("div.nested-fields:last #card-img").attr('src', e.target.result);
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    function handle_preview(input_tag, image){
-        input_tag.change(function(e){
-            if (this.files.length){
-                var file = this.files[0];
-                readURL(this, image);
-            }
-            else {
-                $("div.nested-fields:last #card-img").remove();
-            }
-        });
-    }
-</script>

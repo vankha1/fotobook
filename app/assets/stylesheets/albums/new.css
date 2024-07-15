@@ -1,5 +1,11 @@
 /* Main */
-/* #main .container_ {
+#main_new_album {
+  background-color: #f8f8f8;
+  width: 100%;
+  height: calc(100vh - var(--header-height));
+  padding: 0.8rem 0;
+}
+#main_new_album .container_ {
   height: 100%;
   background-color: #ffffff;
   display: flex;
@@ -11,29 +17,29 @@
   padding: 1rem 2rem;
 }
 
-#main .container_ label {
+#main_new_album .container_ label {
   font-weight: bold;
   margin-bottom: 0.2rem;
 }
 
-#main .container_ input[type="text"],
-#main .container_ select,
-#main .container_ textarea {
+#main_new_album .container_ input[type="text"],
+#main_new_album .container_ select,
+#main_new_album .container_ textarea {
   padding: 0.5rem;
   border-radius: 5px;
   border: 2px solid #ccc;
   outline: none;
 }
 
-#main .container_ input[type="text"] {
+#main_new_album .container_ input[type="text"] {
   width: 100%;
 }
 
-#main .container_ select {
+#main_new_album .container_ select {
   width: 40%;
   font-weight: bold;
 }
 
-#main .container_ select option {
+#main_new_album .container_ select option {
   font-weight: bold;
-} */
+} 

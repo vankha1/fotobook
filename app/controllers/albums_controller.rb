@@ -25,13 +25,14 @@ class AlbumsController < ApplicationController
         @album.title = params[:album][:title]
         @album.description = params[:album][:description]
         @album.is_private = params[:album][:is_private] != "Public"
-        # @album.number_photos = params[:album][:photos_attributes]
-        p params[:album][:photos_attributes]["0"]
-        @album.save!
-
-        @album.photos.create(params[:photo])
+        @album.number_photos = params[:album][:photos_attributes].keys.length - 1 || 0
 
         if @album.save!
+            params[:album][:photos_attributes].keys.each do |key|
+                if key != "0"
+                    @album.photos.create(image_url: params[:album][:photos_attributes][key][:image_url], user_id: current_user.id)
+                end
+            end
             redirect_to @album, notice: 'Album was successfully created.'
         else
             render :new
@@ -41,6 +42,10 @@ class AlbumsController < ApplicationController
     def edit
          
     end
+
+    def show 
+        
+    end
     
     def discover
         @albums = Album.all
@@ -49,11 +54,6 @@ class AlbumsController < ApplicationController
     private
 
     def album_params
-        params.require(:album).permit(:title, :description, :is_private, photos_attributes: [:image_url, :_destroy])
+        params.require(:album).permit(:title, :description, :is_private, photos_attributes: [:user_id, :image_url, :_destroy]).to_h
     end
-    
-    def photo_params
-        params.require(:photo).permit(:title, :description, :image_url, :is_private)
-    end
-    
 end

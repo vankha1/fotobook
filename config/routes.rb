@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   #   end
   # end
   
+  resources :users
   resources :photos
   resources :albums
   resources :follows, only: [:create, :destroy]
