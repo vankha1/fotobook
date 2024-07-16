@@ -48,5 +48,10 @@
 
     <div>
         <%= f.submit "Save", class: "btn btn-success", style: "margin-right: 3rem" %>
+        <% if current_page?(edit_photo_path) %>
+            <button class="btn btn-danger">
+                <i class="fa-solid fa-trash-can"></i> Delete
+            </button>
+        <% end %>
     </div>
 <% end %>

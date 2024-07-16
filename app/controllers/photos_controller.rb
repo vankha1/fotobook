@@ -43,7 +43,22 @@ class PhotosController < ApplicationController
     end
 
     def edit
-         
+        @photo = Photo.find(params[:id])
+    end
+
+    def update
+        @photo = Photo.find(params[:id])
+        params[:is_private] = params[:is_private] != "Public" ? true : false
+        if params[:image_url] == nil
+            params[:image_url] = @photo.image_url
+        end
+        
+        if @photo.update(photo_params)
+            redirect_to ('/users/' + current_user.id.to_s + '/photos'), notice: 'Photo was successfully updated.'
+        else
+            render :edit
+        end
+    
     end
 
     def discover

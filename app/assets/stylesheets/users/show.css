@@ -69,7 +69,8 @@
   gap: -1rem;
 }
 
-#public_profile_main .photo_container .edit-button {
+#public_profile_main .photo_container .edit-button,
+#public_profile_main .photo_show_container .edit-button {
   z-index: 10;
   position: absolute;
   top: 90%;
@@ -86,6 +87,11 @@
   justify-content: center;
   align-items: center;
   gap: -1rem;
+}
+
+#public_profile_main .photo_show_container .edit-button {
+  top: 80%;
+  left: 84%;
 }
 
 #public_profile_main .photo_container img:nth-child(1) {
