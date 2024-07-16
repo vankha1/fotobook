@@ -41,6 +41,7 @@
 
 #public_profile_main .photo_container {
   position: relative;
+  height: 255px;
 }
 
 #public_profile_main .photo_container img {

@@ -4,22 +4,22 @@
                 <img
                     src="<%= album.photos.count > 0 ? album.photos.first&.image_url : "" %>"
                     class="img-fluid"
-                    style="width: 100%; height: 255px; object-fit: cover"
+                    style="width: 90%; height: 255px; object-fit: cover"
                     alt=""
                 />
                 <img
                     src="<%= album.photos.count > 0 ? album.photos.first&.image_url : "" %>"
                     class="img-fluid"
-                    style="width: 100%; height: 255px; object-fit: cover"
+                    style="width: 90%; height: 255px; object-fit: cover"
                     alt=""
                 />
                 <img
                     src="<%= album.photos.count > 0 ? album.photos.first&.image_url : "" %>"
                     class="img-fluid"
-                    style="width: 100%; height: 255px; object-fit: cover"
+                    style="width: 90%; height: 255px; object-fit: cover"
                     alt=""
                 />
-                <p style="position: absolute; top: 13rem; left: 1rem">
+                <p style="position: absolute; top: 110%; left: 30%; font-weight: bold">
                     <%= album.title %>
                 </p>
 
@@ -49,9 +49,8 @@
                         <i class="fa fa-lock" style="color: black; font-size: 1.5rem"></i>
                     </div>
                 <% end %>
-
-                <button class="edit-button">EDIT</button>
-            </div> 
+                <%= button_to "EDIT", "/albums/#{album.id}/edit", class: "edit-button" %>
+            </div>
         <% end %>
     </div>        
 <% else %>

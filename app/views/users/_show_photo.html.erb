@@ -1,7 +1,7 @@
 <% if @photos.present? %>
     <div class="row list_photos_user">
         <% @photos.each do |photo| %>
-            <div class="col-md-3 p-3">
+            <div class="col-md-3 position-relative">
                 <img
                     src="<%= photo.image_url ? photo.image_url : "/assets/images/default_avatar.jpg" %>"
                     class="img-fluid card-img"
@@ -9,9 +9,25 @@
                     alt=""
                 />
                 <p class="card_img_des"><%= photo.title %></p>
+
+                <% if photo.is_private? %>    
+                    <div
+                        class="d-flex align-items-center justify-content-center rounded-circle bg-white p-3"
+                        style="
+                            width: 0.5rem;
+                            height: 0.5rem;
+                            position: absolute;
+                            top: 6%;
+                            left: 80%;
+                            z-index: 10;
+                        "
+                    >
+                        <i class="fa fa-lock" style="color: black; font-size: 1.5rem"></i>
+                    </div>
+                <% end %>
             </div>
         <% end %>
     </div>
 <% else %>
-    <h2>No photo </h2>
+    <h6 style="text-align: center">No photo </h6>
 <% end %>

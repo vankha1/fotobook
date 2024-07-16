@@ -11,10 +11,10 @@
             class="feeds_container d-flex flex-wrap flex-column flex-md-row"
             style="gap: 20px; flex-grow: 0"
         >
-            <% if !@photos || @photos.length == 0 %>
+            <% if !@photos || @photos.public_photos.length == 0 %>
                 <h2>No photo </h2>
             <% else %>
-                <% @photos.last(10).each do |photo| %> 
+                <% @photos.public_photos.last(20).each do |photo| %> 
                     <%= render 'card', photo: photo %>
                     <%= render 'shared/modal_photo', photo: photo %>
                 <% end %>

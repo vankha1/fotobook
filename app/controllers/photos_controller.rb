@@ -5,7 +5,7 @@ class PhotosController < ApplicationController
             @photos = current_user.photos.paginate(page: params[:page], per_page: 3)
         else
             # Show photos of all users
-            @photos = Photo.paginate(page: params[:page], per_page: 3)
+            @photos = Photo.public_photos.paginate(page: params[:page], per_page: 3)
         end
         render 'users/show'
     end
@@ -17,13 +17,12 @@ class PhotosController < ApplicationController
             @list_following = current_user.followers
             @photos = []
             @list_following.each do |user|
-                @photos += user.photos.where(is_private: false).order('created_at DESC')
+                @photos += user.photos.public_photos
             end
-
-            @photos = @photos.paginate(page: params[:page], per_page: 3)
+            @photos = @photos.sort_by{|photo| photo[:created_at]}.paginate(page: params[:page], per_page: 3)
         else
             # Show photos of all users
-            @photos = Photo.paginate(page: params[:page], per_page: 3)
+            @photos = Photo.public_photos.order(created_at: :desc).paginate(page: params[:page], per_page: 3)
         end
     end
 

@@ -11,10 +11,14 @@
           class="feeds_container d-flex flex-wrap flex-column flex-md-row"
           style="gap: 20px; flex-grow: 0"
         >
-          <% @albums.last(10).each do |album| %> 
-              <%= render 'card', album: album %>
-              <%= render 'shared/modal_album', album: album %>
-          <% end %>
+            <% if !@albums || @albums.public_albums.length == 0 %>
+                <h2>No albums </h2>
+            <% else %>
+                <% @albums.public_albums.each do |album| %> 
+                    <%= render 'card', album: album %>
+                    <%= render 'shared/modal_album', album: album %>
+                <% end %>
+            <% end %>
         </div>
     </div>
     

@@ -5,10 +5,10 @@ class AlbumsController < ApplicationController
             @list_following = current_user.followers
             @albums = []
             @list_following.each do |user|
-                @albums += user.albums.where(is_private: false).order('created_at DESC')
+                @albums += user.albums.public_albums
             end
 
-            @albums = @albums.paginate(page: params[:page], per_page: 3)
+            @albums = @albums.sort_by{|album| album[:created_at]}.paginate(page: params[:page], per_page: 3)
         else
             # Show photos of all users
             @albums = Album.paginate(page: params[:page], per_page: 3)
@@ -26,12 +26,12 @@ class AlbumsController < ApplicationController
         @album.title = params[:album][:title]
         @album.description = params[:album][:description]
         @album.is_private = params[:album][:is_private] != "Public"
-        @album.number_photos = params[:album][:photos_attributes].keys.length - 1 || 0
+        # @album.number_photos = params[:album][:photos_attributes].keys.length - 1 || 0
 
         if @album.save!
             params[:album][:photos_attributes].keys.each do |key|
                 if key != "0"
-                    @photo = @album.photos.create(image_url: params[:album][:photos_attributes][key][:image_url], user_id: current_user.id)
+                    @photo = @album.photos.create(image_url: params[:album][:photos_attributes][key][:image_url], user_id: current_user.id, is_private: @album.is_private)
                 end
             end
             redirect_to ('/users' + current_user.id.to_s + '/albums'), notice: 'Album was successfully created.'
