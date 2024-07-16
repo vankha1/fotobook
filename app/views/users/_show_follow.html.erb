@@ -1,44 +1,52 @@
-<div
-    class="d-flex flex-column align-items-center justify-content-center p-3 col-md-3"
-    style="
-        width: 225px;
-        gap: 0.5rem;
-        background-color: #efefef;
-        border-radius: 0.5rem;
-        box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.1);
-    "
->
-    <img
-        src="https://shorturl.at/oJdb3"
-        class="img-fluid"
-        style="
-        width: 100px;
-        height: 100px;
-        object-fit: cover;
-        border-radius: 50%;
-        "
-        alt="photo"
-    />
+<% if @users.present? %>
+    <% @users.each do |user| %>
+        <div
+            class="d-flex flex-column align-items-center justify-content-center p-3 col-md-3"
+            style="
+                width: 225px;
+                gap: 0.5rem;
+                background-color: #efefef;
+                border-radius: 0.5rem;
+                box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.1);
+            "
+        >
+            <img
+                src="<%= user.avatar %>"
+                class="img-fluid"
+                style="
+                width: 100px;
+                height: 100px;
+                object-fit: cover;
+                border-radius: 50%;
+                "
+                alt="photo"
+            />
 
-    <h5 style="font-weight: 700">Hieu Nguyen</h5>
+            <h5 style="font-weight: 700"><%= user.first_name + " " + user.last_name %></h5>
 
-    <div
-        class="d-flex align-items-center justify-content-center"
-        style="
-        text-align: center;
-        color: var(--main_color);
-        margin-top: 0.5rem;
-        "
-    >
-        <div style="line-height: 1rem">
-            <span style="font-size: 2rem; font-weight: bold">13 </span>
-            <span style="font-size: 0.8rem">PHOTOS</span>
+            <div
+                class="d-flex align-items-center justify-content-center"
+                style="
+                text-align: center;
+                color: var(--main_color);
+                margin-top: 0.5rem;
+                "
+            >
+                <div style="line-height: 1rem">
+                    <span style="font-size: 2rem; font-weight: bold">13 </span>
+                    <span style="font-size: 0.8rem">PHOTOS</span>
+                </div>
+                <div style="line-height: 1rem">
+                    <span style="font-size: 2rem; font-weight: bold">132 </span>
+                    <span style="font-size: 0.8rem">ALBUMS</span>
+                </div>
+            </div>
+
+            <button class="custom_btn <%= current_user && current_user.followers.pluck(:id).include?(user.id) ? "custom_btn_followed" : "" %>" id="follow_btn">
+                <%= current_user && current_user.followers.pluck(:id).include?(user.id) ? "Following" : "Follow" %>
+            </button>
         </div>
-        <div style="line-height: 1rem">
-            <span style="font-size: 2rem; font-weight: bold">132 </span>
-            <span style="font-size: 0.8rem">ALBUMS</span>
-        </div>
-    </div>
-
-    <button class="custom_btn">follow</button>
-</div>
+    <% end %>
+<% else %>
+    <h2>No following user</h2>
+<% end %>

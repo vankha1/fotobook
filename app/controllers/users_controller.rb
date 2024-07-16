@@ -11,23 +11,27 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find(params[:id])
+        @photo_count = @user.photos.count
+        @album_count = @user.albums.count
+        @following_count = @user.following.count
+        @follower_count = @user.followers.count
         # Check url has photos or albums
         if request.path.include? "photos"
-            @photos = @user.photos.paginate(page: params[:page], per_page: 3)
+            @photos = @user.photos
         elsif request.path.include? "albums"
-            @albums = @user.albums.paginate(page: params[:page], per_page: 3)
+            @albums = @user.albums
+        elsif request.path.include? "followings"
+            @users = @user.following
+        elsif request.path.include? "followers"
+            @users = @user.followers
         end
     end
 
-    def show_follow
-        @user = User.find(params[:id])
-        if request.path.include? "followings"
-            @users = @user.following.paginate(page: params[:page], per_page: 3)
-        elsif request.path.include? "followers"
-            @users = @user.followers.paginate(page: params[:page], per_page: 3)
-        end
-        render 'show'
-    end
+    # def show_follow
+    #     @user = User.find(params[:id])
+        
+    #     render 'show'
+    # end
 
     def following?(other_user)
         following_users.include?(other_user)

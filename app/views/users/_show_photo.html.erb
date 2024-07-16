@@ -3,9 +3,10 @@
         <% @photos.each do |photo| %>
             <div class="col-md-3 p-3">
                 <img
-                    src="<%= photo.image_url %>"
+                    src="<%= photo.image_url ? photo.image_url : "/assets/images/default_avatar.jpg" %>"
                     class="img-fluid card-img"
-                    alt="..."
+                    style="height: 255px"
+                    alt=""
                 />
                 <p class="card_img_des"><%= photo.title %></p>
             </div>

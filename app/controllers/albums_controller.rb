@@ -22,6 +22,13 @@ class AlbumsController < ApplicationController
 
     def create
         @album = current_user.albums.new
+        # puts album_params, "+++++++++++++"
+        # @album.photos.each do |photo|
+        #     puts photo.user_id
+        #     puts photo.album_id
+        #     puts photo.image_url
+        # end
+
         @album.title = params[:album][:title]
         @album.description = params[:album][:description]
         @album.is_private = params[:album][:is_private] != "Public"
@@ -30,10 +37,13 @@ class AlbumsController < ApplicationController
         if @album.save!
             params[:album][:photos_attributes].keys.each do |key|
                 if key != "0"
-                    @album.photos.create(image_url: params[:album][:photos_attributes][key][:image_url], user_id: current_user.id)
+                    @photo = @album.photos.new(image_url: params[:album][:photos_attributes][key][:image_url], user_id: current_user.id)
+                    @photo.save!
+                    puts @album.photos, "##############"
+                    puts params[:album][:photos_attributes][key][:image_url], "+++++++"
                 end
             end
-            redirect_to @album, notice: 'Album was successfully created.'
+            redirect_to '/albums', notice: 'Album was successfully created.'
         else
             render :new
         end
@@ -54,6 +64,6 @@ class AlbumsController < ApplicationController
     private
 
     def album_params
-        params.require(:album).permit(:title, :description, :is_private, photos_attributes: [:user_id, :image_url, :_destroy]).to_h
+        params.require(:album).permit(:title, :description, :is_private, photos_attributes: [:user_id, :image_url, :_destroy])
     end
 end

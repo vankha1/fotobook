@@ -34,7 +34,7 @@ class PhotosController < ApplicationController
     def create
         @photo = current_user.photos.new(photo_params)
         if @photo.save!
-            redirect_to @photo, notice: 'Photo was successfully created.'
+            redirect_to ('/users/' + current_user.id.to_s + '/photos'), notice: 'Photo was successfully created.'
         else
             render :new
         end

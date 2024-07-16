@@ -12,7 +12,7 @@
           style="gap: 20px;"
         >
           <% if !@albums || @albums.length == 0 %>
-              <h2>No photo </h2>
+              <h2>No albums </h2>
           <% else %>
               <% @albums.each do |album| %> 
                   <%= render "card", album: album %>

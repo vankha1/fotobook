@@ -11,8 +11,8 @@ Rails.application.routes.draw do
 
   get "/users/:id/photos", to: "users#show"
   get "/users/:id/albums", to: "users#show"
-  get "/users/:id/followings", to: "users#show_follow"
-  get "/users/:id/followers", to: "users#show_follow"
+  get "/users/:id/followings", to: "users#show"
+  get "/users/:id/followers", to: "users#show"
 
 
   # resources :users, only: [:index, :show] do
