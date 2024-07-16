@@ -10,6 +10,10 @@ class Photo < ApplicationRecord
     validates :description, length: { maximum: 300 }
     # validates :image_url, content_type: { in: %w[image/jpeg image/gif image/png], message: "must be a valid image format" },
                     # size:{ less_than: 5.megabytes, message: "should be less than 5MB" }
+    
+    scope :public_photos, -> { where(:is_private => false)}
+    scope :private_photos, -> { where(:is_private => true)}
+                
     def display_image
         image.variant(resize_to_limit: [500, 500])
     end

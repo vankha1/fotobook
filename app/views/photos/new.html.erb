@@ -32,4 +32,19 @@
 
         reader.readAsDataURL(file);
     });
+
+    // Validate photos
+    const form = $('form.row');
+    form.on('submit', (e) => {
+        const title = $('#photo_title').val();
+        const files = filesInput.files;
+        if (files.length === 0) {
+            e.preventDefault();
+            alert('Please select a file to upload');
+        }
+        if (title === '') {
+            e.preventDefault();
+            alert('Please enter a title');
+        }
+    });
 </script>

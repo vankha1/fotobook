@@ -11,6 +11,9 @@ class Album < ApplicationRecord
     
     before_validation :add_default_number_photos
 
+    scope :public_albums, -> { where(:is_private => false)}
+    scope :private_albums, -> { where(:is_private => true)}
+
     def handle_before_add(photo)
         photo.user_id = self.user_id
     end
