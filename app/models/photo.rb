@@ -1,4 +1,5 @@
 class Photo < ApplicationRecord
+    has_many :photos_reactions, dependent: :destroy
     belongs_to :user
     belongs_to :album, optional: true
     mount_uploader :image_url, ImageUrlUploader
