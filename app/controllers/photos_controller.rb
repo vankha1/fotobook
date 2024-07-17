@@ -65,6 +65,12 @@ class PhotosController < ApplicationController
         @photos = Photo.all
     end
 
+    def destroy
+        @photo = Photo.find(params[:id])
+        @photo.destroy
+        redirect_to ('/users/' + current_user.id.to_s + '/photos'), notice: 'Photo was successfully destroyed.'
+    end
+
     private
 
     def photo_params
