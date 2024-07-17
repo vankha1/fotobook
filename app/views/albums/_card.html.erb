@@ -3,17 +3,17 @@
         <div class="col-lg-6">
             <div class="photo_container">
                 <img
-                    src="<%= album.photos.first.image_url %>"
+                    src="<%= album.photos.first&.image_url %>"
                     class="img-fluid"
                     alt="photo"
                 />
                 <img
-                    src="<%= album.photos.first.image_url %>"
+                    src="<%= album.photos.first&.image_url %>"
                     class="img-fluid"
                     alt="photo"
                 />
                 <img
-                    src="<%= album.photos.first.image_url %>"
+                    src="<%= album.photos.first&.image_url %>"
                     class="img-fluid"
                     alt="photo"
                 />
@@ -32,7 +32,7 @@
                     <span class="user_name"><%= album.user.first_name + album.user.last_name %></span>  
                 </div>
                 <% if request.path.include?('discover') %>
-                    <button class="custom_btn <%= current_user && current_user.followers.pluck(:id).include?(album.user.id) ? "custom_btn_followed" : "" %>" id="follow_btn">
+                    <button class="custom_btn <%= current_user && current_user.followers.pluck(:id).include?(album.user.id) ? "custom_btn_followed" : "" %>" id="follow_btn" disabled >
                         <%= current_user && current_user.followers.pluck(:id).include?(album.user.id) ? "Following" : "Follow" %>
                     </button>
                 <% end %>
@@ -45,7 +45,7 @@
                 </p>
                 <div class="post_createdAt">
                     <div class="album_react">
-                        <i class="fa fa-heart p-2 <%= current_user.albums_reactions.pluck(:album_id).include?(album.id) ? "" : "text-secondary" %>" style="color: var(--main_color);" role="button">
+                        <i class="fa fa-heart p-2 <%= current_user && current_user.albums_reactions.pluck(:album_id).include?(album.id) ? "" : "text-secondary" %>" style="color: var(--main_color);" role="button">
                             <span id="number_of_like"><%= album.number_like %></span>
                         </i>
                     </div>

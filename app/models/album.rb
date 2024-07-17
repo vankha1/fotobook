@@ -9,7 +9,7 @@ class Album < ApplicationRecord
     validates :description, presence: true, length: { maximum: 300 }
     validates :number_photos, numericality: { only_integer: true, less_than_or_equal_to: 25 }
     
-    before_validation :add_default_number_photos
+    # before_validation :add_default_number_photos
 
     scope :public_albums, -> { where(:is_private => false)}
     scope :private_albums, -> { where(:is_private => true)}

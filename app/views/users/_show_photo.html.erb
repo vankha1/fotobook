@@ -25,7 +25,9 @@
                         <i class="fa fa-lock" style="color: black; font-size: 1.5rem"></i>
                     </div>
                 <% end %>
-                <%= link_to "EDIT", edit_photo_path(photo.id), class: "edit-button text-decoration-none" %>
+                <% if photo.user.id == current_user.id.to_s %>
+                    <%= link_to "EDIT", edit_photo_path(photo.id), class: "edit-button text-decoration-none" %>
+                <% end %>
             </div>
         <% end %>
     </div>

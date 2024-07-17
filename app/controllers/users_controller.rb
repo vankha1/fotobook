@@ -17,9 +17,17 @@ class UsersController < ApplicationController
         @follower_count = @user.followers.count
         # Check url has photos or albums
         if request.path.include? "photos"
-            @photos = @user.photos
+            if current_user.id.to_s == params[:id]
+                @photos = @user.photos
+            else
+                @photos = @user.photos.public_photos
+            end
         elsif request.path.include? "albums"
-            @albums = @user.albums
+            if current_user.id.to_s == params[:id]
+                @albums = @user.albums
+            else
+                @albums = @user.albums.public_albums
+            end
         elsif request.path.include? "followings"
             @users = @user.following
         elsif request.path.include? "followers"

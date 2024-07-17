@@ -22,7 +22,7 @@
                     <span class="user_name"><%= photo.user.first_name + photo.user.last_name %></span>  
                 </div>
                 <% if request.path.include?('discover') %>
-                    <button class="custom_btn <%= current_user && current_user.followers.pluck(:id).include?(photo.user.id) ? "custom_btn_followed" : "" %>" id="follow_btn">
+                    <button class="custom_btn <%= current_user && current_user.followers.pluck(:id).include?(photo.user.id) ? "custom_btn_followed" : "" %>" id="follow_btn" <%= "disabled" unless current_user %> >
                         <%= current_user && current_user.followers.pluck(:id).include?(photo.user.id) ? "Following" : "Follow" %>
                     </button>
                 <% end %>

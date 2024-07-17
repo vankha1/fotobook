@@ -2,7 +2,7 @@
 #main_new_album {
   background-color: #f8f8f8;
   width: 100%;
-  height: calc(100vh - var(--header-height));
+  height: 100%;
   padding: 0.8rem 0;
 }
 #main_new_album .container_ {

@@ -14,10 +14,10 @@
                 src="<%= user.avatar %>"
                 class="img-fluid"
                 style="
-                width: 100px;
-                height: 100px;
-                object-fit: cover;
-                border-radius: 50%;
+                    width: 100px;
+                    height: 100px;
+                    object-fit: cover;
+                    border-radius: 50%;
                 "
                 alt="photo"
             />
@@ -25,19 +25,20 @@
             <h5 style="font-weight: 700"><%= user.first_name + " " + user.last_name %></h5>
 
             <div
-                class="d-flex align-items-center justify-content-center"
+                class="d-flex align-items-center"
                 style="
-                text-align: center;
-                color: var(--main_color);
-                margin-top: 0.5rem;
+                    text-align: center;
+                    color: var(--main_color);
+                    margin-top: 0.5rem;
+                    gap: 2rem;
                 "
             >
-                <div style="line-height: 1rem">
-                    <span style="font-size: 2rem; font-weight: bold">13 </span>
+                <div style="line-height: 1rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                    <span style="font-size: 2rem; font-weight: bold"><%= user.photos.count %></span>
                     <span style="font-size: 0.8rem">PHOTOS</span>
                 </div>
-                <div style="line-height: 1rem">
-                    <span style="font-size: 2rem; font-weight: bold">132 </span>
+                <div style="line-height: 1rem; display: flex; flex-direction: column; gap: 0.5rem;">
+                    <span style="font-size: 2rem; font-weight: bold"><%= user.albums.count %></span>
                     <span style="font-size: 0.8rem">ALBUMS</span>
                 </div>
             </div>
