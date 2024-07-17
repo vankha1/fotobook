@@ -1,4 +1,7 @@
 class PhotosController < ApplicationController
+
+    before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+
     def index
         if user_signed_in?
             # Show all photos of following users

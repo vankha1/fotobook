@@ -1,6 +1,7 @@
 class PhotosReactionsController < ApplicationController
     
     skip_before_action :verify_authenticity_token
+    before_action :authenticate_user!
 
     def create
         @photo = Photo.find(params[:photo_id])
