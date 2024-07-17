@@ -8,7 +8,7 @@
                     style="height: 255px"
                     alt=""
                 />
-                <p class="card_img_des"><%= photo.title %></p>
+                <p class="card_img_des <%= photo.title.present? ? "" : "mb-4" %>"><%= photo.title %></p>
 
                 <% if photo.is_private? %>    
                     <div

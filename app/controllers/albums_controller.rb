@@ -64,7 +64,7 @@ class AlbumsController < ApplicationController
         redirect_to ('/users/' + current_user.id.to_s + '/albums'), notice: 'Album was successfully deleted.'
     end     
     def discover
-        @albums = Album.all
+        @albums = Album.public_albums.all
     end
 
     private

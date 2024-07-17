@@ -10,6 +10,7 @@ class Album < ApplicationRecord
     validates :number_photos, numericality: { only_integer: true, less_than_or_equal_to: 25 }
     
     # before_validation :add_default_number_photos
+    before_create :add_default_number_likes
 
     scope :public_albums, -> { where(:is_private => false)}
     scope :private_albums, -> { where(:is_private => true)}
@@ -20,5 +21,9 @@ class Album < ApplicationRecord
 
     def add_default_number_photos
         self.number_photos = 0
+    end
+
+    def add_default_number_likes
+        self.number_like = 0
     end
 end

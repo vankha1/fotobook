@@ -38,19 +38,17 @@
                 <% end %>
             </div>
 
-            <div class="card-body" style="padding: 0.8rem">
+            <div class="card-body" style="padding: 0 0.8rem">
                 <h5 class="card-title"><%= album.title %></h5>
                 <p class="card-text">
                     <%= album.description %>
                 </p>
                 <div class="post_createdAt">
-                    <div class="album_react">
-                        <i class="fa fa-heart p-2 <%= current_user && current_user.albums_reactions.pluck(:album_id).include?(album.id) ? "" : "text-secondary" %>" style="color: var(--main_color);" role="button">
-                            <span id="number_of_like"><%= album.number_like %></span>
-                        </i>
-                    </div>
+                    <i class="fa fa-heart p-2 <%= current_user && current_user.albums_reactions.pluck(:album_id).include?(album.id) ? "" : "text-secondary" %>" style="color: var(--main_color); font-size: 1rem;" role="button" id="<%= album.id %>">
+                        <span id="number_of_like" style="margin-left: 0.3rem;"><%= album.number_like %></span>
+                    </i>
                     <small class="text-body-secondary"
-                        ><%= album.created_at %></small
+                        ><%= album.created_at.strftime("%T %F") %></small
                     >
                 </div>
             </div>

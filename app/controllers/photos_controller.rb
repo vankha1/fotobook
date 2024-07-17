@@ -61,7 +61,7 @@ class PhotosController < ApplicationController
     end
 
     def discover
-        @photos = Photo.all
+        @photos = Photo.public_photos.where(album_id: nil)
     end
 
     def destroy

@@ -60,11 +60,12 @@
 
         
         <div class="row list_items" style="gap: 1rem;">
-            <!-- Photo -->
             <% if request.path.include?('photos') %>
                 <%= render 'show_photo' %>
             <% elsif request.path.include?('albums') %>
-                <%= render 'show_album' %>
+                <div class="row list_items" style="gap: 3rem;">
+                    <%= render 'show_album' %>
+                </div>
             <% elsif request.path.include?('follow') %>
                 <%= render 'show_follow' %>
             <% end %>

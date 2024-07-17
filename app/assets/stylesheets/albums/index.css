@@ -41,24 +41,6 @@
   flex-direction: row;
 }
 
-@media screen and (max-width: 992px) {
-  #main_album .container_ .card {
-    width: 85%;
-  }
-  #main_album .container_ .feeds_container {
-    height: auto;
-  }
-  #main_album .container_ .img-fluid {
-    width: 100%;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  #main_album .container_ .card-body {
-    height: 57%;
-  }
-}
-
 #main_album .container_ .photo_container {
   height: 255px;
 }
@@ -142,6 +124,7 @@
   -webkit-box-orient: vertical;
   background: #fff;
   background-color: #f8f8f8;
+  margin-bottom: 0;
 }
 
 #main_album .container_ .card-body {
@@ -153,7 +136,7 @@
   align-items: center;
   justify-content: space-between;
   font-size: 0.8rem;
-  /* margin-top: 2rem; */
+  margin-top: -0.8rem;
   padding: 0 0.3rem;
 }
 #main_album .container_ .post_createdAt i {
@@ -240,4 +223,27 @@
 
 #main_album .custom_btn:hover::before {
   -webkit-mask: none;
+}
+
+/* Responsive */
+
+@media screen and (max-width: 992px) {
+  #main_album .container_ .card {
+    width: 85%;
+  }
+  #main_album .container_ .feeds_container {
+    height: auto;
+  }
+  #main_album .container_ .img-fluid {
+    width: 100%;
+  }
+  #main_album .container_ .post_createdAt {
+    margin-top: 1rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  #main_album .container_ .card-body {
+    height: 57%;
+  }
 }
