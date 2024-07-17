@@ -12,7 +12,7 @@
           style="gap: 20px;"
         >
           <% if !@albums || @albums.length == 0 %>
-              <h2>No albums </h2>
+              <h5 class="align-self-center m-auto">No albums </h5>
           <% else %>
               <% @albums.each do |album| %> 
                   <%= render "card", album: album %>
@@ -41,6 +41,16 @@
     document.querySelectorAll('.fa-heart').forEach((icon) => {
         icon.addEventListener('click', (e) => {
             e.stopPropagation();
+        });
+    });
+
+    // Prevent propagation for user_info_part
+    document.querySelectorAll('.user_info_part').forEach((user_info_part) => {
+        user_info_part.addEventListener('click', (e) => {
+            e.stopPropagation();
+            // navigate to user profile
+            const userId = user_info_part.closest('.card').dataset.user;
+            window.location.href = `/users/${userId}/photos`;
         });
     });
 </script>

@@ -8,10 +8,10 @@ class AlbumsController < ApplicationController
                 @albums += user.albums.public_albums
             end
 
-            @albums = @albums.sort_by{|album| album[:created_at]}.paginate(page: params[:page], per_page: 3)
+            @albums = @albums.sort_by{|album| album[:created_at]}.paginate(page: params[:page], per_page: 4)
         else
             # Show photos of all users
-            @albums = Album.paginate(page: params[:page], per_page: 3)
+            @albums = Album.paginate(page: params[:page], per_page: 4)
         end
     end
 

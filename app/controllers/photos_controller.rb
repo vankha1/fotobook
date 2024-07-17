@@ -2,10 +2,10 @@ class PhotosController < ApplicationController
     def index
         if user_signed_in?
             # Show all photos of following users
-            @photos = current_user.photos.paginate(page: params[:page], per_page: 3)
+            @photos = current_user.photos.paginate(page: params[:page], per_page: 4)
         else
             # Show photos of all users
-            @photos = Photo.public_photos.paginate(page: params[:page], per_page: 3)
+            @photos = Photo.public_photos.paginate(page: params[:page], per_page: 4)
         end
         render 'users/show'
     end
@@ -19,10 +19,10 @@ class PhotosController < ApplicationController
             @list_following.each do |user|
                 @photos += user.photos.public_photos
             end
-            @photos = @photos.sort_by{|photo| photo[:created_at]}.paginate(page: params[:page], per_page: 3)
+            @photos = @photos.sort_by{|photo| photo[:created_at]}.paginate(page: params[:page], per_page: 4)
         else
             # Show photos of all users
-            @photos = Photo.public_photos.order(created_at: :desc).paginate(page: params[:page], per_page: 3)
+            @photos = Photo.public_photos.order(created_at: :desc).paginate(page: params[:page], per_page: 4)
         end
     end
 
@@ -48,10 +48,9 @@ class PhotosController < ApplicationController
 
     def update
         @photo = Photo.find(params[:id])
-        params[:is_private] = params[:is_private] != "Public" ? true : false
-        if params[:image_url] == nil
-            params[:image_url] = @photo.image_url
-        end
+        # if params[:image_url] == nil
+        #     params[:image_url] = @photo.image_url
+        # end
         
         if @photo.update(photo_params)
             redirect_to ('/users/' + current_user.id.to_s + '/photos'), notice: 'Photo was successfully updated.'

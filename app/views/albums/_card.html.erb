@@ -3,17 +3,17 @@
         <div class="col-lg-6">
             <div class="photo_container">
                 <img
-                    src="<%= album.photos.first&.image_url %>"
+                    src="<%= album.photos.first&.image_url.present? ? album.photos.first&.image_url : "#{asset_path('default_photo.jpg')}"  %>"
                     class="img-fluid"
                     alt="photo"
                 />
                 <img
-                    src="<%= album.photos.first&.image_url %>"
+                    src="<%= album.photos.first&.image_url.present? ? album.photos.first&.image_url : "#{asset_path('default_photo.jpg')}"  %>"
                     class="img-fluid"
                     alt="photo"
                 />
                 <img
-                    src="<%= album.photos.first&.image_url %>"
+                    src="<%= album.photos.first&.image_url.present? ? album.photos.first&.image_url : "#{asset_path('default_photo.jpg')}"  %>"
                     class="img-fluid"
                     alt="photo"
                 />

@@ -21,16 +21,16 @@
         <% if user_signed_in? %>
             <div class="post_user_info">
                     <div class="dropdown">
-                        <% if !current_user.avatar %>
-                            <div class="default_avatar">
-                                <span class="username_short"><%= current_user.first_name[0] + current_user.last_name[0] %></span>
-                            </div>
-                        <% else %>
+                        <% if current_user.avatar.present? %>
                             <img
                                 src="<%= current_user.avatar %>"
                                 style="width: 2.5rem; height: 2.5rem; border-radius: 50%;
                                 object-fit: cover"
                             >
+                        <% else %>
+                            <div class="default_avatar">
+                                <span class="username_short"><%= current_user.first_name[0] + current_user.last_name[0] %></span>
+                            </div>
                         <% end %>
 
                         <ul
@@ -40,18 +40,13 @@
                             <li class="px-2">
                                 <a
                                     class="d-block mx-0"
-                                    href="#"
-                                    style="color: var(--main_color)"
+                                    href="/users/<%= current_user.id %>/photos"
+                                    style="color: var(--main_color); text-decoration: none; text-align: center; padding: 0.3rem 0;"
                                     >Profile</a
                                 >
                             </li>
                             <li class="px-2">
-                                <a
-                                    class="d-block mx-0"
-                                    href="#"
-                                    style="color: var(--main_color)"
-                                    >Logout</a
-                                >
+                                <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "d-block mx-0 logout_btn_responsive" %>
                             </li>
                         </ul>
                     </div>
@@ -78,7 +73,7 @@
                                         margin-left: 10px;
                                         border: none;" %>
         <% else %>
-            <a href="/users/sign_in" class="auth_btn d-none d-md-block">Login</a>
+            <a href="/users/sign_in" class="auth_btn d-md-block">Login</a>
         <% end %>
     </div>
 </header>

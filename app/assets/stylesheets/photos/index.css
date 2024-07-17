@@ -101,6 +101,7 @@
   color: var(--main_color);
   font-weight: bold;
   flex-grow: 1;
+  text-overflow: ellipsis;
 }
 #main .container_ .card-title {
   font-size: 0.9rem;
@@ -174,7 +175,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-weight: 700;
   z-index: 0;
   width: 70px;
@@ -207,6 +208,7 @@
 
 .custom_btn_followed {
   width: 80px;
+  padding: 0 0.5rem;
   color: #fff;
   -webkit-text-fill-color: #fff;
   -webkit-background-clip: border-box;

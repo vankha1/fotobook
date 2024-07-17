@@ -3,9 +3,9 @@
         <div class="col-lg-6">
             <div class="photo_container">
                 <img
-                    src="<%= photo.image_url %>"
+                    src="<%= photo.image_url.present? ? photo.image_url : "#{asset_path('default_photo.jpg')}" %>"
                     class="img-fluid"
-                    alt="photo"
+                    alt="<%= photo.image_url %>"
                 />
             </div>
         </div>

@@ -46,7 +46,7 @@
   align-items: center;
   gap: 0.6rem;
 }
-.default_avatar {
+#header .default_avatar {
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
@@ -66,6 +66,17 @@
   text-decoration: none;
 }
 
-.dropdown-menu li a:hover {
+.dropdown-menu li a:hover,
+#header .logout_btn_responsive:hover {
   background-color: #c1c1c1;
+  border-radius: 0.5rem;
+}
+
+#header .logout_btn_responsive {
+  width: 100%;
+  padding: 0.3rem 0;
+  color: var(--main_color); 
+  background-color: transparent; 
+  border: none; 
+  font-weight: bold
 }

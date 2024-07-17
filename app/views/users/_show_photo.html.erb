@@ -3,7 +3,7 @@
         <% @photos.each do |photo| %>
             <div class="photo_show_container col-md-3 position-relative">
                 <img
-                    src="<%= photo.image_url ? photo.image_url : "/assets/images/default_avatar.jpg" %>"
+                    src="<%= photo.image_url.present? ? photo.image_url : "#{asset_path('default_photo.jpg')}" %>"
                     class="img-fluid card-img"
                     style="height: 255px"
                     alt=""
