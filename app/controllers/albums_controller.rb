@@ -3,18 +3,15 @@ class AlbumsController < ApplicationController
     before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
     def index
-        if user_signed_in?
-            # Show all photos of following users
-            @list_following = current_user.followers
-            @albums = []
-            @list_following.each do |user|
-                @albums += user.albums.public_albums
+        def index
+            if user_signed_in?
+              following_ids = current_user.followers.pluck(:id)
+              @albums = Album.where(user_id: following_ids).public_albums
+                             .order(created_at: :desc)
+                             .paginate(page: params[:page], per_page: 4)
+            else
+              @albums = Album.public_albums.order(created_at: :desc).first(20).paginate(page: params[:page], per_page: 4)
             end
-
-            @albums = @albums.sort_by{|album| album[:created_at]}.paginate(page: params[:page], per_page: 4)
-        else
-            # Show photos of all users
-            @albums = Album.paginate(page: params[:page], per_page: 4)
         end
     end
 
@@ -69,7 +66,7 @@ class AlbumsController < ApplicationController
         redirect_to ('/users/' + current_user.id.to_s + '/albums'), notice: 'Album was successfully deleted.'
     end     
     def discover
-        @albums = Album.public_albums.all
+        @albums = Album.public_albums.order(created_at: :desc).all
     end
 
     private
