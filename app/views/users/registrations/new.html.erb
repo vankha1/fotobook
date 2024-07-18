@@ -44,30 +44,48 @@
                                           display: flex;
                                           flex-direction: column;
                                           align-items: center;'}) do |f| %>
-        <%= render "users/shared/error_messages", resource: resource %>
+        <%#  <%= render "users/shared/error_messages", resource: resource %>
 
         <div style="width: 80%; margin-bottom: 0.5rem">
-          <%= f.label :first_name, style: "font-weight: bold" %><br />
+          <%= f.label :first_name, style: "font-weight: bold" %>
           <%= f.text_field :first_name, autofocus: true, autocomplete: "email", class: "form-control", id: :first_name, placeholder: "First name" %>
+
+          <% if resource.errors[:first_name].any? %>
+              <p style="color: red; margin-bottom: 0"><%= resource.errors.full_messages_for(:first_name).first %></p>
+          <% end %>
         </div>
         <div style="width: 80%; margin-bottom: 0.5rem">
-          <%= f.label :last_name, style: "font-weight: bold" %><br />
+          <%= f.label :last_name, style: "font-weight: bold" %>
           <%= f.text_field :last_name, autofocus: true, autocomplete: "email", class: "form-control", id: :last_name, placeholder: "Last name" %>
+
+          <% if resource.errors[:last_name].any? %>
+              <p style="color: red; margin-bottom: 0"><%= resource.errors.full_messages_for(:last_name).first %></p>
+          <% end %>
         </div>
 
         <div style="width: 80%; margin-bottom: 0.5rem">
-          <%= f.label :email, style: "font-weight: bold" %><br />
+          <%= f.label :email, style: "font-weight: bold" %>
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", id: :email, placeholder: "Email" %>
+
+          <% if resource.errors[:email].any? %>
+              <p style="color: red; margin-bottom: 0"><%= resource.errors.full_messages_for(:email).first %></p>
+          <% end %>
         </div>
 
         <div style="width: 80%; margin-bottom: 0.5rem">
-          <%= f.label :password, style: "font-weight: bold" %><br />
+          <%= f.label :password, style: "font-weight: bold" %>
           <%= f.password_field :password, autocomplete: "new-password", class: "form-control", id: :password, placeholder: "Password" %>
+          <% if resource.errors[:password].any? %>
+              <p style="color: red; margin-bottom: 0"><%= resource.errors.full_messages_for(:password).first %></p>
+          <% end %>
         </div>
 
         <div style="width: 80%; margin-bottom: 0.5rem">
-          <%= f.label :password_confirmation, style: "font-weight: bold" %><br />
+          <%= f.label :password_confirmation, style: "font-weight: bold" %>
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", id: :password_confirmation, placeholder: "Confirm password" %>
+          <% if resource.errors[:password_confirmation].any? %>
+              <p style="color: red; margin-bottom: 0"><%= resource.errors.full_messages_for(:password_confirmation).first %></p>
+          <% end %>
         </div>
 
         <%= f.submit "Sign up", class: "btn btn-lg btn-primary btn-block", style: "

@@ -41,10 +41,12 @@
         if (files.length === 0) {
             e.preventDefault();
             alert('Please select a file to upload');
+            return false;
         }
         if (title === '') {
             e.preventDefault();
             alert('Please enter a title');
+            return false;
         }
     });
 </script>

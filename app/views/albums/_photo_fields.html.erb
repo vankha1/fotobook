@@ -7,7 +7,7 @@
                                 cursor: pointer;">
         <% if f.object %>
             <img
-                src="<%= f.object.image_url %>"
+                src="<%= f.object.image_url.present? ? f.object.image_url : asset_path('default_photo.jpg') %>"
                 class=""
                 style="
                     width: 100%;

@@ -73,9 +73,24 @@
     </div>
 
     <div class="col-2"></div>
+
+    <%# Toast %>
+    <% if flash[:notice].present? %>
+        <div class="toast show" style="position: absolute; right: 0; background-color: <%= flash[:notice].include?('deleted') ? "red" : "#3C7349" %> ">
+            <div class="toast-body" style="font-size: 1.1rem; color: white; font-weight: bold">
+                <%= flash[:notice] %>
+            </div>
+        </div>
+    <% end %>
 </main>
 
 <script>
+    if ($('.toast')) {
+        setTimeout(() => {
+            $('.toast').removeClass('show'); 
+        }, 3000)
+    }
+
     const setDebounce = (func, delay) => {
         let debounce;
         return function () {

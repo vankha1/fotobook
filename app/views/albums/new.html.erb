@@ -56,13 +56,10 @@
         const files = filesInput.files;
         console.log(filesInput)
         console.log(files)
-        //if (files.length === 0) {
-        //    e.preventDefault();
-        //    alert('Please select a file to upload');
-        //}
         if (title === '') {
             e.preventDefault();
             alert('Please enter a title');
+            return false;
         }
     });
 </script>

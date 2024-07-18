@@ -1,15 +1,21 @@
 <%= form_with(model: @photo, class: "row", style: "width: 100%") do |f| %>
     <div class="col-6">
-        <%= f.label :title %><br/>
+        <%= f.label :title %><% if !@photo.errors[:title].any? %><br/><% end %>
         <%= f.text_field :title, placeholder: "Photo Title", style: "width: 90%; margin-bottom: 1.5rem" %>
-
+        <% if @photo.errors[:title].any? %>
+            <p style="color: red; margin-top: -1.5rem;"><%= @photo.errors.full_messages_for(:title).first %></p>
+        <% end %>
+        
         <%= f.label :sharing_mode %><br/>
         <%= f.select :is_private, options_for_select([['Public', false], ['Private', true]], selected: f.object.is_private) %>
     </div>
 
     <div class="col-6">
-        <%= f.label :description %><br/>
+        <%= f.label :description %><% if !@photo.errors[:description].any? %><br/><% end %>
         <%= f.text_area :description, placeholder: "Photo Description", size: "50x5", style: "width: 90%; margin-bottom: 1.5rem" %>
+        <% if @photo.errors[:description].any? %>
+            <p style="color: red; margin-top: -1.5rem;"><%= @photo.errors.full_messages_for(:description).first %></p>
+        <% end %>
     </div>
 
     <div id="thumbnail-container" class="d-flex flex-wrap" style="gap: 1.5rem">
@@ -34,6 +40,17 @@
                         id="card-img"
                     >
                 <% else %>
+                    <img
+                        style="
+                            width: 100%;
+                            height: 100%;
+                            border-radius: 0.5rem;
+                            object-fit: cover;
+                            display: none;
+                            cursor: pointer;
+                        "
+                        id="card-img"
+                    >
                     <i
                         class="fa-solid fa-plus"
                         style="

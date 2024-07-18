@@ -1,15 +1,21 @@
 <%= form_with(model: @album, class: "row", style: "width: 100%") do |f| %>
     <div class="col-6">
-        <%= f.label :title %><br/>
+        <%= f.label :title %><% if !@album.errors[:title].any? %><br/><% end %>
         <%= f.text_field :title, placeholder: "Photo Title", style: "width: 90%; margin-bottom: 1.5rem" %>
+        <% if @album.errors[:title].any? %>
+            <p style="color: red; margin-top: -1.5rem;"><%= @album.errors.full_messages_for(:title).first %></p>
+        <% end %>
 
         <%= f.label :sharing_mode %><br/>
-        <%= f.select :is_private, ['Public', 'Private'] %>
+        <%= f.select :is_private, options_for_select([['Public', false], ['Private', true]], selected: f.object.is_private) %>
     </div>
 
     <div class="col-6">
-        <%= f.label :description %><br/>
+        <%= f.label :description %><% if !@album.errors[:description].any? %><br/><% end %>
         <%= f.text_area :description, placeholder: "Photo Description", size: "50x5", style: "width: 90%; margin-bottom: 1.5rem" %>
+        <% if @album.errors[:description].any? %>
+            <p style="color: red; margin-top: -1.5rem;"><%= @album.errors.full_messages_for(:description).first %></p>
+        <% end %>
     </div>
 
     <div id="thumbnail-container" class="d-flex flex-wrap" style="gap: 1.5rem">
