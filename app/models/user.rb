@@ -2,7 +2,8 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: [:google_oauth2]
   
   mount_uploader :avatar, AvatarUploader
   has_many :photos, dependent: :destroy
@@ -17,8 +18,8 @@ class User < ApplicationRecord
 
   before_save :downcase_email
 
-  validates :first_name, presence: true, length: {maximum: 50 }
-  validates :last_name, presence: true, length: { maximum: 50 }
+  validates :first_name, length: {maximum: 50 }
+  validates :last_name, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
                     format: { with: VALID_EMAIL_REGEX }, 
@@ -26,6 +27,12 @@ class User < ApplicationRecord
 
   validates :password, presence: true, length: {minimum: 6, maximum: 64}, allow_nil: true  
   
+  def self.from_google(u)
+    puts u
+    create_with(id: u[:uid], provider: 'google',
+                password: Devise.friendly_token[0, 20]).find_or_create_by!(email: u[:email], first_name: u[:first_name], last_name: u[:last_name], avatar: u[:avatar])
+  end
+
   private
     def downcase_email
       self.email.downcase!

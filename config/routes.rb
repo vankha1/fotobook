@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     passwords: 'users/passwords',
     confirmations: 'users/confirmations',
+    omniauth_callbacks: 'users/omniauth_callbacks'
   }
   root "photos#photo_feeds"
   get "/discover/photos", to: "photos#discover"

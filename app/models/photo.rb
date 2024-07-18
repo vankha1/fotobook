@@ -14,11 +14,16 @@ class Photo < ApplicationRecord
     scope :public_photos, -> { where(:is_private => false)}
     scope :private_photos, -> { where(:is_private => true)}
 
+    before_validation :set_number_like
     # before_create :increase_number_photos
     # before_destroy :decrease_number_photos
                 
     def display_image
         image.variant(resize_to_limit: [500, 500])
+    end
+
+    def set_number_like
+        self.number_like = 0
     end
 
     def increase_number_photos
