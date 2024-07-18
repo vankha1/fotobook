@@ -1,0 +1,7 @@
+$(".album_react").html("<%= escape_javascript(render('albums/unreact', album: @album)) %>");
+$("#number_of_like").html('<%= @album.number_like %>');
+document.querySelectorAll('.fa-heart').forEach((icon) => {
+    icon.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+});

@@ -4,29 +4,41 @@
     <div class="container_ col-12 col-md-8 m-md-0 justify-content-none">
         <div class="user_info">
             <div class="avatar_container">
-                <img
-                    src="https://shorturl.at/oJdb3"
-                    style="
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    border-radius: 50%;
-                    "
-                    alt="Stony Beach"
-                />
+                <% if @user.avatar.present? %>
+                    <img
+                        src="<%= @user.avatar %>"
+                        style="
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            border-radius: 50%;
+                        "
+                        alt="User avatar"
+                    />
+                <% else %>
+                    <div class="default_avatar d-flex justify-content-center align-items-center" 
+                        style="width: 100%;
+                                height: 100%; 
+                                background-color: var(--main_color); 
+                                color: #fff">
+                        <span class="username_short" style="font-size: 4rem;"><%= @user.first_name[0] + @user.last_name[0] %></span>
+                    </div>
+                <% end %>
             </div>
 
             <div>
-                <% if current_user || params[:id] == current_user.id %>
+                <% if current_user && params[:id] == current_user.id.to_s %>
                     <%= link_to "Edit profile", edit_user_registration_path, class: "edit_profile_btn" %>
                 <% else %>
-                    <button class="custom_btn">Following</button>
+                    <button class="custom_btn <%= current_user && current_user.followers.pluck(:id).include?(@user.id) ? "custom_btn_followed" : "" %>" id="follow_btn">
+                        <%= current_user && current_user.followers.pluck(:id).include?(@user.id) ? "Following" : "Follow" %>
+                    </button>
                 <% end %>
                 <h1
                     class="my-0"
                     style="font-weight: bold; margin: 0.8rem 0; font-size: 2rem"
                 >
-                    Hansford Nguyen
+                    <%= @user.first_name + " " + @user.last_name %>
                 </h1>
                 
                 <%= render "shared/profile_nav" %>
@@ -35,96 +47,92 @@
         </div>
 
         <% if !request.path.include?('follow')  %>
-            <%
-=begin%>
- <%= link_to "Add <%= "Photo" if request.path.include?('photos') %>", , class: "btn btn-success align-self-end fw-bold" %> 
-<%
-=end%>
-            <%= link_to(request.path.include?('photos') ? new_photo_path : new_album_path, class: "btn btn-success align-self-end fw-bold mb-4") do %>
-                Add <%= request.path.include?('photos') ? "Photo" : "Album" %>
+            <% if current_user && params[:id] == current_user.id.to_s %>
+                <%= link_to(request.path.include?('photos') ? new_photo_path : new_album_path, class: "btn btn-success align-self-end fw-bold mb-4") do %>
+                    Add <%= request.path.include?('photos') ? "Photo" : "Album" %>
+                <% end %>
+            <% else %>
+                <div class="mb-4"></div>
             <% end %>
-
-            <%
-=begin%>
- <button
-                class="btn btn-success align-self-end fw-bold"
-                style="border-radius: 1rem; padding: 0.2rem 1rem"
-            >
-                
-            </button> 
-<%
-=end%>
         <% else %>
             <div class="mb-4"></div>
         <% end %>
-        <div class="row list_items">
-            <!-- Photo -->
+
+        
+        <div class="row list_items" style="gap: 1rem;">
             <% if request.path.include?('photos') %>
                 <%= render 'show_photo' %>
             <% elsif request.path.include?('albums') %>
-                <%= render 'show_album' %>
+                <div class="row list_items" style="gap: 3rem;">
+                    <%= render 'show_album' %>
+                </div>
             <% elsif request.path.include?('follow') %>
                 <%= render 'show_follow' %>
             <% end %>
-            <%
-=begin%>
- <div class="col-md-3 p-3">
-                <img
-                    src="https://shorturl.at/oJdb3"
-                    class="img-fluid card-img"
-                    alt="..."
-                />
-                <p class="card_img_des">Photo title goes here</p>
-            </div>
-
-            <div class="col-md-3 p-3">
-                <img
-                    src="https://shorturl.at/quAp3"
-                    class="img-fluid card-img"
-                    alt="..."
-                />
-                <p class="card_img_des">Photo title goes here</p>
-            </div>
-
-            <div class="col-md-3 p-3">
-                <img
-                    src="https://shorturl.at/cQQnA"
-                    class="img-fluid card-img"
-                    alt="..."
-                />
-                <p class="card_img_des">Photo title goes here</p>
-            </div>
-
-            <div class="col-md-3 p-3">
-                <img
-                    src="https://shorturl.at/c6kKx"
-                    class="img-fluid card-img"
-                    alt="..."
-                />
-                <p class="card_img_des">Photo title goes here</p>
-            </div>
-
-            <div class="col-md-3 p-3">
-                <img
-                    src="https://shorturl.at/Eergl"
-                    class="img-fluid card-img"
-                    alt="..."
-                />
-                <p class="card_img_des">Photo title goes here</p>
-            </div>
-
-            <div class="col-md-3 p-3">
-                <img
-                    src="https://t.ly/k9pr6"
-                    class="img-fluid card-img"
-                    alt="..."
-                />
-                <p class="card_img_des">Photo title goes here</p>
-            </div> 
-<%
-=end%>
         </div>
     </div>
 
     <div class="col-2"></div>
+
+    <%# Toast %>
+    <% if flash[:notice].present? %>
+        <div class="toast show" style="position: absolute; right: 0; background-color: <%= flash[:notice].include?('deleted') ? "red" : "#3C7349" %> ">
+            <div class="toast-body" style="font-size: 1.1rem; color: white; font-weight: bold">
+                <%= flash[:notice] %>
+            </div>
+        </div>
+    <% end %>
 </main>
+
+<script>
+    if ($('.toast')) {
+        setTimeout(() => {
+            $('.toast').removeClass('show'); 
+        }, 3000)
+    }
+
+    const setDebounce = (func, delay) => {
+        let debounce;
+        return function () {
+            const context = this;
+            const args = arguments;
+            clearTimeout(debounce);
+            debounce = setTimeout(() => func.apply(context, args), delay);
+        };
+    };
+
+    const sendRequest = (url, method, data, callback) => {
+        $.ajax({
+            url: url,
+            type: method,
+            dataType: 'script',
+            data: data,
+            success: callback(data),
+            error: function (error) {
+                console.log(error);
+            }
+        });
+    }
+
+
+    // Using debounce for follow/unfollow button
+    document.querySelectorAll('.custom_btn').forEach((btn) => {
+        btn.addEventListener('click', setDebounce((e) => {
+            const followBtn = e.target;
+            const userId = window.location.pathname.split('/')[2];
+            console.log(followBtn, userId, followBtn.classList.contains('custom_btn_followed'))
+            if (!followBtn.classList.contains('custom_btn_followed')){
+                sendRequest(`/follows`, 'POST', { follower_id: userId }, (data) => {
+                    // add class custom_btn_followed to all buttons of photos that have been followed
+                    followBtn.classList.add('custom_btn_followed');
+                    followBtn.textContent = 'Following';
+                });
+            } else {
+                sendRequest(`/follows/${userId}`, 'DELETE', null, (data) => {
+                    followBtn.classList.remove('custom_btn_followed');
+                    followBtn.textContent = 'Follow';
+                });
+            }
+        }, 1000));
+    });
+</script>

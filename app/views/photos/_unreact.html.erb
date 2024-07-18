@@ -1,0 +1,5 @@
+<%= form_with(url: photos_reaction_path(photo.id), html: { method: :delete }, data: { remote: true }, id: "unreact_form") do |f| %>
+    <%= button_tag type: 'submit', class: "fa fa-heart p-2", style: "color: var(--main_color); background-color: transparent; border: none", id: "unreact_btn" do %>
+        &nbsp;<span id="number_of_like"><%= photo.number_like %></span>
+    <% end %>
+<% end %>

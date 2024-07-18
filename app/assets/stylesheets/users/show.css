@@ -1,12 +1,11 @@
 #public_profile_main {
   background-color: #f8f8f8;
   width: 100%;
-  height: calc(100vh - var(--header-height));
   padding: 0.8rem 0;
 }
 
 #public_profile_main .container_ {
-  height: 100%;
+  min-height: calc(100vh - var(--header-height));
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -41,6 +40,7 @@
 
 #public_profile_main .photo_container {
   position: relative;
+  height: 255px;
 }
 
 #public_profile_main .photo_container img {
@@ -68,7 +68,8 @@
   gap: -1rem;
 }
 
-#public_profile_main .photo_container .edit-button {
+#public_profile_main .photo_container .edit-button,
+#public_profile_main .photo_show_container .edit-button {
   z-index: 10;
   position: absolute;
   top: 90%;
@@ -85,6 +86,12 @@
   justify-content: center;
   align-items: center;
   gap: -1rem;
+}
+
+#public_profile_main .photo_show_container .edit-button,
+#public_profile_main .photo_container .edit-button {
+  top: 80%;
+  left: 84%;
 }
 
 #public_profile_main .photo_container img:nth-child(1) {
@@ -116,6 +123,8 @@
 #public_profile_main .container_ .list_items .card_img_des {
     text-align: center;
     margin: 0.3rem 0;
+    font-size: 1.1rem;
+    font-weight: 700;
 }
 
 /* Tablet + Mobile */
@@ -127,6 +136,14 @@
 
   #public_profile_main .user_info {
     align-items: center;
+  }
+
+  #public_profile_main .container_ .list_items {
+    width: 90%;
+  }
+
+  #public_profile_main .container_ .list_items .list_photos_user {
+    gap: 2rem;
   }
 
   #public_profile_main .user_info .avatar_container {

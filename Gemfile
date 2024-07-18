@@ -30,6 +30,9 @@ gem "jbuilder"
 gem 'will_paginate', '~> 4.0'
 gem 'will_paginate-bootstrap-style'
 
+# Debug
+gem 'pry', '~> 0.14.2'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
@@ -71,4 +74,8 @@ group :test do
 end
 
 gem "devise", "~> 4.9"
+gem 'omniauth-google-oauth2', "~> 1.1.2"
+gem "omniauth-rails_csrf_protection", "~> 1.0.2"
 gem 'carrierwave', '~> 3.0', '>= 3.0.7'
+gem 'cocoon', '~> 1.2', '>= 1.2.15'
+gem 'jquery-rails'

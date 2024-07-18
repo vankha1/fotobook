@@ -1,98 +1,75 @@
-<%= form_with(model: album, class: "row", style: "width: 100%") do |form| %>
+<%= form_with(model: @photo, class: "row", style: "width: 100%") do |f| %>
     <div class="col-6">
-        <%= form.label :title %><br/>
-        <%= form.text_field :title, placeholder: "Photo Title", style: "width: 90%; margin-bottom: 1.5rem" %>
-
-        <%= form.label :sharing_mode %><br/>
-        <%= form.select :is_private, ['Public', 'Private'] %>
+        <%= f.label :title %><% if !@photo.errors[:title].any? %><br/><% end %>
+        <%= f.text_field :title, placeholder: "Photo Title", style: "width: 90%; margin-bottom: 1.5rem" %>
+        <% if @photo.errors[:title].any? %>
+            <p style="color: red; margin-top: -1.5rem;"><%= @photo.errors.full_messages_for(:title).first %></p>
+        <% end %>
+        
+        <%= f.label :sharing_mode %><br/>
+        <%= f.select :is_private, options_for_select([['Public', false], ['Private', true]], selected: f.object.is_private) %>
     </div>
 
     <div class="col-6">
-        <%= form.label :description %><br/>
-        <%= form.text_area :description, placeholder: "Photo Description", size: "50x5", style: "width: 90%; margin-bottom: 1.5rem" %>
-    </div>
-
-    <div id="thumbnail-container" class="d-flex flex-wrap" style="gap: 1.5rem">
-        <%= fields_for :photos do |photo| %>
-            <div
-                class="card bg-dark text-white border-0 p-0 mt-4 d-none"
-                style="max-width: 200px; height: 200px"
-                id="thumbnail-card"
-            >
-                <img
-                    class="card-img"
-                    style="width: 100%; height: 100%; object-fit: cover"
-                    id= "thumbnail-img"
-                />
-                <div class="card-img-overlay float-start">
-                    <i
-                        class="fa-solid fa-xmark"
-                        style="
-                            float: right;
-                            font-size: 1.5rem;
-                            color: #4f4f4f;
-                            cursor: pointer;
-                            -webkit-text-stroke: 3px #4f4f4f;
-                        "
-                    ></i>
-                </div>
-            </div>
-
-            <label
-                class="card text-white border-1 p-0 mt-4 mb-5 d-flex justify-content-center align-items-center"
-                style="
-                    width: 200px;
-                    height: 200px;
-                    background-color: #f2f2f2;
-                    border-style: dashed;
-                    cursor: pointer;
-                "
-                for="files_inputs"
-            >
-                <i
-                    class="fa-solid fa-plus"
-                    style="
-                        font-size: 4rem;
-                        -webkit-text-stroke: 5px #bdbdbd;
-                        color: #bdbdbd;
-                    "
-                ></i>
-            </label>
-            <%= photo.file_field(:image_url, multiple: true, class: "d-none", id: "files_inputs") %>
+        <%= f.label :description %><% if !@photo.errors[:description].any? %><br/><% end %>
+        <%= f.text_area :description, placeholder: "Photo Description", size: "50x5", style: "width: 90%; margin-bottom: 1.5rem" %>
+        <% if @photo.errors[:description].any? %>
+            <p style="color: red; margin-top: -1.5rem;"><%= @photo.errors.full_messages_for(:description).first %></p>
         <% end %>
     </div>
 
+    <div id="thumbnail-container" class="d-flex flex-wrap" style="gap: 1.5rem">
+        <div class='nested-fields'>
+            <label class="card text-white border-1 p-0 mt-4 mb-5 d-flex justify-content-center align-items-center text-decoration-none"
+            style="width: 200px;
+                    height: 200px;
+                    background-color: #f2f2f2;
+                    border-style: dashed;
+                    border-radius: 0.5rem;
+                    cursor: pointer;">
+                <% if f.object.image_url.present? %>
+                    <img
+                        src="<%= f.object.image_url %>"
+                        style="
+                            width: 100%;
+                            height: 100%;
+                            border-radius: 0.5rem;
+                            object-fit: cover;
+                            cursor: pointer;
+                        "
+                        id="card-img"
+                    >
+                <% else %>
+                    <img
+                        style="
+                            width: 100%;
+                            height: 100%;
+                            border-radius: 0.5rem;
+                            object-fit: cover;
+                            display: none;
+                            cursor: pointer;
+                        "
+                        id="card-img"
+                    >
+                    <i
+                        class="fa-solid fa-plus"
+                        style="
+                            font-size: 4rem;
+                            -webkit-text-stroke: 5px #bdbdbd;
+                            color: #bdbdbd;
+                        "
+                        id="plus_icon"
+                    ></i>
+                <% end %>
+                <%= f.file_field(:image_url, class: "d-none", id: "files_inputs") %>
+            </label>
+        </div>
+    </div>
+
     <div>
-        <%= form.submit "Save", class: "btn btn-success", style: "margin-right: 3rem" %>
+        <%= f.submit "Save", class: "btn btn-success", style: "margin-right: 3rem", method: :put %>
+        <% if request.path.include?('edit') %>
+            <%= link_to "Delete", @photo, class: "btn btn-danger", method: :delete %>
+        <% end %>
     </div>
 <% end %>
-
-<script>
-
-    $(document).on('ready', function() {
-        handle_preview($("#files_inputs"), $("#thumbnail-img"));
-    });
-
-    function readURL(input, image) {
-        if (input.files) {
-            console.log(input.files);
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                const last_thumbnail = $('#thumbnail-container div#thumbnail-card:last')
-                const thumbnail_card = last_thumbnail.clone();
-                thumbnail_card.removeClass("d-none");
-                thumbnail_card.find("#thumbnail-img").attr('src', e.target.result);
-                last_thumbnail.after(thumbnail_card);
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    function handle_preview(input_tag, image){
-        input_tag.change(function(e){
-            var file = e.target.files[0];
-            readURL(e.target, image);
-        });
-    }
-
-</script>

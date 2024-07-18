@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     passwords: 'users/passwords',
     confirmations: 'users/confirmations',
+    omniauth_callbacks: 'users/omniauth_callbacks'
   }
   root "photos#photo_feeds"
   get "/discover/photos", to: "photos#discover"
@@ -11,8 +12,8 @@ Rails.application.routes.draw do
 
   get "/users/:id/photos", to: "users#show"
   get "/users/:id/albums", to: "users#show"
-  get "/users/:id/followings", to: "users#show_follow"
-  get "/users/:id/followers", to: "users#show_follow"
+  get "/users/:id/followings", to: "users#show"
+  get "/users/:id/followers", to: "users#show"
 
 
   # resources :users, only: [:index, :show] do
@@ -25,12 +26,18 @@ Rails.application.routes.draw do
   #   resources :photos
   # end
 
-  resources :users do
-    member do
-      get :following, :followers
-    end
-  end
+  # resources :users do
+  #   member do
+  #     get :following, :followers
+  #   end
+  # end
   
+  resources :users
   resources :photos
   resources :albums
+  resources :follows, only: [:create, :destroy]
+  # post "/reactions/:photo_id", to: "photos_reactions#create"
+  # delete "/reactions/:photo_id", to: "photos_reactions#destroy"
+  resources :photos_reactions, only: [:create, :destroy]
+  resources :albums_reactions, only: [:create, :destroy]
 end

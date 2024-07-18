@@ -1,23 +1,30 @@
-<a class="card photo" data-bs-toggle="modal"
-      data-bs-target="#<%= photo.id %>">
-    <div class="row g-0">
+<a class="card photo" data-id="<%= photo.id %>" data-user="<%= photo.user.id %>" data-bs-target="#<%= photo.id %>" onclick="toggleModal('<%= photo.id%>')">
+    <div class="row g-0 w-100">
         <div class="col-lg-6">
             <div class="photo_container">
                 <img
-                    src="<%= photo.image_url %>"
-                    class="img-fluid h-100"
-                    alt="photo"
+                    src="<%= photo.image_url.present? ? photo.image_url : "#{asset_path('default_photo.jpg')}" %>"
+                    class="img-fluid"
+                    alt="<%= photo.image_url %>"
                 />
             </div>
         </div>
         <div class="col-lg-6 p-2">
             <div class="post_user_info">
-                <div class="default_avatar">
-                    <span class="username_short"><%= photo.user.first_name[0] + photo.user.last_name[0] %></span>
+                <div class="user_info_part">
+                    <% if photo.user.avatar.present? %>
+                        <img src="<%= photo.user.avatar %>" class="default_avatar" alt="avatar" />
+                    <% else %>
+                        <div class="default_avatar">
+                            <span class="username_short"><%= photo.user.first_name[0] + photo.user.last_name[0] %></span>
+                        </div>
+                    <% end %>
+                    <span class="user_name"><%= photo.user.first_name + photo.user.last_name %></span>  
                 </div>
-                <span class="user_name"><%= photo.user.first_name + photo.user.last_name %></span>  
                 <% if request.path.include?('discover') %>
-                    <button class="custom_btn custom_btn_followed">Following</button>
+                    <button class="custom_btn <%= current_user && current_user.followers.pluck(:id).include?(photo.user.id) ? "custom_btn_followed" : "" %>" id="follow_btn" <%= "disabled" unless current_user %> >
+                        <%= current_user && current_user.followers.pluck(:id).include?(photo.user.id) ? "Following" : "Follow" %>
+                    </button>
                 <% end %>
             </div>
 
@@ -26,11 +33,11 @@
                 <p class="card-text"><%= photo.description %></p>
             </div>
             <div class="post_createdAt">
-                <i class="fa fa-heart" style="color: var(--main_color)">
-                    &nbsp;<span><%= photo.number_like %></span>
+                <i class="fa fa-heart p-2 <%= current_user && current_user.photos_reactions.pluck(:photo_id).include?(photo.id) ? "" : "text-secondary" %>" style="color: var(--main_color); font-size: 1rem;" role="button">
+                    <span id="number_of_like" style="margin-left: 0.3rem;"><%= photo.number_like %></span>
                 </i>
                 <small class="text-body-secondary">
-                    <%= photo.created_at %>
+                    <%= photo.created_at.strftime("%T %F") %>
                 </small>
             </div>
         </div>

@@ -1,0 +1,7 @@
+$(".photo_react").html("<%= escape_javascript(render('photos/react', photo: @photo)) %>");
+$("#number_of_like").html('<%= @photo.number_like %>');
+document.querySelectorAll('.fa-heart').forEach((icon) => {
+    icon.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+});

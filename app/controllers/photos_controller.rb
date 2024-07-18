@@ -1,11 +1,14 @@
 class PhotosController < ApplicationController
+
+    before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+
     def index
         if user_signed_in?
             # Show all photos of following users
-            @photos = current_user.photos.paginate(page: params[:page], per_page: 3)
+            @photos = current_user.photos.paginate(page: params[:page], per_page: 4)
         else
             # Show photos of all users
-            @photos = Photo.paginate(page: params[:page], per_page: 3)
+            @photos = Photo.public_photos.paginate(page: params[:page], per_page: 4)
         end
         render 'users/show'
     end
@@ -14,10 +17,15 @@ class PhotosController < ApplicationController
         # For root path
         if user_signed_in?
             # Show all photos of following users
-            @photos = current_user.photos.paginate(page: params[:page], per_page: 3)
+            @list_following = current_user.followers
+            @photos = []
+            @list_following.each do |user|
+                @photos += user.photos.public_photos
+            end
+            @photos = @photos.sort_by{|photo| photo[:created_at]}.paginate(page: params[:page], per_page: 4)
         else
             # Show photos of all users
-            @photos = Photo.paginate(page: params[:page], per_page: 3)
+            @photos = Photo.public_photos.order(created_at: :desc).paginate(page: params[:page], per_page: 4)
         end
     end
 
@@ -27,8 +35,8 @@ class PhotosController < ApplicationController
 
     def create
         @photo = current_user.photos.new(photo_params)
-        if @photo.save!
-            redirect_to @photo, notice: 'Photo was successfully created.'
+        if @photo.save
+            redirect_to ('/users/' + current_user.id.to_s + '/photos'), notice: 'Photo was successfully created.'
         else
             render :new
         end
@@ -38,11 +46,31 @@ class PhotosController < ApplicationController
     end
 
     def edit
-         
+        @photo = Photo.find(params[:id])
+    end
+
+    def update
+        @photo = Photo.find(params[:id])
+        # if params[:image_url] == nil
+        #     params[:image_url] = @photo.image_url
+        # end
+        
+        if @photo.update(photo_params)
+            redirect_to ('/users/' + current_user.id.to_s + '/photos'), notice: 'Photo was successfully updated.'
+        else
+            render :edit
+        end
+    
     end
 
     def discover
-        @photos = Photo.all
+        @photos = Photo.public_photos.where(album_id: nil)
+    end
+
+    def destroy
+        @photo = Photo.find(params[:id])
+        @photo.destroy
+        redirect_to ('/users/' + current_user.id.to_s + '/photos'), notice: 'Photo was successfully destroyed.'
     end
 
     private

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_04_145741) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_17_155019) do
   create_table "albums", charset: "utf8mb3", force: :cascade do |t|
     t.string "title"
     t.string "description"
@@ -21,6 +21,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_04_145741) do
     t.bigint "user_id", null: false
     t.integer "number_photos"
     t.index ["user_id"], name: "index_albums_on_user_id"
+  end
+
+  create_table "albums_reactions", charset: "utf8mb3", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "album_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["album_id"], name: "index_albums_reactions_on_album_id"
+    t.index ["user_id"], name: "index_albums_reactions_on_user_id"
   end
 
   create_table "follows", charset: "utf8mb3", force: :cascade do |t|
@@ -44,6 +53,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_04_145741) do
     t.index ["user_id"], name: "index_photos_on_user_id"
   end
 
+  create_table "photos_reactions", charset: "utf8mb3", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "photo_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["photo_id"], name: "index_photos_reactions_on_photo_id"
+    t.index ["user_id"], name: "index_photos_reactions_on_user_id"
+  end
+
   create_table "users", charset: "utf8mb3", force: :cascade do |t|
     t.string "user_name"
     t.string "first_name"
@@ -58,11 +76,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_04_145741) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "provider"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "albums", "users"
+  add_foreign_key "albums_reactions", "albums"
+  add_foreign_key "albums_reactions", "users"
   add_foreign_key "photos", "albums"
   add_foreign_key "photos", "users"
+  add_foreign_key "photos_reactions", "photos"
+  add_foreign_key "photos_reactions", "users"
 end

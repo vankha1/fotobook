@@ -2,25 +2,25 @@
     class="d-block align-items-center d-md-flex"
     style="gap: 1rem; font-weight: bold"
 >
-    <a class="navigation <%= 'active_profile_nav' if request.path.include?('photos')%>" href="/users/<%= 1 %>/photos">
-        <span>108</span> Photos
+    <a class="navigation <%= 'active_profile_nav' if request.path.include?('photos')%>" href="/users/<%= params[:id] %>/photos">
+        <span><%= @photo_count %></span> Photos
     </a>
 
     <span style="color: #aaa9a9;">|</span>
 
-    <a class="navigation <%= 'active_profile_nav' if request.path.include?('albums')%>" href="/users/<%= 1 %>/albums">         
-        <span>43</span> Albums 
+    <a class="navigation <%= 'active_profile_nav' if request.path.include?('albums')%>" href="/users/<%= params[:id] %>/albums">         
+        <span><%= @album_count %></span> Albums 
     </a>
 
     <span style="color: #aaa9a9;">|</span>
 
-    <a class="navigation <%= 'active_profile_nav' if request.path.include?('followings')%>" href="/users/<%= 1 %>/followings">
-        <span>22</span> Followings 
+    <a class="navigation <%= 'active_profile_nav' if request.path.include?('followings')%>" href="/users/<%= params[:id] %>/followings">
+        <span><%= @following_count %></span> Followings 
     </a>
 
     <span style="color: #aaa9a9;">|</span>
 
-    <a class="navigation <%= 'active_profile_nav' if request.path.include?('followers')%>" href="/users/<%= 1 %>/followers">
-        <span>13</span> Followers 
+    <a class="navigation <%= 'active_profile_nav' if request.path.include?('followers')%>" href="/users/<%= params[:id] %>/followers">
+        <span><%= @follower_count %></span> Followers 
     </a>
 </div>

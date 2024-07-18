@@ -25,11 +25,13 @@
         border-radius: 0.5rem;
       "
     >
-      <img
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjzC2JyZDZ_RaWf0qp11K0lcvB6b6kYNMoqtZAQ9hiPZ4cTIOB"
-        alt=""
-        style="width: 3rem; height: 3rem"
-      />
+      <%= button_to user_google_oauth2_omniauth_authorize_path, method: :post, style: "border: none" do %>
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjzC2JyZDZ_RaWf0qp11K0lcvB6b6kYNMoqtZAQ9hiPZ4cTIOB"
+          alt=""
+          style="width: 3rem; height: 3rem;"
+        />
+      <% end %>
       <img
         src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg"
         alt=""
@@ -43,15 +45,22 @@
         src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
         alt=""
       />
+      
       <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html   => { :style => 'max-width: 90%;
                       padding: 15px 5px;
                       margin: 0 auto;
                       display: flex;
                       flex-direction: column;
                       align-items: center;'}) do |f| %>
+
+        <%# Validation %>
+        <p id="error_message" style="color: red; margin-bottom: 0"><%= flash[:email] %></p>
+        <p style="color: red; margin-bottom: 0"><%= flash[:password] %></p>
+
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Email" %>
         <%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder: "Password" %>
-        <%= f.submit "Log in", class: "btn btn-lg btn-primary btn-block", style:        "background-color: var(--main_color);
+
+        <%= f.submit "Log in", class: "btn btn-lg btn-primary btn-block", style:"background-color: var(--main_color);
             padding: 0.7rem 2rem;
             font-weight: 500;
             margin-top: 1rem;
@@ -64,3 +73,25 @@
     <%= link_to "Create an account", new_registration_path(resource_name), {style: "color: var(--main_color); text-decoration: none", class: "text-center new-account" } %><br />
   </div>
 </main>
+
+<script>
+  // Client-side validation
+  const email = document.querySelector('input[type="email"]');
+  const password = document.querySelector('input[type="password"]');
+  const error_message = document.querySelector('#error_message');
+  const form = document.querySelector('.new_user');
+
+  form.addEventListener('submit', (e) => {
+    if (email.value === '') {
+      e.preventDefault();
+      alert('Email cannot be blank');
+      return false
+    }
+
+    if (password.value === '') {
+      e.preventDefault();
+      alert('Password cannot be blank');
+      return false
+    }
+  });
+</script>

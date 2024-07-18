@@ -4,10 +4,11 @@
     <title><%= full_title(yield(:title)) %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= render 'layouts/rails_default' %>
+    <%= javascript_include_tag :jquery %>
     
   </head>
 
-  <body>
+  <body style="background-color: #f8f8f8">
     <%= render 'layouts/header' %>
     <%= yield %>
     <script >

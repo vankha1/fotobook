@@ -2,11 +2,14 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable,
+         :omniauthable, omniauth_providers: [:google_oauth2]
   
   mount_uploader :avatar, AvatarUploader
   has_many :photos, dependent: :destroy
+  has_many :photos_reactions, dependent: :destroy
   has_many :albums, dependent: :destroy
+  has_many :albums_reactions, dependent: :destroy
   has_many :active_follows, class_name: "Follow", foreign_key: "user_id", dependent: :destroy
   has_many :passive_follows, class_name: "Follow", foreign_key: "follower_id", dependent: :destroy
 
@@ -24,6 +27,12 @@ class User < ApplicationRecord
 
   validates :password, presence: true, length: {minimum: 6, maximum: 64}, allow_nil: true  
   
+  def self.from_google(u)
+    puts u
+    create_with(id: u[:uid], provider: 'google',
+                password: Devise.friendly_token[0, 20]).find_or_create_by!(email: u[:email], first_name: u[:first_name], last_name: u[:last_name], avatar: u[:avatar])
+  end
+
   private
     def downcase_email
       self.email.downcase!
