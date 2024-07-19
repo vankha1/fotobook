@@ -1,0 +1,15 @@
+<% if message.present? %>
+    <div class="toast show" style="position: absolute; right: 0; background-color: <%= message.include?('deleted') || message.include?('error') ? "red" : "#3C7349" %> ">
+        <div class="toast-body" style="font-size: 1.1rem; color: white; font-weight: bold">
+            <%= message %>
+        </div>
+    </div>
+<% end %>
+
+<script>
+    if ($('.toast')) {
+        setTimeout(() => {
+            $('.toast').removeClass('show'); 
+        }, 3000)
+    }
+</script>

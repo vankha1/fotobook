@@ -1,0 +1,18 @@
+#admin_photos_main {
+  background-color: #f8f8f8;
+  width: 100%;
+  padding: 0.8rem 0;
+}
+#admin_photos_main .container_ {
+  min-height: calc(100vh - var(--header-height));
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Pagination */
+#admin_photos_main .container_ nav {
+  margin: 1rem auto;
+}

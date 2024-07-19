@@ -1,0 +1,55 @@
+#admin_albums_main {
+  background-color: #f8f8f8;
+  width: 100%;
+  padding: 0.8rem 0;
+}
+#admin_albums_main .container_ {
+  height: 100%;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Pagination */
+#admin_albums_main .container_ nav {
+  margin: 1rem auto;
+}
+
+/* For album */
+#admin_albums_main .photo_container {
+  position: relative;
+  height: 255px;
+  width: 255px;
+  background-color: #f8f8f8;
+}
+
+#admin_albums_main .container_ .img-fluid  {
+  width: 85%;
+  height: 85%;
+  object-fit: cover;
+  position: absolute;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+#admin_albums_main .photo_container img:nth-child(1) {
+  transform: rotate(6deg);
+  z-index: 1;
+}
+
+#admin_albums_main .photo_container img:nth-child(2) {
+  transform: rotate(3deg);
+  z-index: 2;
+}
+
+#admin_albums_main .photo_container img:nth-child(3) {
+  transform: rotate(0deg);
+  z-index: 3;
+}

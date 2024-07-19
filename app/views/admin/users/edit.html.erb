@@ -1,0 +1,123 @@
+
+<main id="edit_user_admin_main" class="row m-0">
+  <%= render "layouts/sidebar" %>
+
+  <!-- Main content -->
+  <div class="container_ col-12 col-md-8 m-md-0 justify-content-none">
+    <!-- Header -->
+    <div class="" style="width: 100%">
+      <h5 class="float-start fw-bold">Edit photo</h5>
+      <hr style="width: 100%; border: 2px solid #555" />
+    </div>
+
+    <!-- Content -->
+    <%= form_with(model: @user, url: admin_user_path(@user.id), class: "form-container mb-4") do |form| %>
+      <!-- Change avatar -->
+      <label
+        for="files"
+        class="card bg-dark text-white mb-4"
+        style="width: 150px; height: 150px; border: none"
+      >
+        <% if @user.avatar.is_a?(AvatarUploader) %>
+            <% avatar_url = @user.avatar.present? ?  @user.avatar : @user.avatar_identifier %>
+            <% if avatar_url %>
+                <img
+                    src="<%= avatar_url %>"
+                    class="card-img"
+                    style="width: 100%; height: 100%; object-fit: cover"
+                >
+            <% else %>
+              <img
+                src="<%= asset_path('default_avatar.jpg') %>"
+                class="card-img"
+                style="width: 100%; height: 100%; object-fit: cover"
+              >
+            <% end %>
+        <% end %>
+        <div
+          class="card-img-overlay d-flex align-items-center justify-content-center"
+          style="
+            background-color: #b5b3b3;
+            height: 20%;
+            opacity: 0.8;
+            width: 80%;
+            top: 80%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          "
+        >
+          <span>CHANGE</span>
+        </div>
+
+        <%= form.file_field :avatar, class: "d-none", id: "files" %>
+      </label>
+
+      <!-- Title part -->
+      <h5
+        class="fw-bold mb-2"
+        style="color: var(--main_color);"
+      >
+        Basic information
+      </h5>
+
+      <!-- Form -->
+      <div class="input-wrapper">
+        <%= form.label :first_name %>
+        <%= form.text_field :first_name, class: "form-control", placeholder: "First name" %>
+      </div>
+
+      <div class="input-wrapper">
+        <%= form.label :last_name %>
+        <%= form.text_field :last_name, class: "form-control", placeholder: "Last name" %>
+      </div>
+
+      <div class="input-wrapper">
+        <%= form.label :email %>
+        <%= form.email_field :email, class: "form-control", placeholder: "Email" %>
+      </div>
+
+      <div class="input-wrapper">
+        <%= form.label :password %>
+        <%= form.password_field :password, autocomplete: "new-password", placeholder: "6 characters minimum", class: "form-control" %>
+      </div>
+
+      <div class="input-wrapper">
+            <%= form.label :is_active, "Active" %>
+            <%= form.check_box :is_active %>
+        </div>
+
+
+      <div style="width: 25%">
+        <%= form.submit "Save", class: "btn btn-success" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="col-md-2"></div>
+</main>
+
+
+<script>
+  $(document).on('ready', function() {
+    handle_preview($("#files"), $(".card-img"));
+  });
+
+  function readURL(input, image) {
+    console.log(input.files)
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function(e) {
+        image.attr('src', e.target.result);
+      };
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  function handle_preview(input, image) {
+    input.on('change', function() {
+      readURL(this, image);
+    });
+  }
+</script>

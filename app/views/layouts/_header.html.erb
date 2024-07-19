@@ -21,23 +21,19 @@
         <% if user_signed_in? %>
             <div class="post_user_info">
                     <div class="dropdown">
-                        
-                        <% if current_user.avatar.present? %>
-                            <img
-                                src="<%= current_user.avatar %>"
-                                style="width: 2.5rem; height: 2.5rem; border-radius: 50%;
-                                object-fit: cover"
-                            >
-                        <% elsif current_user.avatar_identifier.include?('https') %>
-                            <img
-                                src="<%=  current_user.avatar_identifier %>"
-                                style="width: 2.5rem; height: 2.5rem; border-radius: 50%;
-                                object-fit: cover"
-                            >
-                        <% else %>
-                            <div class="default_avatar">
-                                <span class="username_short"><%= current_user.first_name[0] + current_user.last_name[0] %></span>
-                            </div>
+                        <% if current_user.avatar.is_a?(AvatarUploader) %>
+                            <% avatar_url = current_user.avatar.present? ?  current_user.avatar : current_user.avatar_identifier %>
+                            <% if avatar_url %>
+                                <img
+                                    src="<%= avatar_url %>"
+                                    style="width: 2.5rem; height: 2.5rem; border-radius: 50%;
+                                    object-fit: cover"
+                                >
+                            <% else %>
+                                <div class="default_avatar">
+                                    <span class="username_short"><%= current_user.first_name[0] + current_user.last_name[0] %></span>
+                                </div>
+                            <% end %>
                         <% end %>
 
                         <ul
@@ -60,7 +56,7 @@
 
                     <span ></span>
                     <%= link_to("/users/#{current_user.id}/photos", class: "user_name d-none d-md-block") do %>
-                        <%= current_user.first_name + current_user.last_name %>
+                        <%= current_user.first_name + " " + current_user.last_name %>
                     <% end %>
                     <span
                         class="user_name d-block d-md-none dropdown-toggle"

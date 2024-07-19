@@ -1,0 +1,23 @@
+#users_admin_main {
+  background-color: #f8f8f8;
+  width: 100%;
+  height: calc(100vh - var(--header-height));
+  padding: 0.8rem 0;
+}
+#users_admin_main .container_ {
+  min-height: 100%;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  padding: 1rem 2rem;
+  flex-wrap: wrap;
+}
+
+#users_admin_main .container_ tr {
+  height: 20px;
+}
+
+/* Pagination */
+#users_admin_main .container_ nav {
+  margin: 1rem auto;
+}

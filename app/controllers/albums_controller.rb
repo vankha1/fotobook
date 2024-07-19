@@ -3,18 +3,15 @@ class AlbumsController < ApplicationController
     before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 
     def index
-        if user_signed_in?
-            # Show all photos of following users
-            @list_following = current_user.followers
-            @albums = []
-            @list_following.each do |user|
-                @albums += user.albums.public_albums
+        def index
+            if user_signed_in?
+              following_ids = current_user.followers.pluck(:id)
+              @albums = Album.where(user_id: following_ids).public_albums
+                             .order(created_at: :desc)
+                             .paginate(page: params[:page], per_page: 4)
+            else
+              @albums = Album.public_albums.order(created_at: :desc).first(20).paginate(page: params[:page], per_page: 4)
             end
-
-            @albums = @albums.sort_by{|album| album[:created_at]}.paginate(page: params[:page], per_page: 4)
-        else
-            # Show photos of all users
-            @albums = Album.paginate(page: params[:page], per_page: 4)
         end
     end
 
@@ -52,8 +49,11 @@ class AlbumsController < ApplicationController
         # @number_photos = params[:album][:photos_attributes].values.reject { |photo| photo['_destroy'] == '1' || photo['_destroy'] == true }.count
         
         if @album.update(album_params)
-            # @album.update_attribute(:number_photos, @number_photos)
-            redirect_to ('/users/' + current_user.id.to_s + '/albums'), notice: 'Album was successfully updated.'
+            if current_user.is_admin?
+                redirect_to (admin_albums_path), notice: 'Album was successfully updated.'
+            else
+                redirect_to ('/users/' + current_user.id.to_s + '/albums'), notice: 'Album was successfully updated.'
+            end
         else
             render :edit
         end
@@ -66,10 +66,14 @@ class AlbumsController < ApplicationController
     def destroy
         @album = Album.find(params[:id])
         @album.destroy
-        redirect_to ('/users/' + current_user.id.to_s + '/albums'), notice: 'Album was successfully deleted.'
+        if current_user.is_admin?
+            redirect_to (admin_albums_path), notice: 'Album was successfully updated.'
+        else
+            redirect_to ('/users/' + current_user.id.to_s + '/albums'), notice: 'Album was successfully deleted.'
+        end
     end     
     def discover
-        @albums = Album.public_albums.all
+        @albums = Album.public_albums.order(created_at: :desc).all
     end
 
     private
