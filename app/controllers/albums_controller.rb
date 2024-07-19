@@ -49,8 +49,11 @@ class AlbumsController < ApplicationController
         # @number_photos = params[:album][:photos_attributes].values.reject { |photo| photo['_destroy'] == '1' || photo['_destroy'] == true }.count
         
         if @album.update(album_params)
-            # @album.update_attribute(:number_photos, @number_photos)
-            redirect_to ('/users/' + current_user.id.to_s + '/albums'), notice: 'Album was successfully updated.'
+            if current_user.is_admin?
+                redirect_to (admin_albums_path), notice: 'Album was successfully updated.'
+            else
+                redirect_to ('/users/' + current_user.id.to_s + '/albums'), notice: 'Album was successfully updated.'
+            end
         else
             render :edit
         end
@@ -63,7 +66,11 @@ class AlbumsController < ApplicationController
     def destroy
         @album = Album.find(params[:id])
         @album.destroy
-        redirect_to ('/users/' + current_user.id.to_s + '/albums'), notice: 'Album was successfully deleted.'
+        if current_user.is_admin?
+            redirect_to (admin_albums_path), notice: 'Album was successfully updated.'
+        else
+            redirect_to ('/users/' + current_user.id.to_s + '/albums'), notice: 'Album was successfully deleted.'
+        end
     end     
     def discover
         @albums = Album.public_albums.order(created_at: :desc).all

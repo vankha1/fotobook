@@ -31,6 +31,10 @@ Rails.application.routes.draw do
   #     get :following, :followers
   #   end
   # end
+  # admin
+  namespace :admin do
+    resources :users, :photos, :albums
+  end
   
   resources :users
   resources :photos
@@ -40,4 +44,5 @@ Rails.application.routes.draw do
   # delete "/reactions/:photo_id", to: "photos_reactions#destroy"
   resources :photos_reactions, only: [:create, :destroy]
   resources :albums_reactions, only: [:create, :destroy]
+
 end

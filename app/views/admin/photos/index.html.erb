@@ -1,0 +1,15 @@
+<main id="admin_photos_main" class="row m-0">
+    <!-- Sidebar -->
+    <%= render "layouts/sidebar" %>
+
+    <!-- Main content -->
+    <div class="container_ col-12 col-md-8 m-md-0">
+            <% @photos.each do |photo| %>
+                <%= render "item", photo: photo %>
+            <% end %>
+        <!-- Pagination -->
+        <%= will_paginate @photos, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, previous_label: 'Previous',next_label: 'Next' %>
+    </div>
+
+    <div class="col-2"></div>
+</main>

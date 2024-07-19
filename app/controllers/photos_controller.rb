@@ -54,7 +54,11 @@ class PhotosController < ApplicationController
         # end
         
         if @photo.update(photo_params)
-            redirect_to ('/users/' + current_user.id.to_s + '/photos'), notice: 'Photo was successfully updated.'
+            if current_user.is_admin?
+                redirect_to ('/admin/photos'), notice: 'Photo was successfully updated.'
+            else
+                redirect_to ('/users/' + current_user.id.to_s + '/photos'), notice: 'Photo was successfully updated.'
+            end
         else
             render :edit
         end
@@ -68,7 +72,11 @@ class PhotosController < ApplicationController
     def destroy
         @photo = Photo.find(params[:id])
         @photo.destroy
-        redirect_to ('/users/' + current_user.id.to_s + '/photos'), notice: 'Photo was successfully destroyed.'
+        if current_user.is_admin?
+            redirect_to (admin_photos_path), notice: 'Photo was successfully updated.'
+        else
+            redirect_to ('/users/' + current_user.id.to_s + '/photos'), notice: 'Photo was successfully destroyed.'
+        end
     end
 
     private
