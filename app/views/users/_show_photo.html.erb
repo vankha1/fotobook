@@ -1,6 +1,6 @@
-<% if @photos.present? %>
+<% if @content.present? %>
     <div class="row list_photos_user">
-        <% @photos.each do |photo| %>
+        <% @content.each do |photo| %>
             <div class="photo_show_container col-md-3 position-relative">
                 <img
                     src="<%= photo.image_url.present? ? photo.image_url : "#{asset_path('default_photo.jpg')}" %>"

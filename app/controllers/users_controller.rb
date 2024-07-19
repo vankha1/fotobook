@@ -10,28 +10,38 @@ class UsersController < ApplicationController
     end
 
     def show
-        @user = User.find(params[:id])
-        @photo_count = @user.photos.count
-        @album_count = @user.albums.count
-        @following_count = @user.following.count
-        @follower_count = @user.followers.count
-        # Check url has photos or albums
-        if request.path.include? "photos"
-            if current_user.id.to_s == params[:id]
-                @photos = @user.photos
-            else
-                @photos = @user.photos.public_photos
-            end
-        elsif request.path.include? "albums"
-            if current_user.id.to_s == params[:id]
-                @albums = @user.albums
-            else
-                @albums = @user.albums.public_albums
-            end
-        elsif request.path.include? "followings"
-            @users = @user.following
-        elsif request.path.include? "followers"
-            @users = @user.followers
+        # Eager load associations to reduce database queries
+        @user = User.includes(:photos, :albums, :following, :followers).find(params[:id])
+
+        # Count associations using the loaded data to avoid extra queries
+        @photo_count = @user.photos.length
+        @album_count = @user.albums.length
+        @following_count = @user.following.length
+        @follower_count = @user.followers.length
+
+        # Determine the content to load based on the request path
+        content_type = case request.path
+                    when /photos/
+                        :photos
+                    when /albums/
+                        :albums
+                    when /followings/
+                        :following
+                    when /followers/
+                        :followers
+                    end
+
+        # Load the appropriate content based on the current user and content type
+        if content_type
+            is_current_user = current_user.id.to_s == params[:id]
+            @content = case content_type
+                    when :photos
+                        is_current_user ? @user.photos : @user.photos.public_photos
+                    when :albums
+                        is_current_user ? @user.albums : @user.albums.public_albums
+                    else
+                        @user.send(content_type) # For :following and :followers
+                    end
         end
     end
 

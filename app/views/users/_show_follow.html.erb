@@ -1,5 +1,5 @@
-<% if @users.present? %>
-    <% @users.each do |user| %>
+<% if @content.present? %>
+    <% @content.each do |user| %>
         <div
             class="d-flex flex-column align-items-center justify-content-center p-3 col-md-3"
             style="
@@ -10,17 +10,23 @@
                 box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.1);
             "
         >
-            <img
-                src="<%= user.avatar %>"
-                class="img-fluid"
-                style="
-                    width: 100px;
-                    height: 100px;
-                    object-fit: cover;
-                    border-radius: 50%;
-                "
-                alt="photo"
-            />
+            <% if user.avatar.is_a?(AvatarUploader) %>
+                <% avatar_url = user.avatar.present? ?  user.avatar : user.avatar_identifier %>
+                <% if avatar_url %>
+                    <img
+                        src="<%= avatar_url %>"
+                        style="width: 100px;
+                                height: 100px;
+                                object-fit: cover;
+                                border-radius: 50%;"
+                        alt="avatar"
+                    >
+                <% else %>
+                    <div class="default_avatar">
+                        <span class="username_short"><%= user.first_name[0] + user.last_name[0] %></span>
+                    </div>
+                <% end %>
+            <% end %>
 
             <h5 style="font-weight: 700"><%= user.first_name + " " + user.last_name %></h5>
 

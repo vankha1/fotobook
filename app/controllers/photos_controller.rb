@@ -66,7 +66,7 @@ class PhotosController < ApplicationController
     end
 
     def discover
-        @photos = Photo.public_photos.where(album_id: nil).order(created_at: :desc)
+        @photos = Photo.public_photos.where(album_id: nil).order(created_at: :desc).paginate(page: params[:page], per_page: 10)
     end
 
     def destroy
