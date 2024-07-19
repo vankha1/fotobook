@@ -45,7 +45,7 @@ class AlbumsController < ApplicationController
 
     def update
         @album = Album.find(params[:id])
-        params[:album][:is_private] = params[:album][:is_private] != "Public" ? true : false
+        # params[:album][:is_private] = params[:album][:is_private] != "Public" ? true : false
         # @number_photos = params[:album][:photos_attributes].values.reject { |photo| photo['_destroy'] == '1' || photo['_destroy'] == true }.count
         
         if @album.update(album_params)
