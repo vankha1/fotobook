@@ -1,10 +1,10 @@
-#admin_photos_main {
+#users_admin_main {
   background-color: #f8f8f8;
   width: 100%;
+  height: 100%;
   padding: 0.8rem 0;
 }
-#admin_photos_main .container_ {
-  min-height: calc(100vh - var(--header-height));
+#users_admin_main .container_ {
   background-color: #ffffff;
   display: flex;
   flex-direction: row;
@@ -13,6 +13,6 @@
 }
 
 /* Pagination */
-#admin_photos_main .container_ nav {
+#users_admin_main .container_ nav {
   margin: 1rem auto;
 }

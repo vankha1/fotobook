@@ -1,5 +1,5 @@
 
-<main id="edit_user_main" class="row m-0">
+<main id="edit_user_admin_main" class="row m-0">
   <%= render "layouts/sidebar" %>
 
   <!-- Main content -->
@@ -11,15 +11,15 @@
     </div>
 
     <!-- Content -->
-    <%= form_with(model: @user, class: "form-container mb-4") do |form| %>
+    <%= form_with(model: @user, url: admin_user_path(@user.id), class: "form-container mb-4") do |form| %>
       <!-- Change avatar -->
       <label
         for="files"
         class="card bg-dark text-white mb-4"
         style="width: 150px; height: 150px; border: none"
       >
-        <% if current_user.avatar.is_a?(AvatarUploader) %>
-          <% avatar_url = current_user.avatar.present? ?  current_user.avatar : current_user.avatar_identifier %>
+        <% if @user.avatar.is_a?(AvatarUploader) %>
+            <% avatar_url = @user.avatar.present? ?  @user.avatar : @user.avatar_identifier %>
             <% if avatar_url %>
                 <img
                     src="<%= avatar_url %>"
@@ -75,43 +75,20 @@
         <%= form.label :email %>
         <%= form.email_field :email, class: "form-control", placeholder: "Email" %>
       </div>
+
+      <div class="input-wrapper">
+        <%= form.label :password %>
+        <%= form.password_field :password, autocomplete: "new-password", placeholder: "6 characters minimum", class: "form-control" %>
+      </div>
+
+      <div class="input-wrapper">
+            <%= form.label :is_active, "Active" %>
+            <%= form.check_box :is_active %>
+        </div>
+
+
       <div style="width: 25%">
         <%= form.submit "Save", class: "btn btn-success" %>
-      </div>
-    <% end %>
-
-
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "form-container" } ) do |f| %>
-      <h5
-        class="fw-bold"
-        style="color: var(--main_color);"
-      >
-        Password
-      </h5>
-      <%= render "users/shared/error_messages", resource: resource %>
-
-      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-      <% end %>
-
-      <div class="input-wrapper">
-        <%= f.label :current_password %><br />
-        <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control", placeholder: "******" %>
-      </div>
-
-      <div class="input-wrapper">
-        <%= f.label :password %>
-        <%= f.password_field :password, autocomplete: "new-password", placeholder: "#{@minimum_password_length} characters minimum", class: "form-control" %>
-        
-      </div>
-
-      <div class="input-wrapper">
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "******" %>
-      </div>
-
-      <div class="actions" style="width: 25%">
-        <%= f.submit "Save", class: "btn btn-success" %>
       </div>
     <% end %>
   </div>

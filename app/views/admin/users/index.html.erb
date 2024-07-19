@@ -1,68 +1,39 @@
-<main id="main" class="row m-0">
+<main id="users_admin_main" class="row m-0">
     <!-- Sidebar -->
     <%= render "layouts/sidebar" %>
 
     <!-- Main content -->
     <div class="container_ col-12 col-md-8 m-md-0">
-    <table class="table">
-        <thead class="table-light">
-        <tr>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Last login</th>
-            <th scope="col"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>Hieu 1</td>
-            <td>Nguyen</td>
-            <td>nguyenkimtrunghieu@hotmail.com</td>
-            <td>4:56am 04/16/2018</td>
-            <td>
-            <button class="btn btn-success">Edit</button>
-            <button class="btn btn-danger">Delete</button>
-            </td>
-        </tr>
-        <tr>
-            <td>Hieu 2</td>
-            <td>Nguyen</td>
-            <td>nguyenkimtrunghieu@hotmail.com</td>
-            <td>4:56am 04/16/2018</td>
-            <td>
-            <button class="btn btn-success">Edit</button>
-            <button class="btn btn-danger">Delete</button>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">Hieu 2</td>
-            <td>nguyenkimtrunghieu@hotmail.com</td>
-            <td>4:56am 04/16/2018</td>
-            <td>
-            <button class="btn btn-success">Edit</button>
-            <button class="btn btn-danger">Delete</button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+        <table class="table">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Last login</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @users.each do |user| %>
+                    <tr style="">
+                        <td><%= user.first_name %></td>
+                        <td><%= user.last_name %></td>
+                        <td><%= user.email %></td>
+                        <td><%= user.last_sign_in_at&.strftime("%T %F") %></td>
+                        <td class="d-flex align-items-center" style="gap: 1rem;">
+                            <%= link_to "Edit", edit_admin_user_path(user.id), class: "btn btn-success" %>
+                            <%= button_to "Delete", admin_user_path(user.id), method: :delete, class: "btn btn-danger" %>
+                        </td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
 
-    <!-- Pagination -->
-    <nav aria-label="">
-        <ul class="pagination justify-content-center">
-        <li class="page-item disabled">
-            <a class="page-link">Previous</a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item active">
-            <a class="page-link" href="#">2</a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-        </li>
-        </ul>
-    </nav>
+        <%= render "shared/flash_message", message: flash[:success] %>
+
+        <!-- Pagination -->
+        <%= will_paginate @users, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, previous_label: 'Previous',next_label: 'Next' %>
     </div>
 
     <div class="col-md-2" style="background-color: #f8f8f8;"></div>

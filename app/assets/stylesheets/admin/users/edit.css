@@ -1,0 +1,75 @@
+#edit_user_admin_main {
+  background-color: #f8f8f8;
+  width: 100%;
+  padding: 0.8rem 0;
+}
+#edit_user_admin_main .container_ {
+  height: 100%;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  padding: 1rem 2rem;
+  flex-wrap: wrap;
+}
+
+/* Pagination */
+#edit_user_admin_main .container_ nav {
+  margin: 1rem auto;
+}
+
+
+#edit_user_admin_main {
+  background-color: #f8f8f8;
+  width: 100%;
+  height: calc(100vh - var(--header-height));
+  padding: 0.8rem 0;
+}
+
+#edit_user_admin_main .container_ {
+  height: 100%;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+#edit_user_admin_main .container_ label {
+  font-weight: bold;
+}
+
+#edit_user_admin_main .container_ input[type="text"],
+#edit_user_admin_main .container_ input[type="email"],
+#edit_user_admin_main .container_ input[type="password"]{
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 2px solid #ccc;
+  outline: none;
+  width: 50%;
+  width: 70%;
+}
+
+#edit_user_admin_main .container_ .form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  gap: 1rem;
+}
+
+#edit_user_admin_main .container_ .input-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+#edit_user_admin_main .container_ .input-wrapper label {
+  flex: 1;
+  text-align: end;
+  max-width: 40%;
+}
+
+#edit_user_admin_main .container_ .input-wrapper input {
+  width: 62%;
+}
