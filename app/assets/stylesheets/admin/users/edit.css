@@ -49,6 +49,10 @@
   width: 70%;
 }
 
+#edit_user_admin_main .container_ input:focus {
+  box-shadow: none;
+}
+
 #edit_user_admin_main .container_ .form-container {
   display: flex;
   flex-direction: column;

@@ -6,7 +6,7 @@
 }
 
 #edit_user_main .container_ {
-  height: 100%;
+  min-height: 100%;
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -20,13 +20,17 @@
 
 #edit_user_main .container_ input[type="text"],
 #edit_user_main .container_ input[type="email"],
-#edit_user_main .container_ input[type="passwod"] {
+#edit_user_main .container_ input[type="password"] {
   padding: 0.5rem;
   border-radius: 5px;
   border: 2px solid #ccc;
   outline: none;
   width: 50%;
   width: 70%;
+}
+
+#edit_user_main .container_ input:focus {
+  box-shadow: none;
 }
 
 #edit_user_main .container_ .form-container {
@@ -41,16 +45,32 @@
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
   gap: 1rem;
 }
 
 #edit_user_main .container_ .input-wrapper label {
   flex: 1;
   text-align: end;
-  max-width: 40%;
+  width: 40%;
 }
 
 #edit_user_main .container_ .input-wrapper input {
   width: 62%;
+}
+
+#edit_user_main .container_ .input-wrapper .field_with_errors:nth-child(1) {
+  width: 36%;
+  text-align: end;
+}
+
+#edit_user_main .container_ .input-wrapper .field_with_errors:nth-child(1) label {
+  width: 100%;
+}
+
+#edit_user_main .container_ .input-wrapper .field_with_errors:nth-child(2) {
+  width: 64%;
+}
+
+#edit_user_main .container_ .input-wrapper .field_with_errors:nth-child(2) input {
+  width: 100%;
 }

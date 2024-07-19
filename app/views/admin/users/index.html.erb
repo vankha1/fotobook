@@ -21,9 +21,11 @@
                         <td><%= user.last_name %></td>
                         <td><%= user.email %></td>
                         <td><%= user.last_sign_in_at&.strftime("%T %F") %></td>
-                        <td class="d-flex align-items-center" style="gap: 1rem;">
-                            <%= link_to "Edit", edit_admin_user_path(user.id), class: "btn btn-success" %>
-                            <%= button_to "Delete", admin_user_path(user.id), method: :delete, class: "btn btn-danger" %>
+                        <td class="my-auto" style="margin: auto 0">
+                            <div class="d-flex align-items-center justify-content-center" style="gap: 1rem;">
+                                <%= link_to "Edit", edit_admin_user_path(user.id), class: "btn btn-success" %>
+                                <%= button_to "Delete", admin_user_path(user.id), method: :delete, class: "btn btn-danger" %>
+                            </div>
                         </td>
                     </tr>
                 <% end %>

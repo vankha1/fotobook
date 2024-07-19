@@ -1,4 +1,3 @@
-
 <main id="edit_user_main" class="row m-0">
   <%= render "layouts/sidebar" %>
 
@@ -6,7 +5,7 @@
   <div class="container_ col-12 col-md-8 m-md-0 justify-content-none">
     <!-- Header -->
     <div class="" style="width: 100%">
-      <h5 class="float-start fw-bold">Edit photo</h5>
+      <h5 class="float-start fw-bold">Edit user profile</h5>
       <hr style="width: 100%; border: 2px solid #555" />
     </div>
 
@@ -53,28 +52,42 @@
       </label>
 
       <!-- Title part -->
-      <h5
-        class="fw-bold mb-2"
-        style="color: var(--main_color);"
-      >
-        Basic information
-      </h5>
+      <div class="d-flex align-items-center" style="width: 100%;">
+        <div style="width: 38%"></div>
+        <h5
+          class="fw-bold mb-2"
+          style="color: var(--main_color);"
+        >
+          Basic information
+        </h5>
+      </div>
 
       <!-- Form -->
       <div class="input-wrapper">
         <%= form.label :first_name %>
-        <%= form.text_field :first_name, class: "form-control", placeholder: "First name" %>
+        <div style="width: 62%">
+          <%= form.text_field :first_name, class: "form-control w-100", placeholder: "First name" %>
+          <%= render "basic_error_message", field: :first_name_error %>
+        </div>
       </div>
+      
 
       <div class="input-wrapper">
         <%= form.label :last_name %>
-        <%= form.text_field :last_name, class: "form-control", placeholder: "Last name" %>
+        <div style="width: 62%">
+          <%= form.text_field :last_name, class: "form-control w-100", placeholder: "Last name" %>
+          <%= render "basic_error_message", field: :last_name_error %>
+        </div>
       </div>
 
       <div class="input-wrapper">
         <%= form.label :email %>
-        <%= form.email_field :email, class: "form-control", placeholder: "Email" %>
+        <div style="width: 62%">
+          <%= form.email_field :email, class: "form-control w-100", placeholder: "Email" %>
+          <%= render "basic_error_message", field: :email_error %>
+        </div>
       </div>
+      
       <div style="width: 25%">
         <%= form.submit "Save", class: "btn btn-success" %>
       </div>
@@ -82,33 +95,37 @@
 
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "form-container" } ) do |f| %>
-      <h5
-        class="fw-bold"
-        style="color: var(--main_color);"
-      >
-        Password
-      </h5>
-      <%= render "users/shared/error_messages", resource: resource %>
+      <div class="d-flex align-items-center" style="width: 100%;">
+        <div style="width: 38%"></div>
+        <h5
+          class="fw-bold mb-2"
+          style="color: var(--main_color);"
+        >
+          Password
+        </h5>
+      </div>
 
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
       <% end %>
 
       <div class="input-wrapper">
-        <%= f.label :current_password %><br />
-        <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control", placeholder: "******" %>
+        <%= f.label :current_password %>
+        <%= f.password_field :current_password, autocomplete: "current-password", placeholder: "******" %>
       </div>
+      <%= render "validate_message", field: :current_password %>
 
       <div class="input-wrapper">
         <%= f.label :password %>
-        <%= f.password_field :password, autocomplete: "new-password", placeholder: "#{@minimum_password_length} characters minimum", class: "form-control" %>
-        
+        <%= f.password_field :password, placeholder: "#{@minimum_password_length} characters minimum", class: "form-control" %>
       </div>
+      <%= render "validate_message", field: :password %>
 
       <div class="input-wrapper">
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "******" %>
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, placeholder: "******" %>
       </div>
+      <%= render "validate_message", field: :password_confirmation %>
 
       <div class="actions" style="width: 25%">
         <%= f.submit "Save", class: "btn btn-success" %>

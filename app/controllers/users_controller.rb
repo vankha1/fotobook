@@ -51,11 +51,17 @@ class UsersController < ApplicationController
 
     def update
         # update current_user
-        if current_user.update(user_params)
+        @user = current_user
+        if @user.update(user_params)
             flash[:success] = "Profile updated"
-            redirect_to current_user
+            redirect_to '/users/' + @user.id.to_s + '/photos'
         else
-            render 'edit'
+            [:first_name, :last_name, :email].each do |attribute|
+                if @user.errors[attribute].any?
+                  flash["#{attribute}_error"] = attribute.to_s.gsub('_', ' ') + " " + @user.errors[attribute].first
+                end
+            end
+            redirect_to edit_user_registration_path
         end
     end
 

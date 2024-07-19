@@ -1,0 +1,6 @@
+<% if resource.errors[field].any? %>
+    <div class="input-wrapper">
+        <div style="width: 35%"></div>
+        <p style="color: red; margin-bottom: 0rem; margin-top: -1rem;"><%= resource.errors.full_messages_for(field).first %></p>
+    </div>
+<% end %>

@@ -3,10 +3,12 @@
     <%= render "layouts/sidebar" %>
 
     <!-- Main content -->
-    <div class="container_ col-12 col-md-8 m-md-0">
+    <div class="container_ col-12 col-md-8 m-md-0 flex-column">
+        <div class="container_">
             <% @photos.each do |photo| %>
                 <%= render "item", photo: photo %>
             <% end %>
+        </div>
         <!-- Pagination -->
         <%= will_paginate @photos, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, previous_label: 'Previous',next_label: 'Next' %>
     </div>

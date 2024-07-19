@@ -3,11 +3,13 @@
     <%= render "layouts/sidebar" %>
 
     <!-- Main content -->
-    <div class="container_ col-12 col-md-8 m-md-0">
-        <% @albums.each do |album| %>
-            <%= render "item", album: album %>
-        <% end %>
-        <!-- Pagination -->
+    <div class="container_ col-12 col-md-8 m-md-0 flex-column">
+        <div class="container_" style="">
+            <% @albums.each do |album| %>
+                <%= render "item", album: album %>
+            <% end %>
+            <!-- Pagination -->
+        </div>
         <%= will_paginate @albums, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, previous_label: 'Previous',next_label: 'Next' %>
     </div>
 
