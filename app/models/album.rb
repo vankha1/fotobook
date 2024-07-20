@@ -2,7 +2,7 @@ class Album < ApplicationRecord
     has_many :photos, dependent: :destroy, before_add: :handle_before_add 
     has_many :albums_reactions, dependent: :destroy
     accepts_nested_attributes_for :photos, allow_destroy: true
-    belongs_to :user
+    belongs_to :user, counter_cache: true
     
     validates :user_id, presence: true
     validates :title, presence: true, length: {minimum: 5, maximum: 140 }
