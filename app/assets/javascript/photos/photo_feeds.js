@@ -1,32 +1,5 @@
-function toggleModal(id) {
-    var modal = new bootstrap.Modal(document.getElementById(id), {
-        keyboard: false
-    });
-    modal.show();
-}
-
-const setDebounce = (func, delay) => {
-    let debounce;
-    return function () {
-        const context = this;
-        const args = arguments;
-        clearTimeout(debounce);
-        debounce = setTimeout(() => func.apply(context, args), delay);
-    };
-};
-
-const sendRequest = (url, method, data, callback) => {
-    $.ajax({
-        url: url,
-        type: method,
-        dataType: 'script',
-        data: data,
-        success: callback(data),
-        error: function (error) {
-            console.log(error);
-        }
-    });
-}
+import setDebounce from "../common/debounce";
+import sendRequest from "../common/sendRequest";
 
 // Using debounce for heart button
 document.querySelectorAll('.fa-heart').forEach((icon) => {
@@ -47,20 +20,4 @@ document.querySelectorAll('.fa-heart').forEach((icon) => {
             });
         }
     }, 1000));
-});
-// Prevent the modal from showing when clicking the heart icon
-document.querySelectorAll('.fa-heart').forEach((icon) => {
-    icon.addEventListener('click', (e) => {
-        e.stopPropagation();
-    });
-});
-
-// Prevent propagation for user_info_part
-document.querySelectorAll('.user_info_part').forEach((user_info_part) => {
-    user_info_part.addEventListener('click', (e) => {
-        e.stopPropagation();
-        // navigate to user profile
-        const userId = user_info_part.closest('.card').dataset.user;
-        window.location.href = `/users/${userId}/photos`;
-    });
 });

@@ -1,57 +1,5 @@
-function toggleAlbumModal(id) {
-  var modal = new bootstrap.Modal(document.getElementById(id), {
-    keyboard: false,
-  });
-  modal.show();
-}
-
-// Prevent progate event to parent element
-document.querySelectorAll(".fa-heart").forEach((icon) => {
-  icon.addEventListener("click", (e) => {
-    e.stopPropagation();
-  });
-});
-
-// Prevent propagation for follow button
-document.querySelectorAll("#follow_btn").forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    e.stopPropagation();
-  });
-});
-
-// Prevent propagation for user_info_part
-document.querySelectorAll(".user_info_part").forEach((user_info_part) => {
-  user_info_part.addEventListener("click", (e) => {
-    e.stopPropagation();
-    // navigate to user profile
-    const userId = user_info_part.closest(".card").dataset.user;
-    window.location.href = `/users/${userId}/photos`;
-  });
-});
-
-function setDebounce (func, delay) {
-  let debounce;
-  return function () {
-    const context = this;
-    const args = arguments;
-    clearTimeout(debounce);
-    debounce = setTimeout(() => func.apply(context, args), delay);
-  };
-};
-
-function sendRequest (url, method, data, callback) {
-  $.ajax({
-    url: url,
-    type: method,
-    dataType: "script",
-    data: data,
-    success: callback(data),
-    error: function (error) {
-      console.log(error);
-    },
-  });
-};
-
+import setDebounce from '../common/debounce'
+import sendRequest from '../common/sendRequest'
 
 // Using debounce for heart button
 document.querySelectorAll(".fa-heart").forEach((icon) => {

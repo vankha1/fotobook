@@ -1,38 +1,17 @@
+import sendRequest from "../common/sendRequest";
+import setDebounce from "../common/debounce";
+
 if ($('.toast')) {
     setTimeout(() => {
         $('.toast').removeClass('show'); 
     }, 3000)
 }
 
-const setDebounce = (func, delay) => {
-    let debounce;
-    return function () {
-        const context = this;
-        const args = arguments;
-        clearTimeout(debounce);
-        debounce = setTimeout(() => func.apply(context, args), delay);
-    };
-};
-
-const sendRequest = (url, method, data, callback) => {
-    $.ajax({
-        url: url,
-        type: method,
-        dataType: 'script',
-        data: data,
-        success: callback(data),
-        error: function (error) {
-            console.log(error);
-        }
-    });
-}
-
-
 // Using debounce for follow/unfollow button
 document.querySelectorAll('.custom_btn').forEach((btn) => {
     btn.addEventListener('click', setDebounce((e) => {
         const followBtn = e.target;
-        const userId = window.location.pathname.split('/')[2];
+        const userId = $("#card-follower").data('id');
         console.log(followBtn, userId, followBtn.classList.contains('custom_btn_followed'))
         if (!followBtn.classList.contains('custom_btn_followed')){
             sendRequest(`/follows`, 'POST', { follower_id: userId }, (data) => {

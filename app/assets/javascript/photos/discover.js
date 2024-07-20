@@ -1,39 +1,5 @@
-function toggleModal(modal_id) {
-    const modal = new bootstrap.Modal(document.getElementById(modal_id), {
-        keyboard: false
-    });
-    modal.show();
-}
-
-// Prevent propagation for follow button
-document.querySelectorAll('#follow_btn').forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-    });
-});
-
-const setDebounce = (func, delay) => {
-    let debounce;
-    return function () {
-        const context = this;
-        const args = arguments;
-        clearTimeout(debounce);
-        debounce = setTimeout(() => func.apply(context, args), delay);
-    };
-};
-
-const sendRequest = (url, method, data, callback) => {
-    $.ajax({
-        url: url,
-        type: method,
-        dataType: 'script',
-        data: data,
-        success: callback(data),
-        error: function (error) {
-            console.log(error);
-        }
-    });
-}
+import sendRequest from '../common/sendRequest'
+import setDebounce from '../common/debounce'
 
 // Using debounce for heart button
 document.querySelectorAll('.fa-heart').forEach((icon) => {
@@ -75,20 +41,4 @@ document.querySelectorAll('.custom_btn').forEach((btn) => {
             });
         }
     }, 1000));
-});
-
-document.querySelectorAll('.fa-heart').forEach((icon) => {
-    icon.addEventListener('click', (e) => {
-        e.stopPropagation();
-    });
-});
-
-// Prevent propagation for user_info_part
-document.querySelectorAll('.user_info_part').forEach((user_info_part) => {
-    user_info_part.addEventListener('click', (e) => {
-        e.stopPropagation();
-        // navigate to user profile
-        const userId = user_info_part.closest('.card').dataset.user;
-        window.location.href = `/users/${userId}/photos`;
-    });
 });

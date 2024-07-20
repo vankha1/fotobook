@@ -9,6 +9,8 @@
                 border-radius: 0.5rem;
                 box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.1);
             "
+            id="card-follower"
+            data-id="<%= user.id %>"
         >
             <% if user.avatar.is_a?(AvatarUploader) %>
                 <% avatar_url = user.avatar.present? ?  user.avatar : user.avatar_identifier %>
