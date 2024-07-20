@@ -1,5 +1,5 @@
 <%= stylesheet_link_tag 'albums/index'%>
-<% provide(:title, "Feeds") %>
+<% provide(:title, "Discover albums") %>
 <main id="main_album" class="row m-0">
     <%= render "layouts/sidebar" %>
 
@@ -25,4 +25,9 @@
     <div class="col-2"></div>
 </main>
 
-<%= javascript_include_tag('albums/discover') %>
+<%= javascript_include_tag('common/toggleModal') %>
+<%= javascript_include_tag('common/userPropagate') %>
+<%= javascript_include_tag('common/followPropagate') %>
+<%= javascript_include_tag('common/reactPropagate') %>
+
+<%= javascript_include_tag 'albums/discover', type: "module" %>

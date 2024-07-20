@@ -1,5 +1,13 @@
 # README
 
+
+### Remaining Tasks
+
+* Use content_for if can
+* Counter cache => optimize db as much as possible
+* Deploy
+* Websocket
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
