@@ -3,7 +3,7 @@
     style="gap: 1rem; font-weight: bold"
 >
     <a class="navigation <%= 'active_profile_nav' if request.path.include?('photos')%>" href="/users/<%= params[:id] %>/photos">
-        <span><%= @photo_count %></span> Photos
+        <span><%= current_user.photos.size %></span> Photos
     </a>
 
     <span style="color: #aaa9a9;">|</span>
