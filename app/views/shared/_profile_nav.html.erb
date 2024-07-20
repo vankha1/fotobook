@@ -9,7 +9,7 @@
     <span style="color: #aaa9a9;">|</span>
 
     <a class="navigation <%= 'active_profile_nav' if request.path.include?('albums')%>" href="/users/<%= params[:id] %>/albums">         
-        <span><%= @album_count %></span> Albums 
+        <span><%= current_user.albums.size %></span> Albums 
     </a>
 
     <span style="color: #aaa9a9;">|</span>
