@@ -23,7 +23,7 @@ class Photo < ApplicationRecord
     end
 
     def set_number_like
-        self.number_like = 0
+        self.number_like ||= 0
     end
 
     def increase_number_photos
