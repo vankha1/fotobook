@@ -1,37 +1,31 @@
 # README
 
-
 ### Remaining Tasks
 
-* Use content_for if can
-* Counter cache => optimize db as much as possible
-* Deploy
 * Websocket
+* Deploy
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Features
 
-Things you may want to cover:
+### Guest
 
-* Ruby version
+* Sign up
+* Login with email, password and login with Google
+* View user's profile
+* Views feeds (public photos and albums of following users) 
+* Views discover (public photos and albums of all users)
 
-* System dependencies
+### User
 
-* Configuration
+* All features of guest
+* CRUD photos
+* CRUD albums
+* Follow another user
+* View user's profile and edit profile
+* Follow another users
 
-* Database creation
 
-* Database initialization
+### Admin
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-- get: /auth/login
-- get: /auth//signup
-- get: /photos (homepage) -> show feeds 
-- 
+* Manage photos, albums and user (views and edit)
+* CRUD profile yourself
