@@ -1,12 +1,6 @@
 import sendRequest from "../common/sendRequest";
 import setDebounce from "../common/debounce";
 
-if ($('.toast')) {
-    setTimeout(() => {
-        $('.toast').removeClass('show'); 
-    }, 3000)
-}
-
 // Using debounce for follow/unfollow button
 document.querySelectorAll('.custom_btn').forEach((btn) => {
     btn.addEventListener('click', setDebounce((e) => {

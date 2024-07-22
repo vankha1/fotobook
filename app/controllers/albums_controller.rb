@@ -1,6 +1,7 @@
 class AlbumsController < ApplicationController
 
     before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+    before_action :restrict_admin_access, only: [:index, :discover]
 
     def index
         def index
