@@ -1,17 +1,16 @@
 class AlbumsController < ApplicationController
 
     before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+    before_action :restrict_admin_access, only: [:index, :discover]
 
     def index
-        def index
-            if user_signed_in?
-              following_ids = current_user.followers.pluck(:id)
-              @albums = Album.where(user_id: following_ids).public_albums
-                             .order(created_at: :desc)
-                             .paginate(page: params[:page], per_page: 4)
-            else
-              @albums = Album.public_albums.order(created_at: :desc).first(20).paginate(page: params[:page], per_page: 4)
-            end
+        if user_signed_in?
+            following_ids = current_user.followers.pluck(:id)
+            @albums = Album.where(user_id: following_ids).public_albums
+                            .order(created_at: :desc)
+                            .paginate(page: params[:page], per_page: 4)
+        else
+            @albums = Album.public_albums.order(created_at: :desc).first(20).paginate(page: params[:page], per_page: 4)
         end
     end
 

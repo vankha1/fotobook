@@ -16,8 +16,8 @@ class UsersController < ApplicationController
         # Count associations using the loaded data to avoid extra queries
         @photo_count = @user.photos.length
         @album_count = @user.albums.length
-        @following_count = @user.following.length
-        @follower_count = @user.followers.length
+        @following_count = @user.followers.length
+        @follower_count = @user.following.length
 
         # Determine the content to load based on the request path
         content_type = case request.path
@@ -26,14 +26,18 @@ class UsersController < ApplicationController
                     when /albums/
                         :albums
                     when /followings/
-                        :following
-                    when /followers/
                         :followers
+                    when /followers/
+                        :following
                     end
 
         # Load the appropriate content based on the current user and content type
         if content_type
-            is_current_user = current_user.id.to_s == params[:id]
+            if current_user
+                is_current_user = current_user.id.to_s == params[:id]
+            else
+                is_current_user = false
+            end
             @content = case content_type
                     when :photos
                         is_current_user ? @user.photos : @user.photos.public_photos

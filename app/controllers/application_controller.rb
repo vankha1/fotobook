@@ -16,4 +16,11 @@ class ApplicationController < ActionController::Base
             redirect_to root_path
         end
     end
+
+    # Restrict admin access
+    def restrict_admin_access
+        if current_user&.is_admin?
+            redirect_to admin_photos_path, alert: "Access restricted for admin users."
+        end
+    end
 end

@@ -4,133 +4,13 @@
   <!-- Main content -->
   <div class="container_ col-12 col-md-8 m-md-0 justify-content-none">
     <!-- Header -->
-    <div class="" style="width: 100%">
-      <h5 class="float-start fw-bold">Edit user profile</h5>
-      <hr style="width: 100%; border: 2px solid #555" />
-    </div>
+    <%= render "shared/update_header", title: "Edit user profile" %>
 
     <!-- Content -->
-    <%= form_with(model: @user, class: "form-container mb-4") do |form| %>
-      <!-- Change avatar -->
-      <label
-        for="files"
-        class="card bg-dark text-white mb-4"
-        style="width: 150px; height: 150px; border: none"
-      >
-        <% if current_user.avatar.is_a?(AvatarUploader) %>
-          <% avatar_url = current_user.avatar.present? ?  current_user.avatar : current_user.avatar_identifier %>
-            <% if avatar_url %>
-                <img
-                    src="<%= avatar_url %>"
-                    class="card-img"
-                    style="width: 100%; height: 100%; object-fit: cover"
-                >
-            <% else %>
-              <img
-                src="<%= asset_path('default_avatar.jpg') %>"
-                class="card-img"
-                style="width: 100%; height: 100%; object-fit: cover"
-              >
-            <% end %>
-        <% end %>
-        <div
-          class="card-img-overlay d-flex align-items-center justify-content-center"
-          style="
-            background-color: #b5b3b3;
-            height: 20%;
-            opacity: 0.8;
-            width: 80%;
-            top: 80%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-          "
-        >
-          <span>CHANGE</span>
-        </div>
+    <%= render "form_edit_user" %>
 
-        <%= form.file_field :avatar, class: "d-none", id: "files" %>
-      </label>
-
-      <!-- Title part -->
-      <div class="d-flex align-items-center" style="width: 100%;">
-        <div style="width: 38%"></div>
-        <h5
-          class="fw-bold mb-2"
-          style="color: var(--main_color);"
-        >
-          Basic information
-        </h5>
-      </div>
-
-      <!-- Form -->
-      <div class="input-wrapper">
-        <%= form.label :first_name %>
-        <div style="width: 62%">
-          <%= form.text_field :first_name, class: "form-control w-100", placeholder: "First name" %>
-          <%= render "basic_error_message", field: :first_name_error %>
-        </div>
-      </div>
-      
-
-      <div class="input-wrapper">
-        <%= form.label :last_name %>
-        <div style="width: 62%">
-          <%= form.text_field :last_name, class: "form-control w-100", placeholder: "Last name" %>
-          <%= render "basic_error_message", field: :last_name_error %>
-        </div>
-      </div>
-
-      <div class="input-wrapper">
-        <%= form.label :email %>
-        <div style="width: 62%">
-          <%= form.email_field :email, class: "form-control w-100", placeholder: "Email" %>
-          <%= render "basic_error_message", field: :email_error %>
-        </div>
-      </div>
-      
-      <div style="width: 25%">
-        <%= form.submit "Save", class: "btn btn-success" %>
-      </div>
-    <% end %>
-
-
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "form-container" } ) do |f| %>
-      <div class="d-flex align-items-center" style="width: 100%;">
-        <div style="width: 38%"></div>
-        <h5
-          class="fw-bold mb-2"
-          style="color: var(--main_color);"
-        >
-          Password
-        </h5>
-      </div>
-
-      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-      <% end %>
-
-      <div class="input-wrapper">
-        <%= f.label :current_password %>
-        <%= f.password_field :current_password, autocomplete: "current-password", placeholder: "******" %>
-      </div>
-      <%= render "validate_message", field: :current_password %>
-
-      <div class="input-wrapper">
-        <%= f.label :password %>
-        <%= f.password_field :password, placeholder: "#{@minimum_password_length} characters minimum", class: "form-control" %>
-      </div>
-      <%= render "validate_message", field: :password %>
-
-      <div class="input-wrapper">
-        <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation, placeholder: "******" %>
-      </div>
-      <%= render "validate_message", field: :password_confirmation %>
-
-      <div class="actions" style="width: 25%">
-        <%= f.submit "Save", class: "btn btn-success" %>
-      </div>
-    <% end %>
+    <%= render "form_password" %>
+    
   </div>
 
   <div class="col-md-2"></div>

@@ -14,5 +14,16 @@
         <%= will_paginate @photos, renderer: WillPaginate::ActionView::BootstrapLinkRenderer, previous_label: 'Previous',next_label: 'Next' %>
     </div>
 
+    <%# Toast %>
+    <% if flash[:alert].present? %>
+        <div class="toast show" style="position: absolute; right: 0; background-color: <%= flash[:alert].include?('deleted') ? "red" : "#3C7349" %> ">
+            <div class="toast-body" style="font-size: 1.1rem; color: white; font-weight: bold">
+                <%= flash[:alert] %>
+            </div>
+        </div>
+    <% end %>
+
     <div class="col-2"></div>
 </main>
+
+<%= javascript_include_tag 'common/closeToast' %>

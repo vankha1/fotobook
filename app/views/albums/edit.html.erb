@@ -5,10 +5,7 @@
 
     <!-- Main content -->
     <div class="container_ col-12 col-md-8 m-md-0 justify-content-none">
-        <div class="" style="width: 100%">
-            <h5 class="float-start fw-bold">New photo</h5>
-            <hr style="width: 100%; border: 2px solid #555" />
-        </div>
+        <%= render "shared/update_header", title: "Edit album" %>
 
         <%= render "form", album: @album %>
     </div>

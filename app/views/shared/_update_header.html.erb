@@ -1,0 +1,7 @@
+<div class="" style="width: 100%">
+    <h5 class="float-start fw-bold"><%= title %></h5>
+    <% if request.path.include?('edit') %>
+        <%= link_to "Back", :back, class: "btn float-end display-block mb-3", style: "background-color: var(--main_color); color: white" %>
+    <% end %>
+    <hr style="width: 100%; border: 2px solid #555" />
+</div>

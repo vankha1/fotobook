@@ -5,7 +5,7 @@ class PhotosReactionsController < ApplicationController
 
     def create
         @photo = Photo.find(params[:photo_id])
-        current_user.photos_reactions.create!(photo_id: params[:photo_id])
+        current_user.photos_reactions.create(photo_id: params[:photo_id])
         @photo.number_like += 1
         @photo.save
     end

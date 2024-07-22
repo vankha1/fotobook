@@ -12,8 +12,9 @@
         <div class="col-lg-6 p-2">
             <div class="post_user_info">
                 <div class="user_info_part">
-                    <% if photo.user.avatar.present? %>
-                        <img src="<%= photo.user.avatar %>" class="default_avatar" alt="avatar" />
+                    <% avatar_url = photo.user.avatar.present? ?  photo.user.avatar : photo.user.avatar_identifier %>
+                    <% if avatar_url %>
+                        <img src="<%= avatar_url %>" class="default_avatar" alt="avatar" />
                     <% else %>
                         <div class="default_avatar">
                             <span class="username_short"><%= photo.user.first_name[0] + photo.user.last_name[0] %></span>
@@ -33,9 +34,13 @@
                 <p class="card-text"><%= photo.description %></p>
             </div>
             <div class="post_createdAt">
-                <i class="fa fa-heart p-2 <%= current_user && current_user.photos_reactions.pluck(:photo_id).include?(photo.id) ? "" : "text-secondary" %>" style="color: var(--main_color); font-size: 1rem;" role="button">
-                    <span id="number_of_like" style="margin-left: 0.3rem;"><%= photo.number_like %></span>
-                </i>
+                <% if current_user %>
+                    <i class="fa fa-heart p-2 <%= current_user && current_user.photos_reactions.pluck(:photo_id).include?(photo.id) ? "" : "text-secondary" %>" style="color: var(--main_color); font-size: 1rem;" role="button">
+                        <span id="number_of_like" style="margin-left: 0.3rem;"><%= photo.number_like %></span>
+                    </i>
+                <% else %>
+                    <div></div>
+                <% end %>
                 <small class="text-body-secondary">
                     <%= photo.created_at.strftime("%T %F") %>
                 </small>
