@@ -1,6 +1,6 @@
 <div class="d-block align-items-center d-md-flex profile-nav">
   <% [['photos', 'Photos'], ['albums', 'Albums'], ['followings', 'Followings'], ['followers', 'Followers']].each do |path, title| %>
-    <%= render 'nav_link', path: path, title: title %>
+    <%= render 'nav_link', path: path, title: title, user: @user %>
     <%= '|' unless path == 'followers' %>
   <% end %>
 </div>

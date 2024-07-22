@@ -34,9 +34,13 @@
                 <p class="card-text"><%= photo.description %></p>
             </div>
             <div class="post_createdAt">
-                <i class="fa fa-heart p-2 <%= current_user && current_user.photos_reactions.pluck(:photo_id).include?(photo.id) ? "" : "text-secondary" %>" style="color: var(--main_color); font-size: 1rem;" role="button">
-                    <span id="number_of_like" style="margin-left: 0.3rem;"><%= photo.number_like %></span>
-                </i>
+                <% if current_user %>
+                    <i class="fa fa-heart p-2 <%= current_user && current_user.photos_reactions.pluck(:photo_id).include?(photo.id) ? "" : "text-secondary" %>" style="color: var(--main_color); font-size: 1rem;" role="button">
+                        <span id="number_of_like" style="margin-left: 0.3rem;"><%= photo.number_like %></span>
+                    </i>
+                <% else %>
+                    <div></div>
+                <% end %>
                 <small class="text-body-secondary">
                     <%= photo.created_at.strftime("%T %F") %>
                 </small>

@@ -3,12 +3,12 @@ module UsersHelper
         'active_profile_nav' if request.path.include?(path)
     end
 
-    def nav_link_count(path)
+    def nav_link_count(path, user)
         case path
         when 'photos'
-            current_user.photos.size
+            user.photos.size
         when 'albums'
-            current_user.albums.size
+            user.albums.size
         when 'followings'
             @following_count
         when 'followers'

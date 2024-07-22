@@ -39,7 +39,7 @@
                         <i class="fa fa-lock" style="color: black; font-size: 1.5rem"></i>
                     </div>
                 <% end %>
-                <% if album.user.id == current_user.id %>
+                <% if current_user && album.user.id == current_user.id %>
                     <%= link_to "EDIT", edit_album_path(album.id), class: "edit-button text-decoration-none" %>
                 <% end %>
             </div>

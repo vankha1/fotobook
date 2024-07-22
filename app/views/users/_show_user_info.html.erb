@@ -38,7 +38,7 @@
             <%= @user.first_name + " " + @user.last_name %>
         </h1>
         
-        <%= render "shared/profile_nav" %>
+        <%= render "shared/profile_nav", user: @user %>
 
     </div>
 </div>
