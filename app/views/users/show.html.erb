@@ -3,49 +3,8 @@
     <%= render "layouts/sidebar" %>
     <!-- Main content -->
     <div class="container_ col-12 col-md-8 m-md-0 justify-content-none">
-        <div class="user_info">
-            <div class="avatar_container">
-                <% if @user.avatar.present? %>
-                    <img
-                        src="<%= @user.avatar %>"
-                        style="
-                            width: 100%;
-                            height: 100%;
-                            object-fit: cover;
-                            border-radius: 50%;
-                        "
-                        alt="User avatar"
-                    />
-                <% else %>
-                    <div class="default_avatar d-flex justify-content-center align-items-center" 
-                        style="width: 100%;
-                                height: 100%; 
-                                background-color: var(--main_color); 
-                                color: #fff">
-                        <span class="username_short" style="font-size: 4rem;"><%= @user.first_name[0] + @user.last_name[0] %></span>
-                    </div>
-                <% end %>
-            </div>
-
-            <div>
-                <% if current_user && params[:id] == current_user.id.to_s %>
-                    <%= link_to "Edit profile", edit_user_registration_path, class: "edit_profile_btn" %>
-                <% else %>
-                    <button class="custom_btn <%= current_user && current_user.followers.pluck(:id).include?(@user.id) ? "custom_btn_followed" : "" %>" id="follow_btn">
-                        <%= current_user && current_user.followers.pluck(:id).include?(@user.id) ? "Following" : "Follow" %>
-                    </button>
-                <% end %>
-                <h1
-                    class="my-0"
-                    style="font-weight: bold; margin: 0.8rem 0; font-size: 2rem"
-                >
-                    <%= @user.first_name + " " + @user.last_name %>
-                </h1>
-                
-                <%= render "shared/profile_nav" %>
-
-            </div>
-        </div>
+        
+        <%= render "show_user_info" %>
 
         <% if !request.path.include?('follow')  %>
             <% if current_user && params[:id] == current_user.id.to_s %>

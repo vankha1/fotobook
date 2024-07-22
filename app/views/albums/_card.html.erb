@@ -22,8 +22,9 @@
         <div class="col-lg-6">
             <div class="post_user_info">
                 <div class="user_info_part">
-                    <% if album.user.avatar.present? %>
-                        <img src="<%= album.user.avatar %>" class="default_avatar" alt="avatar" />
+                    <% avatar_url = album.user.avatar.present? ?  album.user.avatar : album.user.avatar_identifier %>
+                    <% if avatar_url %>
+                        <img src="<%= avatar_url %>" class="default_avatar" alt="avatar" />
                     <% else %>
                         <div class="default_avatar">
                             <span class="username_short"><%= album.user.first_name[0] + album.user.last_name[0] %></span>
