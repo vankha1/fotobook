@@ -24,3 +24,12 @@ form.on('submit', (e) => {
         alert('Please enter a title');
     }
 });
+
+// Show alert after click "Delete" button
+const deleteBtn = $('#delete-photo');
+deleteBtn.on('click', () => {
+    const result = confirm('Are you sure you want to delete this photo?');
+    if (!result) {
+        return false;
+    }
+});
