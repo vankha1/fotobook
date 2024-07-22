@@ -197,3 +197,12 @@
 #public_profile_main .user_info .navigation.active_profile_nav {
   color: var(--main_color);
 }
+
+.profile-nav {
+  gap: 1rem;
+  font-weight: bold;
+}
+
+.profile-nav a.navigation {
+  color: #aaa9a9; /* Adjust color as needed */
+}

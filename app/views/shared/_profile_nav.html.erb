@@ -1,26 +1,6 @@
-<div
-    class="d-block align-items-center d-md-flex"
-    style="gap: 1rem; font-weight: bold"
->
-    <a class="navigation <%= 'active_profile_nav' if request.path.include?('photos')%>" href="/users/<%= params[:id] %>/photos">
-        <span><%= current_user.photos.size %></span> Photos
-    </a>
-
-    <span style="color: #aaa9a9;">|</span>
-
-    <a class="navigation <%= 'active_profile_nav' if request.path.include?('albums')%>" href="/users/<%= params[:id] %>/albums">         
-        <span><%= current_user.albums.size %></span> Albums 
-    </a>
-
-    <span style="color: #aaa9a9;">|</span>
-
-    <a class="navigation <%= 'active_profile_nav' if request.path.include?('followings')%>" href="/users/<%= params[:id] %>/followings">
-        <span><%= @following_count %></span> Followings 
-    </a>
-
-    <span style="color: #aaa9a9;">|</span>
-
-    <a class="navigation <%= 'active_profile_nav' if request.path.include?('followers')%>" href="/users/<%= params[:id] %>/followers">
-        <span><%= @follower_count %></span> Followers 
-    </a>
+<div class="d-block align-items-center d-md-flex profile-nav">
+  <% [['photos', 'Photos'], ['albums', 'Albums'], ['followings', 'Followings'], ['followers', 'Followers']].each do |path, title| %>
+    <%= render 'nav_link', path: path, title: title %>
+    <%= '|' unless path == 'followers' %>
+  <% end %>
 </div>
