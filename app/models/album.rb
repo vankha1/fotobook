@@ -20,7 +20,6 @@ class Album < ApplicationRecord
     end
 
     def add_default_number_photos
-        puts "Diem oc +++++++++++++"
         self.number_photos = 0
     end
 
