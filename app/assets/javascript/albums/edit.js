@@ -48,3 +48,13 @@ form.on("submit", (e) => {
     alert("Please enter a title");
   }
 });
+
+
+// Show alert after click "Delete" button
+const deleteBtn = $('#delete-album');
+deleteBtn.on('click', () => {
+    const result = confirm('Are you sure you want to delete this album?');
+    if (!result) {
+        return false;
+    }
+});

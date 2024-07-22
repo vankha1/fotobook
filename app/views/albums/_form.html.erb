@@ -37,7 +37,7 @@
     <div>
         <%= f.submit "Save", class: "btn btn-success", style: "margin-right: 3rem" %>
         <% if request.path.include?('edit') %>
-            <%= link_to "Delete", @album, class: "btn btn-danger", method: :delete %>
+            <%= link_to "Delete", @album, class: "btn btn-danger", method: :delete, id: "delete-album" %>
         <% end %>
     </div>
 <% end %>
