@@ -1,24 +1,14 @@
 <% if @content.present? %>
         <% @content.each do |album| %>
             <div class="photo_container col-md-3 col-10 m-5 m-md-0">
-                <img
-                    src="<%= album.photos.count > 0 ? album.photos.first&.image_url : asset_path('default_photo.jpg') %>"
-                    class="img-fluid"
-                    style="width: 90%; height: 225px; object-fit: cover"
-                    alt=""
-                />
-                <img
-                    src="<%= album.photos.count > 0 ? album.photos.first&.image_url : asset_path('default_photo.jpg') %>"
-                    class="img-fluid"
-                    style="width: 90%; height: 225px; object-fit: cover"
-                    alt=""
-                />
-                <img
-                    src="<%= album.photos.count > 0 ? album.photos.first&.image_url : asset_path('default_photo.jpg') %>"
-                    class="img-fluid"
-                    style="width: 90%; height: 225px; object-fit: cover"
-                    alt=""
-                />
+                <% 3.times do |index| %>
+                    <img
+                        src="<%= album.photos.count > 0 ? album.photos.first&.image_url : asset_path('default_photo.jpg') %>"
+                        class="img-fluid"
+                        style="width: 90%; height: 225px; object-fit: cover"
+                        alt=""
+                    />
+                <% end %>
                 <p style="position: absolute; top: 95%; left: 30%; font-weight: bold">
                     <%= album.title %>
                 </p>

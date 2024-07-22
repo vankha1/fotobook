@@ -2,21 +2,13 @@
     <div class="row g-0 w-100">
         <div class="col-lg-6">
             <div class="photo_container">
-                <img
-                    src="<%= album.photos.first&.image_url.present? ? album.photos.first&.image_url : "#{asset_path('default_photo.jpg')}"  %>"
-                    class="img-fluid"
-                    alt="photo"
-                />
-                <img
-                    src="<%= album.photos.first&.image_url.present? ? album.photos.first&.image_url : "#{asset_path('default_photo.jpg')}"  %>"
-                    class="img-fluid"
-                    alt="photo"
-                />
-                <img
-                    src="<%= album.photos.first&.image_url.present? ? album.photos.first&.image_url : "#{asset_path('default_photo.jpg')}"  %>"
-                    class="img-fluid"
-                    alt="photo"
-                />
+                <% 3.times do |index| %>
+                    <img
+                        src="<%= album.photos.first&.image_url.present? ? album.photos.first&.image_url : "#{asset_path('default_photo.jpg')}"  %>"
+                        class="img-fluid"
+                        alt="photo"
+                    />
+                <% end %>
             </div>
         </div>
         <div class="col-lg-6">

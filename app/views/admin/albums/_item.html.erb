@@ -6,24 +6,14 @@
         style="max-width: 250px; height: 250px"
     >
         <div class="photo_container">
-            <img
-                src="<%= album.photos.first&.image_url.present? ? album.photos&.first.image_url : asset_path('default_photo.jpg') %>"
-                class="img-fluid"
-                style="object-fit: cover"
-                alt="Photo image"
-            />
-            <img
-                src="<%= album.photos.first&.image_url.present? ? album.photos&.first.image_url : asset_path('default_photo.jpg') %>"
-                class="img-fluid"
-                style="object-fit: cover"
-                alt="Photo image"
-            />
-            <img
-                src="<%= album.photos.first&.image_url.present? ? album.photos&.first.image_url : asset_path('default_photo.jpg') %>"
-                class="img-fluid"
-                style="object-fit: cover"
-                alt="Photo image"
-            />
+            <% 3.times do |index| %>
+                <img
+                    src="<%= album.photos.first&.image_url.present? ? album.photos&.first.image_url : asset_path('default_photo.jpg') %>"
+                    class="img-fluid"
+                    style="object-fit: cover"
+                    alt="Photo image"
+                />
+            <% end %>
         </div>
         <div
             class="card-img-overlay d-flex align-items-center px-2"
