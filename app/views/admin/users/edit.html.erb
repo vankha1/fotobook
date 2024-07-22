@@ -5,10 +5,7 @@
   <!-- Main content -->
   <div class="container_ col-12 col-md-8 m-md-0 justify-content-none">
     <!-- Header -->
-    <div class="" style="width: 100%">
-      <h5 class="float-start fw-bold">Edit photo</h5>
-      <hr style="width: 100%; border: 2px solid #555" />
-    </div>
+    <%= render "shared/update_header", title: "Edit user profile" %>
 
     <!-- Content -->
     <%= form_with(model: @user, url: admin_user_path(@user.id), class: "form-container mb-4") do |form| %>
