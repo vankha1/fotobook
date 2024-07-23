@@ -6,12 +6,15 @@
         ></i>
         <h3><%= link_to "Fotobook", root_path %></h3>
      
-        <div class="search_input col-6 col-md-10">
+        <div class="search_input col-6 col-md-8">
             <input
-            type="text"
-            placeholder="Search Photo / Album"
-            class="form-control"
+                type="text"
+                placeholder="Search Photo / Album"
+                class="form-control"
+                id="search_input"
             />
+
+            <div class="col-6 col-md-10" id="search_result"></div>    
         </div>
     </div>
 
@@ -80,3 +83,5 @@
         <% end %>
     </div>
 </header>
+
+<%= javascript_include_tag "common/search", type: "module" %>

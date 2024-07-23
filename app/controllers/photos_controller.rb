@@ -80,6 +80,16 @@ class PhotosController < ApplicationController
         end
     end
 
+    def search
+        key = "%#{params[:key]}%"
+        if params[:key] == ""
+            @photo_result = []
+        else
+            @photo_result = Photo.public_photos.where("title LIKE ? OR description LIKE ?", key, key)
+        end
+        render json: @photo_result.as_json(methods: :image_url)
+    end
+
     private
 
     def photo_params

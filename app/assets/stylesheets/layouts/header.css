@@ -24,6 +24,11 @@
   text-decoration: none;
   color: #fff;
 }
+
+#header .search_input {
+  position: relative;
+}
+
 .search_input input {
   /* width: 30rem; */
   padding: 5px 10px;
@@ -31,6 +36,45 @@
   border: none;
   outline: none;
 }
+
+#search_result {
+  position: absolute;
+  top: 2.5rem;
+  left: 0;
+  width: 100%;
+  height: 400px;
+  background-color: #ededed;
+  border-radius: 0.5rem;
+  z-index: 10;
+  overflow-y: scroll;
+  display: none;
+}
+
+#search_result #search_item {
+  width: 100%; 
+  height: 65px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: white;
+  text-decoration: none;
+  border-radius: unset;
+}
+
+#search_result #search_item .search_photo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #fff;
+  margin: 0.5rem;
+}
+  
+#search_result #search_item .search_title {
+  color: #717171;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
 .auth .auth_btn {
   color: #fff;
   text-decoration: none;

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get "/users/:id/followings", to: "users#show"
   get "/users/:id/followers", to: "users#show"
 
+  get "/search", to: "photos#search", defaults: { format: 'json' }
 
   # resources :users, only: [:index, :show] do
   #   resources :albums, only: [:index, :show, :new, :create] do
