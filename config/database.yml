@@ -11,3 +11,8 @@ default: &default
 development:
   <<: *default
   database: "first-rails"
+
+
+production:
+  <<: *default
+  database: "first-rails"
