@@ -1,5 +1,14 @@
-import setDebounce from '../common/debounce'
 const searchInput = $("#search_input");
+
+function setDebounce (func, delay) {
+  let debounce;
+  return function () {
+    const context = this;
+    const args = arguments;
+    clearTimeout(debounce);
+    debounce = setTimeout(() => func.apply(context, args), delay);
+  };
+};
 
 // Debounce the search input
 searchInput.on(

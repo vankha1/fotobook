@@ -227,6 +227,12 @@
 
 /* Responsive */
 
+@media screen and (max-width: 1400px) {
+  #main_album .container_ .card {
+    width: 100%;
+  }
+}
+
 @media screen and (max-width: 992px) {
   #main_album .container_ .card {
     width: 85%;
