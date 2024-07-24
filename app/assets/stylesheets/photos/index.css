@@ -43,6 +43,13 @@
   flex-direction: row;
 }
 
+@media screen and (max-width: 1300px) {
+  #main .container_ .card.photo {
+    width: 100%;
+    height: "";
+  }
+}
+
 @media screen and (max-width: 992px) {
   #main .container_ .card.photo {
     width: 100%;
