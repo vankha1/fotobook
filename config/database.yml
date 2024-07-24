@@ -4,6 +4,7 @@ default: &default
   username: root
   password: Vankha@123
   host: localhost
+  socket: /var/run/mysqld/mysqld.sock
   port: 3306
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
