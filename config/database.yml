@@ -1,10 +1,9 @@
 default: &default
   adapter: mysql2
   encoding: utf8
-  username: root
-  password: Vankha@123
-  host: localhost
-  socket: /var/run/mysqld/mysqld.sock
+  username: uy1ow2grosdukyo4
+  password: R3nWKvM5En31wzhX9bgz
+  host: bnjkcj6ye2w1gef5y8p3-mysql.services.clever-cloud.com
   port: 3306
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
