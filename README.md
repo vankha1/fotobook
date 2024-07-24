@@ -1,4 +1,4 @@
-# README
+# FOTOBOOK
 
 ### Remaining Tasks
 
@@ -14,6 +14,7 @@
 * View user's profile
 * Views feeds (public photos and albums of following users) 
 * Views discover (public photos and albums of all users)
+* Search public photos and albums
 
 ### User
 
@@ -23,7 +24,6 @@
 * Follow another user
 * View user's profile and edit profile
 * Follow another users
-
 
 ### Admin
 

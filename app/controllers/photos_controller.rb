@@ -82,12 +82,32 @@ class PhotosController < ApplicationController
 
     def search
         key = "%#{params[:key]}%"
-        if params[:key] == ""
-            @photo_result = []
-        else
-            @photo_result = Photo.public_photos.where("title LIKE ? OR description LIKE ?", key, key)
+        combined_results = []
+
+        if params[:key].present?
+            photo_results = Photo.public_photos.where("title LIKE ? OR description LIKE ?", key, key)
+            album_results = Album.where("title LIKE ? OR description LIKE ?", key, key)
+
+            # Assuming Album has_many :photos and Photo responds to :image_url
+            album_results = album_results.map do |album|
+                album_attributes = album.attributes
+                first_photo = album.photos.first
+                album_attributes.merge!("image_url" => first_photo.try(:image_url) || "default_image_url_here")
+                album_attributes.merge!("type" => "Album")
+                # Append (album) to the title for album results
+                album_attributes["title"] = "#{album_attributes["title"]} (album)"
+                album_attributes
+            end
+    
+
+            photo_results = photo_results.map do |photo|
+            photo.attributes.merge("type" => "Photo", "image_url" => photo.image_url)
+            end
+
+            combined_results = photo_results + album_results
         end
-        render json: @photo_result.as_json(methods: :image_url)
+
+        render json: combined_results
     end
 
     private
