@@ -24,7 +24,7 @@
                     <% end %>
                     <span class="user_name"><%= album.user.first_name + album.user.last_name %></span>  
                 </div>
-                <% if request.path.include?('discover') %>
+                <% if request.path.include?('discover') && current_user.id != album.user.id %>
                     <button class="custom_btn <%= current_user && current_user.followers.pluck(:id).include?(album.user.id) ? "custom_btn_followed" : "" %>" id="follow_btn" <%= "disabled" unless current_user %> >
                         <%= current_user && current_user.followers.pluck(:id).include?(album.user.id) ? "Following" : "Follow" %>
                     </button>
