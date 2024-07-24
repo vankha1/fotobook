@@ -15,4 +15,4 @@ development:
 
 production:
   <<: *default
-  database: "first-rails"
+  database: "bnjkcj6ye2w1gef5y8p3"
