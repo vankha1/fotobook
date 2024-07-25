@@ -1,7 +1,7 @@
 class PhotosController < ApplicationController
 
     before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-    before_action :restrict_admin_access, only: [:photo_feeds, :discover]
+    before_action :restrict_admin_access, only: [:photo_feeds, :new, :create ,:discover]
 
     def index
         if user_signed_in?

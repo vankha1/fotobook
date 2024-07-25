@@ -32,5 +32,7 @@
         <% end %>
     </div>
 <% else %>
-    <h6 style="text-align: center">No photo </h6>
+    <% unless current_user.is_admin? %>
+        <h6 style='text-align: center'>No photos</h6>
+    <% end %>
 <% end %>

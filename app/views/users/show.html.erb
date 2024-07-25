@@ -7,7 +7,7 @@
         <%= render "show_user_info" %>
 
         <% if !request.path.include?('follow')  %>
-            <% if current_user && params[:id] == current_user.id.to_s %>
+            <% if current_user && params[:id] == current_user.id.to_s && !current_user.is_admin? %>
                 <%= link_to(request.path.include?('photos') ? new_photo_path : new_album_path, class: "btn btn-success align-self-end fw-bold mb-4") do %>
                     Add <%= request.path.include?('photos') ? "Photo" : "Album" %>
                 <% end %>
