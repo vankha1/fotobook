@@ -29,11 +29,11 @@
                             <% if avatar_url %>
                                 <img
                                     src="<%= avatar_url %>"
-                                    style="width: 2.5rem; height: 2.5rem; border-radius: 50%;
-                                    object-fit: cover"
+                                    style="width: 2.5rem; height: 2.5rem; border-radius: 50%; object-fit: cover; cursor: pointer;"
+                                    onclick="window.location.href = '/users/<%= current_user.id %>/photos'"
                                 >
                             <% else %>
-                                <div class="default_avatar">
+                                <div class="default_avatar" style="cursor: pointer;" onclick="window.location.href = '/users/<%= current_user.id %>/photos'">
                                     <span class="username_short"><%= current_user.first_name[0] + current_user.last_name[0] %></span>
                                 </div>
                             <% end %>

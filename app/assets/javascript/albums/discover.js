@@ -45,13 +45,17 @@ document.querySelectorAll(".custom_btn").forEach((btn) => {
       if (!followBtn.classList.contains("custom_btn_followed")) {
         sendRequest(`/follows`, "POST", { follower_id: userId }, (data) => {
           // add class custom_btn_followed to all buttons of photos that have been followed
-          followBtn.classList.add("custom_btn_followed");
-          followBtn.textContent = "Following";
+          document.querySelectorAll(`.card[data-user='${userId}'] .custom_btn`).forEach(button => {
+            button.classList.add("custom_btn_followed");
+            button.textContent = "Following";
+          })
         });
       } else {
         sendRequest(`/follows/${userId}`, "DELETE", null, (data) => {
-          followBtn.classList.remove("custom_btn_followed");
-          followBtn.textContent = "Follow";
+          document.querySelectorAll(`.card[data-user='${userId}'] .custom_btn`).forEach(button => {
+            button.classList.remove("custom_btn_followed");
+            button.textContent = "Follow";
+          })
         });
       }
     }, 1000)

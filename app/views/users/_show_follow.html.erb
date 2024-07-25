@@ -20,17 +20,20 @@
                         style="width: 100px;
                                 height: 100px;
                                 object-fit: cover;
-                                border-radius: 50%;"
+                                border-radius: 50%;
+                                cursor: pointer;
+                                "
                         alt="avatar"
+                        class="user_info_part"
                     >
                 <% else %>
-                    <div class="default_avatar">
+                    <div class="default_avatar user_info_part" style="cursor: pointer;">
                         <span class="username_short"><%= user.first_name[0] + user.last_name[0] %></span>
                     </div>
                 <% end %>
             <% end %>
 
-            <h5 style="font-weight: 700"><%= user.first_name + " " + user.last_name %></h5>
+            <h5 class="user_info_part" style="font-weight: 700; cursor: pointer;"><%= user.first_name + " " + user.last_name %></h5>
 
             <div
                 class="d-flex align-items-center"
