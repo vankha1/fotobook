@@ -60,5 +60,7 @@
         </div>
     <% end %>
 <% else %>
-    <h6 style="text-align: center">No follower/following users </h6>
+    <% unless current_user.is_admin? %>
+        <h6 style='text-align: center'>No follower/following users</h6>
+    <% end %>
 <% end %>

@@ -1,7 +1,7 @@
 class AlbumsController < ApplicationController
 
     before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-    before_action :restrict_admin_access, only: [:index, :discover]
+    before_action :restrict_admin_access, only: [:index, :new, :create, :discover]
 
     def index
         if user_signed_in?

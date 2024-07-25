@@ -38,7 +38,8 @@
             <%= @user.first_name + " " + @user.last_name %>
         </h1>
         
-        <%= render "shared/profile_nav", user: @user %>
-
+        <% unless current_user.is_admin? %>
+            <%= render "shared/profile_nav", user: @user %>
+        <% end %>
     </div>
 </div>
